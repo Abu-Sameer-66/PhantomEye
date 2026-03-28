@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pyo
+.env
+*.egg-info/
+dist/
+build/
+.DS_Store
+*.pt
+*.pth
+*.onnx
+data/videos/*.mp4
+data/videos/*.avi
+outputs/*.mp4
+.ipynb_checkpoints/
+wandb/
+*.log
