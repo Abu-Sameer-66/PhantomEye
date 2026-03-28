@@ -1,5 +1,5 @@
 ultralytics==8.2.0
-opencv-python==4.9.0.80
+opencv-contrib-python-headless==4.9.0.80
 numpy==1.26.4
 supervision==0.21.0
 torch==2.2.1
@@ -19,4 +19,4 @@ python-jose==3.3.0
 passlib==1.7.4
 python-dotenv==1.0.1
 requests==2.31.0
-
+streamlit==1.32.0
