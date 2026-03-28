@@ -3,7 +3,7 @@ opencv-contrib-python-headless==4.9.0.80
 numpy==2.0.0
 supervision==0.21.0
 torch==2.9.0
-torchvision==0.20.0
+torchvision
 Pillow==10.2.0
 tqdm==4.66.2
 pyyaml==6.0.1
