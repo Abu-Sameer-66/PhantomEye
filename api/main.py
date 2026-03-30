@@ -209,9 +209,11 @@ def list_outputs():
 
 
 if __name__ == "__main__":
+    import os
+    port = int(os.environ.get("PORT", 8000))
     uvicorn.run(
         "api.main:app",
         host=API_HOST,
-        port=API_PORT,
+        port=port,
         reload=False,
     )
