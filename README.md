@@ -1,30 +1,30 @@
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&ColorList=00ff88,0d1f0d,00aa55,003322,00ff44&height=280&section=header&text=PhantomEye&fontSize=80&fontColor=00ff88&animation=fadeIn&fontAlignY=35&desc=AI-Powered%20Surveillance%20Intelligence%20System&descAlignY=60&descAlign=50" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&ColorList=7B2FFF,0D0D2B,4A00E0,1A0533,00E5FF&height=280&section=header&text=PhantomEye&fontSize=80&fontColor=00E5FF&animation=fadeIn&fontAlignY=35&desc=AI-Powered%20Surveillance%20Intelligence%20System&descAlignY=60&descAlign=50" width="100%"/>
 </div>
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=700&size=24&pause=900&color=00FF88&center=true&vCenter=true&width=900&lines=Person+Re-ID+Across+Multiple+Cameras;Real-Time+Behavioral+Heatmap+Analytics;OSINT+Privacy+Exposure+Audit+Engine;Production+FastAPI+%7C+Streamlit+%7C+Docker" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=700&size=24&pause=900&color=B44FFF&center=true&vCenter=true&width=900&lines=Person+Re-ID+Across+Multiple+Cameras;Real-Time+Behavioral+Heatmap+Analytics;OSINT+Privacy+Exposure+Audit+Engine;Production+FastAPI+%7C+Streamlit+%7C+Docker" />
 </p>
 
 <p align="center">
   <a href="https://abu-sameer-66-phantomeye.hf.space">
-    <img src="https://img.shields.io/badge/LIVE%20DEMO-HuggingFace-00ff88?style=for-the-badge&logo=huggingface&logoColor=black"/>
+    <img src="https://img.shields.io/badge/LIVE%20DEMO-HuggingFace-00E5FF?style=for-the-badge&logo=huggingface&logoColor=0D0D2B"/>
   </a>
   <a href="https://phantomeye-production.up.railway.app/docs">
-    <img src="https://img.shields.io/badge/API%20DOCS-Railway-00aa55?style=for-the-badge&logo=railway&logoColor=white"/>
+    <img src="https://img.shields.io/badge/API%20DOCS-Railway-7B2FFF?style=for-the-badge&logo=railway&logoColor=white"/>
   </a>
   <a href="https://github.com/Abu-Sameer-66/PhantomEye">
-    <img src="https://img.shields.io/badge/GitHub-PhantomEye-003322?style=for-the-badge&logo=github&logoColor=00ff88"/>
+    <img src="https://img.shields.io/badge/GitHub-PhantomEye-1A0533?style=for-the-badge&logo=github&logoColor=00E5FF"/>
   </a>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/YOLOv8-Detection-00ff88?style=for-the-badge&logo=pytorch&logoColor=black"/>
-  <img src="https://img.shields.io/badge/ByteTrack-Tracking-00aa55?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/OpenCV-LBPH%20Re--ID-003322?style=for-the-badge&logo=opencv&logoColor=00ff88"/>
-  <img src="https://img.shields.io/badge/FastAPI-8%20Endpoints-00ff88?style=for-the-badge&logo=fastapi&logoColor=black"/>
-  <img src="https://img.shields.io/badge/Docker-Deployed-00aa55?style=for-the-badge&logo=docker&logoColor=white"/>
-  <img src="https://img.shields.io/badge/License-MIT-003322?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/YOLOv8-Detection-7B2FFF?style=for-the-badge&logo=pytorch&logoColor=white"/>
+  <img src="https://img.shields.io/badge/ByteTrack-Tracking-4A00E0?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/OpenCV-LBPH%20Re--ID-1A0533?style=for-the-badge&logo=opencv&logoColor=00E5FF"/>
+  <img src="https://img.shields.io/badge/FastAPI-8%20Endpoints-7B2FFF?style=for-the-badge&logo=fastapi&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Docker-Deployed-4A00E0?style=for-the-badge&logo=docker&logoColor=white"/>
+  <img src="https://img.shields.io/badge/License-MIT-1A0533?style=for-the-badge"/>
 </p>
 
 ---
@@ -251,13 +251,13 @@ PhantomEye/
 
 **Abu Sameer** — AI/ML Engineer · Computer Vision Researcher · Open Source Contributor
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-sameer--nadeem--portfolio.vercel.app-00ff88?style=for-the-badge)](https://sameer-nadeem-portfolio.vercel.app)
-[![GitHub](https://img.shields.io/badge/GitHub-Abu--Sameer--66-003322?style=for-the-badge&logo=github&logoColor=00ff88)](https://github.com/Abu-Sameer-66)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Sameer%20Nadeem-00aa55?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/sameer-nadeem-66339a357/)
-[![Kaggle](https://img.shields.io/badge/Kaggle-sameernadeem66-00ff88?style=for-the-badge&logo=kaggle&logoColor=black)](https://www.kaggle.com/sameernadeem66)
+[![Portfolio](https://img.shields.io/badge/Portfolio-sameer--nadeem--portfolio.vercel.app-00E5FF?style=for-the-badge)](https://sameer-nadeem-portfolio.vercel.app)
+[![GitHub](https://img.shields.io/badge/GitHub-Abu--Sameer--66-1A0533?style=for-the-badge&logo=github&logoColor=00E5FF)](https://github.com/Abu-Sameer-66)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Sameer%20Nadeem-7B2FFF?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/sameer-nadeem-66339a357/)
+[![Kaggle](https://img.shields.io/badge/Kaggle-sameernadeem66-4A00E0?style=for-the-badge&logo=kaggle&logoColor=white)](https://www.kaggle.com/sameernadeem66)
 
 ---
 
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&ColorList=00ff88,0d1f0d,00aa55,003322&height=120&section=footer" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&ColorList=7B2FFF,1A0533,0D0D2B,4A00E0&height=120&section=footer" width="100%"/>
 </div>
