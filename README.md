@@ -6,7 +6,6 @@
   <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=700&size=24&pause=900&color=B44FFF&center=true&vCenter=true&width=900&lines=Person+Re-ID+Across+Multiple+Cameras;Real-Time+Behavioral+Heatmap+Analytics;OSINT+Privacy+Exposure+Audit+Engine;Production+FastAPI+%7C+Streamlit+%7C+Docker" />
 </p>
 
-
 <p align="center">
   <a href="https://abu-sameer-66-phantomeye.hf.space">
     <img src="https://img.shields.io/badge/LIVE%20DEMO-HuggingFace-00E5FF?style=for-the-badge&logo=huggingface&logoColor=0D0D2B"/>
