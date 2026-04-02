@@ -256,6 +256,7 @@ PhantomEye/
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Sameer%20Nadeem-7B2FFF?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/sameer-nadeem-66339a357/)
 [![Kaggle](https://img.shields.io/badge/Kaggle-sameernadeem66-4A00E0?style=for-the-badge&logo=kaggle&logoColor=white)](https://www.kaggle.com/sameernadeem66)
 
+[![Medium](https://img.shields.io/badge/Medium-Article-00ff88?style=for-the-badge&logo=medium&logoColor=black)](https://medium.com/@sameerdataanalyst66/i-built-an ai-that-watches-tracks-and-audits-phantomeye-is-live-afe2f62bcb7b)
 ---
 
 <div align="center">
