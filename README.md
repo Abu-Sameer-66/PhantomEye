@@ -1,147 +1,183 @@
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&ColorList=7B2FFF,0D0D2B,4A00E0,1A0533,00E5FF&height=280&section=header&text=PhantomEye&fontSize=80&fontColor=00E5FF&animation=fadeIn&fontAlignY=35&desc=AI-Powered%20Surveillance%20Intelligence%20System&descAlignY=60&descAlign=50" width="100%"/>
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0a0a0a,50:1a0040,100:0d1f0d&height=300&section=header&text=👁%20PhantomEye&fontSize=75&fontColor=00ff88&animation=fadeIn&fontAlignY=38&desc=AI-Powered%20Surveillance%20Intelligence%20System&descSize=18&descAlignY=58&descAlign=50&descColor=00aa55" width="100%"/>
+
+<br/>
+
+<img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=700&size=22&pause=1000&color=00FF88&center=true&vCenter=true&width=800&lines=Person+Re-ID+Across+Camera+Networks;Real-Time+Behavioral+Heatmap+Engine;OSINT+Privacy+Exposure+Score+0%E2%80%93100;Production+FastAPI+%7C+Docker+%7C+HuggingFace" />
+
+<br/><br/>
+
+<a href="https://abu-sameer-66-phantomeye.hf.space">
+<img src="https://img.shields.io/badge/%F0%9F%9F%A2%20LIVE%20DEMO-HuggingFace%20Spaces-00ff88?style=for-the-badge&labelColor=0d1f0d"/>
+</a>
+&nbsp;
+<a href="https://phantomeye-production.up.railway.app/docs">
+<img src="https://img.shields.io/badge/%F0%9F%93%A1%20API%20DOCS-Railway-00aa55?style=for-the-badge&labelColor=003322"/>
+</a>
+&nbsp;
+<a href="https://medium.com/@sameerdataanalyst66/i-built-an-ai-that-watches-tracks-and-audits-phantomeye-is-live-afe2f62bcb7b">
+<img src="https://img.shields.io/badge/%F0%9F%93%96%20MEDIUM-Full%20Article-00ff88?style=for-the-badge&labelColor=0d1f0d"/>
+</a>
+&nbsp;
+<a href="https://github.com/Abu-Sameer-66/PhantomEye/blob/main/LICENSE">
+<img src="https://img.shields.io/badge/License-MIT-003322?style=for-the-badge&labelColor=0d1f0d"/>
+</a>
+
+<br/><br/>
+
+<img src="https://img.shields.io/badge/YOLOv8-nano-00ff88?style=flat-square&logo=pytorch&logoColor=black&labelColor=0d1f0d"/>
+<img src="https://img.shields.io/badge/ByteTrack-IOU%20Matching-00aa55?style=flat-square&labelColor=003322"/>
+<img src="https://img.shields.io/badge/OpenCV-LBPH%20Face-00ff88?style=flat-square&logo=opencv&logoColor=black&labelColor=0d1f0d"/>
+<img src="https://img.shields.io/badge/FastAPI-8%20Endpoints-00aa55?style=flat-square&logo=fastapi&logoColor=white&labelColor=003322"/>
+<img src="https://img.shields.io/badge/Streamlit-Dashboard-00ff88?style=flat-square&logo=streamlit&logoColor=black&labelColor=0d1f0d"/>
+<img src="https://img.shields.io/badge/Docker-Containerized-00aa55?style=flat-square&logo=docker&logoColor=white&labelColor=003322"/>
+<img src="https://img.shields.io/badge/Python-3.10-00ff88?style=flat-square&logo=python&logoColor=black&labelColor=0d1f0d"/>
+
 </div>
 
-<p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=700&size=24&pause=900&color=B44FFF&center=true&vCenter=true&width=900&lines=Person+Re-ID+Across+Multiple+Cameras;Real-Time+Behavioral+Heatmap+Analytics;OSINT+Privacy+Exposure+Audit+Engine;Production+FastAPI+%7C+Streamlit+%7C+Docker" />
-</p>
+---
 
-<p align="center">
-  <a href="https://abu-sameer-66-phantomeye.hf.space">
-    <img src="https://img.shields.io/badge/LIVE%20DEMO-HuggingFace-00E5FF?style=for-the-badge&logo=huggingface&logoColor=0D0D2B"/>
-  </a>
-  <a href="https://phantomeye-production.up.railway.app/docs">
-    <img src="https://img.shields.io/badge/API%20DOCS-Railway-7B2FFF?style=for-the-badge&logo=railway&logoColor=white"/>
-  </a>
-  <a href="https://github.com/Abu-Sameer-66/PhantomEye">
-    <img src="https://img.shields.io/badge/GitHub-PhantomEye-1A0533?style=for-the-badge&logo=github&logoColor=00E5FF"/>
-  </a>
-</p>
+## What is PhantomEye?
 
-<p align="center">
-  <img src="https://img.shields.io/badge/YOLOv8-Detection-7B2FFF?style=for-the-badge&logo=pytorch&logoColor=white"/>
-  <img src="https://img.shields.io/badge/ByteTrack-Tracking-4A00E0?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/OpenCV-LBPH%20Re--ID-1A0533?style=for-the-badge&logo=opencv&logoColor=00E5FF"/>
-  <img src="https://img.shields.io/badge/FastAPI-8%20Endpoints-7B2FFF?style=for-the-badge&logo=fastapi&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Docker-Deployed-4A00E0?style=for-the-badge&logo=docker&logoColor=white"/>
-  <img src="https://img.shields.io/badge/License-MIT-1A0533?style=for-the-badge"/>
-</p>
+Most computer vision projects stop at detection. They draw a box around a person and call it done. The box appears. The box disappears. Nothing is remembered. Nothing is understood.
+
+**PhantomEye goes further.**
+
+It is an end-to-end AI surveillance intelligence platform that transforms passive camera feeds into a live reasoning engine — detecting, tracking, analyzing behavior, and auditing privacy, all in one unified system.
+
+Built from scratch. Deployed live. Zero pre-loaded data.
 
 ---
 
-## 👁 What is PhantomEye?
+## Capabilities
 
-> **PhantomEye** is an **end-to-end AI surveillance intelligence platform** that transforms raw camera feeds into actionable intelligence — in real time.
+<table>
+<tr>
+<td width="50%">
 
-Unlike basic CCTV systems that only record, PhantomEye **reasons** over video:
+### 👁 Person Detection
+YOLOv8-nano configured for class-0 only. Returns bounding boxes and confidence scores on standard CPU in milliseconds. No GPU required.
 
-- Detects every person with **YOLOv8-nano** at high confidence
-- Assigns **persistent unique IDs** across frames with ByteTrack
-- Generates **behavioral heatmaps** — showing where people dwell, linger, and move
-- Fires **automated loitering alerts** when anomalies are detected
-- Runs **OSINT privacy audits** — computing exposure scores from face embeddings
-- Exposes everything through a **production-grade REST API** with interactive docs
+### 🎯 Multi-Object Tracking
+Custom ByteTrack with IOU matching. Each person receives a persistent color-coded ID with trajectory trail — across frames, through occlusion, across re-entries.
 
-Built for **law enforcement, retail intelligence, campus security, healthcare monitoring, and privacy research**.
+### 🔥 Behavioral Heatmap
+NumPy position accumulation builds a live heatmap of human movement. High-activity zones appear red. Dwell time tracked per person in seconds.
+
+</td>
+<td width="50%">
+
+### ⚠️ Loitering Alerts
+Automated alerts fire when a person exceeds the dwell threshold. No human monitoring required.
+
+### 🔍 OSINT Privacy Audit
+Upload a face — get a Privacy Exposure Score from 0 to 100. LBPH embedding search against a reference gallery. Risk classification: LOW / MEDIUM / HIGH.
+
+### ⚡ Production REST API
+FastAPI backend with 8 endpoints. OAS 3.1 interactive docs. CORS enabled. In-memory file processing — nothing stored server-side.
+
+</td>
+</tr>
+</table>
 
 ---
 
-## ⚡ Why PhantomEye is Different
-
-Most CV projects stop at detection. PhantomEye goes further:
+## Why PhantomEye is Different
 
 | Capability | Typical CV Project | PhantomEye |
-|---|---|---|
+|:---|:---:|:---:|
 | Person detection | ✅ | ✅ YOLOv8-nano |
-| Multi-object tracking | ❌ | ✅ ByteTrack persistent IDs |
-| Behavioral analytics | ❌ | ✅ Heatmap + dwell time |
-| Loitering alerts | ❌ | ✅ Automated triggers |
-| OSINT privacy audit | ❌ | ✅ Exposure score 0–100 |
-| Production API | ❌ | ✅ FastAPI 8 endpoints |
-| Live deployment | ❌ | ✅ HuggingFace + Railway |
-| User data privacy | ❌ | ✅ Zero pre-loaded data |
+| Persistent ID tracking | ❌ | ✅ ByteTrack |
+| Behavioral heatmap | ❌ | ✅ NumPy accumulation |
+| Dwell time analytics | ❌ | ✅ Per-person seconds |
+| Automated loitering alert | ❌ | ✅ Threshold-based |
+| OSINT privacy audit | ❌ | ✅ Score 0–100 |
+| Production REST API | ❌ | ✅ 8 endpoints, OAS 3.1 |
+| Live 24/7 deployment | ❌ | ✅ HuggingFace + Railway |
+| Zero pre-loaded data | ❌ | ✅ Privacy-first |
 
 ---
 
-## 🏗️ System Architecture
-```text
-INPUT LAYER
-   │
-   ├── Live RTSP Feed / Video File / Image Upload
-   │
-   ▼
-VISION PIPELINE
-   │
-   ├── YOLOv8-nano ──── Person Detection (confidence + bbox)
-   │
-   ├── ByteTrack ─────── Persistent ID tracking across frames
-   │                     Color-coded bounding boxes + trajectory trails
-   │
-   └── OSNet / LBPH ──── Re-ID Engine (cross-camera matching)
-                         Cosine similarity gallery search
-   │
-   ▼
-INTELLIGENCE LAYER
-   │
-   ├── Behavioral Analytics
-   │     ├── NumPy heatmap accumulation
-   │     ├── Dwell time per person (seconds)
-   │     └── Loitering alert (threshold-based)
-   │
-   ├── OSINT Audit Engine
-   │     ├── Face embedding extraction
-   │     ├── Gallery cosine similarity search
-   │     └── Privacy exposure score (0–100) + risk level
-   │
-   └── Event Logger ──── JSON report generation
-   │
-   ▼
-OUTPUT LAYER
-   │
-   ├── FastAPI REST API ── 8 production endpoints (OAS 3.1)
-   ├── Streamlit Dashboard ── Elite cyberpunk UI
-   ├── WebSocket ── Real-time frame streaming
-   └── PDF / JSON Reports ── Exportable audit logs
+## System Architecture
+```
+┌─────────────────────────────────────────────────┐
+│                   INPUT LAYER                   │
+│   Image Upload  /  Video File  /  RTSP Feed     │
+└───────────────────────┬─────────────────────────┘
+                        │
+┌───────────────────────▼─────────────────────────┐
+│                 VISION PIPELINE                 │
+│                                                 │
+│  YOLOv8-nano ──── Person Detection              │
+│      │            bbox + confidence             │
+│      │                                          │
+│  ByteTrack ─────── Persistent ID Assignment     │
+│      │             Color trails + occlusion     │
+│      │                                          │
+│  LBPH Engine ───── Re-ID Gallery Search         │
+│                    Cosine similarity match      │
+└───────────────────────┬─────────────────────────┘
+                        │
+┌───────────────────────▼─────────────────────────┐
+│               INTELLIGENCE LAYER                │
+│                                                 │
+│  Behavioral Analytics                           │
+│  ├── NumPy heatmap accumulation                 │
+│  ├── Per-person dwell time (seconds)            │
+│  └── Automated loitering alerts                 │
+│                                                 │
+│  OSINT Audit Engine                             │
+│  ├── Face embedding extraction                  │
+│  ├── Gallery similarity search                  │
+│  └── Exposure score (0–100) + risk level        │
+└───────────────────────┬─────────────────────────┘
+                        │
+┌───────────────────────▼─────────────────────────┐
+│                  OUTPUT LAYER                   │
+│                                                 │
+│  FastAPI REST API   ── 8 endpoints, OAS 3.1     │
+│  Streamlit Dashboard── Cyberpunk UI             │
+│  JSON Reports       ── Exportable audit logs    │
+└─────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🚀 Live Deployment
+## Live Deployment
 
-| Service | Platform | URL |
-|---|---|---|
-| Interactive Dashboard | HuggingFace Spaces | [phantomeye.hf.space](https://abu-sameer-66-phantomeye.hf.space) |
-| REST API | Railway | [phantomeye-production.up.railway.app](https://phantomeye-production.up.railway.app) |
-| API Documentation | Railway | [/docs](https://phantomeye-production.up.railway.app/docs) |
+| Service | Platform | Status |
+|:---|:---|:---:|
+| [Interactive Dashboard](https://abu-sameer-66-phantomeye.hf.space) | HuggingFace Spaces | 🟢 Live |
+| [REST API](https://phantomeye-production.up.railway.app) | Railway | 🟢 Live |
+| [API Documentation](https://phantomeye-production.up.railway.app/docs) | Railway | 🟢 Live |
 
 ---
 
-## 🔌 API Reference
+## API Reference
 
 **Base URL:** `https://phantomeye-production.up.railway.app`
 
 | Method | Endpoint | Description |
-|---|---|---|
-| GET | `/` | System info + module status |
-| GET | `/health` | Live health check + gallery size |
-| POST | `/detect` | Person detection on image upload |
-| POST | `/track/video` | Multi-object tracking on video |
-| POST | `/osint/audit` | Privacy exposure audit |
-| POST | `/osint/add-to-gallery` | Add person to reference gallery |
-| GET | `/osint/gallery` | List registered persons |
-| GET | `/outputs` | List processed output files |
+|:---|:---|:---|
+| `GET` | `/` | System info + version |
+| `GET` | `/health` | Live health check |
+| `POST` | `/detect` | Person detection on image |
+| `POST` | `/track/video` | Multi-object tracking on video |
+| `POST` | `/osint/audit` | Privacy exposure audit |
+| `POST` | `/osint/add-to-gallery` | Register person to gallery |
+| `GET` | `/osint/gallery` | List gallery persons |
+| `GET` | `/outputs` | List output files |
 
-### Quick test:
+**Quick test:**
 ```bash
 curl -X POST "https://phantomeye-production.up.railway.app/detect" \
-  -F "file=@your_image.jpg"
+  -F "file=@crowd.jpg"
 ```
-
-**Response:**
 ```json
 {
   "status": "success",
-  "total_persons": 4,
+  "total_persons": 8,
   "detections": [
     { "id": 1, "bbox": [120, 80, 310, 420], "confidence": 0.87 },
     { "id": 2, "bbox": [450, 95, 620, 430], "confidence": 0.74 }
@@ -151,114 +187,100 @@ curl -X POST "https://phantomeye-production.up.railway.app/detect" \
 
 ---
 
-## 🧠 Core Modules
-
-### Module 1 — Person Detection (`core/detection.py`)
-YOLOv8-nano configured for class-0 (person) only detection. Returns bounding boxes, confidence scores, and annotated frames. CPU-optimized for deployment on standard hardware.
-
-### Module 2 — Multi-Object Tracking (`core/tracker.py`)
-Custom ByteTrack implementation with IOU-based matching. Each person receives a persistent color-coded ID with trajectory visualization. Handles occlusion and re-entry.
-
-### Module 3 — Behavioral Analytics (`core/analytics.py`)
-Accumulates person positions into a NumPy heatmap over time. Computes per-person dwell time in seconds. Triggers loitering alerts above configurable thresholds. Exports heatmap overlays and JSON event logs.
-
-### Module 4 — OSINT Privacy Audit (`core/osint.py`)
-Extracts face embeddings using OpenCV LBPH. Searches against a user-provided reference gallery via histogram correlation. Returns exposure score (0–100), risk level (LOW / MEDIUM / HIGH), and matched identities.
-
-### Module 5 — REST API (`api/main.py`)
-FastAPI backend with 8 production endpoints. Full OAS 3.1 documentation auto-generated. CORS enabled for frontend integration. Processes user-uploaded files in memory — nothing stored server-side.
-
----
-
-## 🔒 Privacy & Security Design
-
-PhantomEye is built with **privacy-first architecture**:
-
-- **Zero pre-loaded data** — no faces, videos, or images in the repository
-- **In-session processing** — uploaded files processed in RAM, never written to disk permanently
-- **User-controlled gallery** — only data you explicitly upload is used
-- **Ethical OSINT framing** — audit module designed for privacy defense, not surveillance offense
-- **Open source** — full transparency into every processing step
-
----
-
-## 📦 Local Setup
+## Local Setup
 ```bash
 git clone https://github.com/Abu-Sameer-66/PhantomEye.git
 cd PhantomEye
 
 conda create -n phantomeye python=3.10 -y
 conda activate phantomeye
-
 pip install -r requirements.txt
 ```
-
-**Run Streamlit dashboard:**
 ```bash
+# Streamlit dashboard
 streamlit run app.py
-```
 
-**Run FastAPI backend:**
-```bash
+# FastAPI backend
 python api/main.py
-```
 
-**Run detection on a video:**
-```bash
+# Detection on video
 python core/detection.py data/videos/your_video.mp4
-```
 
-**Run OSINT audit:**
-```bash
+# OSINT audit
 python core/osint.py data/gallery/query.jpg
 ```
 
 ---
 
-## 🗂️ Repository Structure
+## Repository Structure
 ```
 PhantomEye/
 ├── core/
-│   ├── detection.py       # YOLOv8 person detector
-│   ├── tracker.py         # ByteTrack multi-object tracker
-│   ├── analytics.py       # Behavioral heatmap + alerts
-│   └── osint.py           # OSINT privacy audit engine
+│   ├── detection.py        YOLOv8 person detector
+│   ├── tracker.py          ByteTrack multi-object tracker
+│   ├── analytics.py        Heatmap + dwell time + alerts
+│   └── osint.py            OSINT privacy audit engine
 ├── api/
-│   ├── main.py            # FastAPI backend (8 endpoints)
-│   └── routes/            # Modular route handlers
-├── app.py                 # Streamlit dashboard
-├── config.py              # Global configuration
-├── Dockerfile             # Docker deployment
-├── requirements.txt       # Dependencies
-└── README.md
+│   ├── main.py             FastAPI backend — 8 endpoints
+│   └── routes/             Modular route handlers
+├── app.py                  Streamlit dashboard
+├── config.py               Global configuration
+├── Dockerfile              Container deployment
+└── requirements.txt        Dependencies
 ```
 
 ---
 
-## 🌍 Real-World Applications
+## Real-World Applications
 
 | Domain | Use Case |
-|---|---|
-| Law Enforcement | Cross-camera suspect tracking, evidence extraction |
-| Retail Analytics | Customer heatmaps, queue monitoring, loss prevention |
-| Campus Security | Attendance automation, unauthorized access detection |
+|:---|:---|
+| Law Enforcement | Cross-camera suspect tracking, automated evidence extraction |
+| Retail Intelligence | Customer heatmaps, queue monitoring, loss prevention |
+| Campus Security | Contactless attendance, unauthorized access detection |
 | Healthcare | Patient fall detection, ICU wandering alerts |
-| Privacy Research | Digital footprint auditing, OSINT defense |
+| Privacy Research | Digital footprint auditing, OSINT defense tools |
 
 ---
 
-## 👤 Author
+## Privacy-First Design
 
-**Abu Sameer** — AI/ML Engineer · Computer Vision Researcher · Open Source Contributor
+- **Zero pre-loaded data** — no faces, videos, or images in the repository
+- **In-session processing** — uploaded files processed in RAM only, never stored
+- **User-controlled gallery** — only data you explicitly upload is referenced
+- **Ethical OSINT framing** — audit module built for privacy defense, not offense
+- **Fully open source** — every processing step is transparent and auditable
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-sameer--nadeem--portfolio.vercel.app-00E5FF?style=for-the-badge)](https://sameer-nadeem-portfolio.vercel.app)
-[![GitHub](https://img.shields.io/badge/GitHub-Abu--Sameer--66-1A0533?style=for-the-badge&logo=github&logoColor=00E5FF)](https://github.com/Abu-Sameer-66)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Sameer%20Nadeem-7B2FFF?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/sameer-nadeem-66339a357/)
-[![Kaggle](https://img.shields.io/badge/Kaggle-sameernadeem66-4A00E0?style=for-the-badge&logo=kaggle&logoColor=white)](https://www.kaggle.com/sameernadeem66)
+---
 
-[![Medium](https://img.shields.io/badge/Medium-Article-00ff88?style=for-the-badge&logo=medium&logoColor=black)](https://medium.com/@sameerdataanalyst66/i-built-an ai-that-watches-tracks-and-audits-phantomeye-is-live-afe2f62bcb7b)
+## Roadmap
+
+- [ ] Deep metric learning Re-ID — OSNet + triplet loss on Market-1501
+- [ ] Cross-camera person matching across multiple feeds
+- [ ] Natural language queries — plain English → structured CV filters via LLM
+- [ ] Anonymization mode — behavioral analytics with automatic face blurring
+- [ ] Edge deployment — Raspberry Pi + Jetson Nano optimization
+
+---
+
+## Author
+
+<div align="center">
+
+**Abu Sameer** — AI/ML Engineer · Computer Vision Researcher · GSoC 2026 Contributor Aspirant
+
+<br/>
+
+<a href="https://sameer-nadeem-portfolio.vercel.app"><img src="https://img.shields.io/badge/Portfolio-sameer--nadeem--portfolio-00ff88?style=for-the-badge&labelColor=0d1f0d"/></a>
+<a href="https://github.com/Abu-Sameer-66"><img src="https://img.shields.io/badge/GitHub-Abu--Sameer--66-00aa55?style=for-the-badge&logo=github&labelColor=003322"/></a>
+<a href="https://www.linkedin.com/in/sameer-nadeem-66339a357/"><img src="https://img.shields.io/badge/LinkedIn-Sameer%20Nadeem-00ff88?style=for-the-badge&logo=linkedin&labelColor=0d1f0d"/></a>
+<a href="https://www.kaggle.com/sameernadeem66"><img src="https://img.shields.io/badge/Kaggle-sameernadeem66-00aa55?style=for-the-badge&logo=kaggle&labelColor=003322"/></a>
+<a href="https://medium.com/@sameerdataanalyst66/i-built-an-ai-that-watches-tracks-and-audits-phantomeye-is-live-afe2f62bcb7b"><img src="https://img.shields.io/badge/Medium-Full%20Article-00ff88?style=for-the-badge&logo=medium&labelColor=0d1f0d"/></a>
+
+</div>
+
 ---
 
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&ColorList=7B2FFF,1A0533,0D0D2B,4A00E0&height=120&section=footer" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1f0d,50:003322,100:0a0a0a&height=120&section=footer" width="100%"/>
 </div>
