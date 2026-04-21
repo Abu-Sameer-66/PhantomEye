@@ -267,6 +267,7 @@ def home():
         ("ANALYTICS",  "Behavioral Analytics"),
         ("OSINT",      "OSINT Audit"),
         ("EMOTION",    "Emotion Intelligence"),
+        ("NL QUERY",  "NL Query Engine"),
         ("INTEL",      "System Intel"),
     ]
     cols = st.columns(len(modules))
@@ -481,6 +482,7 @@ def intel_page():
     modules = [
         ("DETECTION",  "YOLOv8-nano",    "Person detection on any image or video"),
         ("EMOTION",    "DeepFace + TF",  "Age · Gender · Emotion recognition per face"),
+        ("NL QUERY",   "Groq LLaMA 3",   "Natural language queries — English + Roman Urdu"),
         ("TRACKING",   "ByteTrack",       "Persistent ID tracking across frames"),
         ("ANALYTICS",  "NumPy + OpenCV",  "Heatmap · dwell time · loitering alerts"),
         ("OSINT",      "LBPH Face",       "Privacy exposure scoring + gallery match"),
@@ -554,6 +556,61 @@ def emotion_page():
         st.info("Upload a face image to begin emotion analysis.")
 
 
+
+def nlquery_page():
+    from core.nlquery import parse_nl_query, apply_filters
+    if st.button("← BACK TO MODULES"):
+        st.session_state.page = "home"
+        st.rerun()
+    st.markdown('<div class="section-hdr">NL QUERY ENGINE</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-sub">Ask questions in English or Roman Urdu — AI extracts filters</div>', unsafe_allow_html=True)
+
+    query = st.text_input("Enter your query", placeholder="e.g. show me all angry men | log jo loiter kar rahy thy")
+
+    if query:
+        with st.spinner("Analyzing query..."):
+            result = parse_nl_query(query)
+
+        if result['success']:
+            filters = result['filters']
+            st.success(f"Understood: {filters['summary']}")
+
+            col1, col2, col3 = st.columns(3)
+            col1.metric("EMOTION", filters['emotion'] or "ANY")
+            col2.metric("GENDER", filters['gender'] or "ANY")
+            col3.metric("MAX AGE", filters['max_age'] or "ANY")
+
+            col4, col5 = st.columns(2)
+            col4.metric("LOITERING", "YES" if filters['loitering'] else "ANY")
+            col5.metric("MIN DWELL", f"{filters['min_dwell_seconds']}s" if filters['min_dwell_seconds'] else "ANY")
+
+            st.markdown("---")
+            st.markdown("### SIMULATE AGAINST SAMPLE DATA")
+
+            sample_records = [
+                {"id": 1, "emotion": "angry", "gender": "Man", "age": 28, "dwell_seconds": 45, "loitering": False},
+                {"id": 2, "emotion": "neutral", "gender": "Woman", "age": 22, "dwell_seconds": 180, "loitering": True},
+                {"id": 3, "emotion": "happy", "gender": "Man", "age": 35, "dwell_seconds": 20, "loitering": False},
+                {"id": 4, "emotion": "angry", "gender": "Man", "age": 41, "dwell_seconds": 200, "loitering": True},
+                {"id": 5, "emotion": "sad", "gender": "Woman", "age": 19, "dwell_seconds": 90, "loitering": False},
+                {"id": 6, "emotion": "fear", "gender": "Man", "age": 26, "dwell_seconds": 310, "loitering": True},
+            ]
+
+            matched = apply_filters(sample_records, filters)
+
+            if matched:
+                st.success(f"{len(matched)} subject(s) matched out of {len(sample_records)}")
+                import pandas as pd
+                df = pd.DataFrame(matched)
+                st.dataframe(df, use_container_width=True)
+            else:
+                st.warning("No subjects matched this query in sample data.")
+        else:
+            st.error(f"Query parse failed: {result['error']}")
+    else:
+        st.info("Type a query above — English or Roman Urdu both work.")
+
+
 def main():
     if "page" not in st.session_state:
         st.session_state.page = "landing"
@@ -570,6 +627,8 @@ def main():
         analytics_page()
     elif page == "OSINT":
         osint_page()
+    elif page == "NL QUERY":
+        nlquery_page()
     elif page == "EMOTION":
         emotion_page()
     elif page == "INTEL":
