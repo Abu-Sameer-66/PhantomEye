@@ -236,6 +236,7 @@ def landing():
         <div class="mod-card">
           <div class="mod-icon">⬡</div>
           <div class="mod-name">OSINT Audit</div>
+          <div class="mod-name">Emotion Intel</div>
           <div class="mod-desc">Upload a face — get a privacy exposure score from 0 to 100 with matched identities.</div>
         </div>
         <div class="mod-card">
@@ -261,13 +262,14 @@ def home():
         unsafe_allow_html=True
     )
 
-    cols = st.columns(4)
     modules = [
         ("DETECTION",  "Person Detection"),
         ("ANALYTICS",  "Behavioral Analytics"),
         ("OSINT",      "OSINT Audit"),
+        ("EMOTION",    "Emotion Intelligence"),
         ("INTEL",      "System Intel"),
     ]
+    cols = st.columns(len(modules))
     for i, (key, label) in enumerate(modules):
         with cols[i]:
             if st.button(label, key=f"mod_{key}"):
@@ -277,7 +279,7 @@ def home():
     st.markdown("<hr>", unsafe_allow_html=True)
     st.markdown(
         '<div class="terminal">All modules online · YOLOv8 loaded · '
-        'ByteTrack active · OSINT gallery ready</div>',
+        'ByteTrack active · OSINT gallery ready · DeepFace online</div>',
         unsafe_allow_html=True
     )
 
@@ -321,7 +323,7 @@ def detection_page():
 
         st.image(
             cv2.cvtColor(annotated, cv2.COLOR_BGR2RGB),
-            caption="DETECTION OUTPUT", use_column_width=True
+            caption="DETECTION OUTPUT", use_container_width=True
         )
 
         if detections:
@@ -402,7 +404,7 @@ def analytics_page():
             st.image(
                 cv2.cvtColor(heat, cv2.COLOR_BGR2RGB),
                 caption="BEHAVIORAL HEATMAP — RED = HIGH ACTIVITY",
-                use_column_width=True
+                use_container_width=True
             )
 
 
@@ -460,7 +462,7 @@ def osint_page():
         st.image(
             cv2.cvtColor(vis, cv2.COLOR_BGR2RGB),
             caption="OSINT VISUALIZATION",
-            use_column_width=True
+            use_container_width=True
         )
 
 
@@ -478,6 +480,7 @@ def intel_page():
 
     modules = [
         ("DETECTION",  "YOLOv8-nano",    "Person detection on any image or video"),
+        ("EMOTION",    "DeepFace + TF",  "Age · Gender · Emotion recognition per face"),
         ("TRACKING",   "ByteTrack",       "Persistent ID tracking across frames"),
         ("ANALYTICS",  "NumPy + OpenCV",  "Heatmap · dwell time · loitering alerts"),
         ("OSINT",      "LBPH Face",       "Privacy exposure scoring + gallery match"),
@@ -498,6 +501,59 @@ def intel_page():
     })
 
 
+
+@st.cache_resource
+def load_emotion_model():
+    from core.emotion import process_frame_emotion
+    return process_frame_emotion
+
+def emotion_page():
+    process_frame_emotion = load_emotion_model()
+    if st.button("← BACK TO MODULES"):
+        st.session_state.page = "home"
+        st.rerun()
+    st.markdown('<div class="section-hdr">EMOTION INTELLIGENCE</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-sub">Age · Gender · Emotion recognition powered by DeepFace</div>', unsafe_allow_html=True)
+
+    uploaded = st.file_uploader("Upload image", type=["jpg", "jpeg", "png"])
+
+    if uploaded:
+        import numpy as np
+        from PIL import Image
+        img = Image.open(uploaded).convert("RGB")
+        frame = np.array(img)
+        frame_bgr = frame[:, :, ::-1].copy()
+
+        with st.spinner("Analyzing faces..."):
+            annotated, results = process_frame_emotion(frame_bgr)
+
+        col1, col2 = st.columns(2)
+        with col1:
+            st.image(frame, caption="ORIGINAL", use_container_width=True)
+        with col2:
+            annotated_rgb = annotated[:, :, ::-1]
+            st.image(annotated_rgb, caption="EMOTION ANALYSIS", use_container_width=True)
+
+        if results:
+            st.markdown("---")
+            st.markdown("### DETECTED SUBJECTS")
+            for i, r in enumerate(results):
+                emotion = r.get("dominant_emotion", "N/A").upper()
+                age = int(r.get("age", 0))
+                gender = r.get("dominant_gender", r.get("gender", "N/A"))
+                if isinstance(gender, dict):
+                    gender = max(gender, key=gender.get)
+
+                c1, c2, c3 = st.columns(3)
+                c1.metric("EMOTION", emotion)
+                c2.metric("AGE", f"{age} yrs")
+                c3.metric("GENDER", gender.upper())
+        else:
+            st.warning("No faces detected in this image.")
+    else:
+        st.info("Upload a face image to begin emotion analysis.")
+
+
 def main():
     if "page" not in st.session_state:
         st.session_state.page = "landing"
@@ -514,6 +570,8 @@ def main():
         analytics_page()
     elif page == "OSINT":
         osint_page()
+    elif page == "EMOTION":
+        emotion_page()
     elif page == "INTEL":
         intel_page()
 
