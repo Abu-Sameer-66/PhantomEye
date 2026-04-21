@@ -212,3 +212,7 @@ __marimo__/
 data/gallery/
 data/videos/
 outputs/
+
+fix_*.py
+test_nl.py
+test_picture/
