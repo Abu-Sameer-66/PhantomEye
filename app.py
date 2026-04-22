@@ -268,6 +268,7 @@ def home():
         ("OSINT",      "OSINT Audit"),
         ("EMOTION",    "Emotion Intelligence"),
         ("NL QUERY",  "NL Query Engine"),
+        ("WEAPON",    "Weapon Detection"),
         ("INTEL",      "System Intel"),
     ]
     cols = st.columns(len(modules))
@@ -483,6 +484,7 @@ def intel_page():
         ("DETECTION",  "YOLOv8-nano",    "Person detection on any image or video"),
         ("EMOTION",    "DeepFace + TF",  "Age · Gender · Emotion recognition per face"),
         ("NL QUERY",   "Groq LLaMA 3",   "Natural language queries — English + Roman Urdu"),
+        ("WEAPON",     "YOLOv8 Custom",  "9-class weapon detection — mAP50 53.2%"),
         ("TRACKING",   "ByteTrack",       "Persistent ID tracking across frames"),
         ("ANALYTICS",  "NumPy + OpenCV",  "Heatmap · dwell time · loitering alerts"),
         ("OSINT",      "LBPH Face",       "Privacy exposure scoring + gallery match"),
@@ -611,6 +613,56 @@ def nlquery_page():
         st.info("Type a query above — English or Roman Urdu both work.")
 
 
+
+@st.cache_resource
+def load_weapon_model_cached():
+    from core.weapon import load_weapon_model
+    return load_weapon_model()
+
+def weapon_page():
+    if st.button("← BACK TO MODULES"):
+        st.session_state.page = "home"
+        st.rerun()
+    st.markdown('<div class="section-hdr">WEAPON DETECTION</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-sub">Real-time weapon detection — Handgun · Knife · Shotgun · SMG · Rifle · Sword</div>', unsafe_allow_html=True)
+
+    uploaded = st.file_uploader("Upload image", type=["jpg", "jpeg", "png"])
+
+    if uploaded:
+        import numpy as np
+        from PIL import Image
+        from core.weapon import detect_weapons
+
+        img = Image.open(uploaded).convert("RGB")
+        frame = np.array(img)
+        frame_bgr = frame[:, :, ::-1].copy()
+
+        model = load_weapon_model_cached()
+
+        with st.spinner("Scanning for weapons..."):
+            annotated, detections = detect_weapons(frame_bgr, model)
+
+        col1, col2 = st.columns(2)
+        with col1:
+            st.image(frame, caption="ORIGINAL", use_container_width=True)
+        with col2:
+            annotated_rgb = annotated[:, :, ::-1]
+            st.image(annotated_rgb, caption="THREAT ANALYSIS", use_container_width=True)
+
+        st.markdown("---")
+        if detections:
+            st.error(f"⚠ THREAT DETECTED — {len(detections)} weapon(s) found!")
+            st.markdown("### DETECTED THREATS")
+            for d in detections:
+                c1, c2 = st.columns(2)
+                c1.metric("WEAPON CLASS", d['class_name'])
+                c2.metric("CONFIDENCE", f"{d['confidence']:.0%}")
+        else:
+            st.success("✓ NO WEAPONS DETECTED — Scene clear")
+    else:
+        st.info("Upload an image to scan for weapons.")
+
+
 def main():
     if "page" not in st.session_state:
         st.session_state.page = "landing"
@@ -627,6 +679,8 @@ def main():
         analytics_page()
     elif page == "OSINT":
         osint_page()
+    elif page == "WEAPON":
+        weapon_page()
     elif page == "NL QUERY":
         nlquery_page()
     elif page == "EMOTION":

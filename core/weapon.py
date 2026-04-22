@@ -57,7 +57,7 @@ def detect_weapons(frame: np.ndarray, model, conf_threshold: float = 0.35) -> tu
             cv2.rectangle(annotated, (x1, y1), (x2, y2), color, 2)
 
             # Label background
-            label = f"⚠ {class_name} {conf:.0%}"
+            label = f"! {class_name} {conf:.0%}"
             (lw, lh), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)
             cv2.rectangle(annotated, (x1, y1 - lh - 8), (x1 + lw, y1), color, -1)
             cv2.putText(annotated, label, (x1, y1 - 4),
