@@ -236,8 +236,22 @@ def landing():
         <div class="mod-card">
           <div class="mod-icon">⬡</div>
           <div class="mod-name">OSINT Audit</div>
-          <div class="mod-name">Emotion Intel</div>
           <div class="mod-desc">Upload a face — get a privacy exposure score from 0 to 100 with matched identities.</div>
+        </div>
+        <div class="mod-card">
+          <div class="mod-icon">⬡</div>
+          <div class="mod-name">Emotion Intelligence</div>
+          <div class="mod-desc">DeepFace powered age, gender and emotion recognition on any face image.</div>
+        </div>
+        <div class="mod-card">
+          <div class="mod-icon">⬡</div>
+          <div class="mod-name">NL Query Engine</div>
+          <div class="mod-desc">Ask questions in plain English or Roman Urdu — AI extracts filters automatically.</div>
+        </div>
+        <div class="mod-card">
+          <div class="mod-icon">⬡</div>
+          <div class="mod-name">Weapon Detection</div>
+          <div class="mod-desc">YOLOv8 custom trained on 9 weapon classes — Handgun, Shotgun, SMG, Rifle and more.</div>
         </div>
         <div class="mod-card">
           <div class="mod-icon">⬡</div>
