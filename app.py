@@ -283,6 +283,7 @@ def home():
         ("EMOTION",    "Emotion Intelligence"),
         ("NL QUERY",  "NL Query Engine"),
         ("WEAPON",    "Weapon Detection"),
+        ("REPORT",    "Intel Report"),
         ("INTEL",      "System Intel"),
     ]
     cols = st.columns(len(modules))
@@ -499,6 +500,7 @@ def intel_page():
         ("EMOTION",    "DeepFace + TF",  "Age · Gender · Emotion recognition per face"),
         ("NL QUERY",   "Groq LLaMA 3",   "Natural language queries — English + Roman Urdu"),
         ("WEAPON",     "YOLOv8 Custom",  "9-class weapon detection — mAP50 53.2%"),
+        ("REPORT",     "fpdf2",          "Branded PDF intelligence report -- one click export"),
         ("TRACKING",   "ByteTrack",       "Persistent ID tracking across frames"),
         ("ANALYTICS",  "NumPy + OpenCV",  "Heatmap · dwell time · loitering alerts"),
         ("OSINT",      "LBPH Face",       "Privacy exposure scoring + gallery match"),
@@ -677,6 +679,78 @@ def weapon_page():
         st.info("Upload an image to scan for weapons.")
 
 
+
+def report_page():
+    from core.reporter import generate_report
+    if st.button("<- BACK TO MODULES"):
+        st.session_state.page = "home"
+        st.rerun()
+    st.markdown('<div class="section-hdr">INTELLIGENCE REPORT</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-sub">Generate a branded PDF intelligence report from session data</div>', unsafe_allow_html=True)
+
+    st.markdown("### SESSION DATA")
+    col1, col2 = st.columns(2)
+    with col1:
+        session_id = st.text_input("Session ID", value="PE-SESSION-001")
+        total_persons = st.number_input("Total Persons", min_value=0, value=5)
+        duration = st.number_input("Duration (seconds)", min_value=0, value=300)
+    with col2:
+        loitering_alerts = st.number_input("Loitering Alerts", min_value=0, value=1)
+        nl_query = st.text_input("NL Query (optional)", value="")
+        nl_result = st.text_input("NL Result (optional)", value="")
+
+    st.markdown("### DETECTED SUBJECTS")
+    num_subjects = st.slider("Number of subjects", 1, 10, 3)
+    detections = []
+    for i in range(num_subjects):
+        c1, c2, c3, c4, c5, c6 = st.columns(6)
+        detections.append({
+            "id": i + 1,
+            "emotion": c1.selectbox(f"Emotion {i+1}", ["neutral","angry","happy","sad","fear","surprise"], key=f"em_{i}"),
+            "gender": c2.selectbox(f"Gender {i+1}", ["Man","Woman"], key=f"gen_{i}"),
+            "age": c3.number_input(f"Age {i+1}", 10, 80, 25, key=f"age_{i}"),
+            "dwell_seconds": c4.number_input(f"Dwell {i+1}", 0, 600, 60, key=f"dw_{i}"),
+            "loitering": c5.checkbox(f"Loiter {i+1}", key=f"lo_{i}"),
+        })
+
+    st.markdown("### WEAPON DETECTIONS")
+    has_weapon = st.checkbox("Weapon detected in session?")
+    weapon_detections = []
+    if has_weapon:
+        wc1, wc2 = st.columns(2)
+        weapon_class = wc1.selectbox("Weapon Class", ["Handgun","Knife","Shotgun","SMG","Automatic Rifle","Sniper","Sword"])
+        weapon_conf = wc2.slider("Confidence", 0.3, 1.0, 0.85)
+        weapon_detections.append({"class_name": weapon_class, "confidence": weapon_conf})
+
+    st.markdown("---")
+    if st.button("GENERATE PDF REPORT", type="primary"):
+        data = {
+            "session_id": session_id,
+            "total_persons": total_persons,
+            "duration_seconds": duration,
+            "loitering_alerts": loitering_alerts,
+            "weapon_detections": weapon_detections,
+            "detections": detections,
+            "heatmap_img": None,
+            "frame_sample": None,
+            "nl_query": nl_query,
+            "nl_result": nl_result,
+        }
+        with st.spinner("Generating intelligence report..."):
+            path = generate_report(data)
+
+        with open(path, "rb") as f:
+            pdf_bytes = f.read()
+
+        st.success("Report generated successfully!")
+        st.download_button(
+            label="DOWNLOAD PDF REPORT",
+            data=pdf_bytes,
+            file_name=f"phantomeye_report_{session_id}.pdf",
+            mime="application/pdf"
+        )
+
+
 def main():
     if "page" not in st.session_state:
         st.session_state.page = "landing"
@@ -693,6 +767,8 @@ def main():
         analytics_page()
     elif page == "OSINT":
         osint_page()
+    elif page == "REPORT":
+        report_page()
     elif page == "WEAPON":
         weapon_page()
     elif page == "NL QUERY":
