@@ -646,6 +646,7 @@ def back_button():
 
 
 def detection_page():
+    render_trust_bar()
     back_button()
     st.markdown('<div class="section-hdr">Person Detection</div>', unsafe_allow_html=True)
     st.markdown(
@@ -689,6 +690,7 @@ def detection_page():
 
 
 def analytics_page():
+    render_trust_bar()
     back_button()
     st.markdown('<div class="section-hdr">Behavioral Analytics</div>', unsafe_allow_html=True)
     st.markdown(
@@ -764,6 +766,7 @@ def analytics_page():
 
 
 def osint_page():
+    render_trust_bar()
     back_button()
     st.markdown('<div class="section-hdr">OSINT Privacy Audit</div>', unsafe_allow_html=True)
     st.markdown(
@@ -822,6 +825,7 @@ def osint_page():
 
 
 def intel_page():
+    render_trust_bar()
     back_button()
     st.markdown('<div class="section-hdr">System Intelligence</div>', unsafe_allow_html=True)
 
@@ -866,6 +870,7 @@ def load_emotion_model():
     return process_frame_emotion
 
 def emotion_page():
+    render_trust_bar()
     process_frame_emotion = load_emotion_model()
     if st.button("← BACK TO MODULES"):
         st.session_state.page = "home"
@@ -914,6 +919,7 @@ def emotion_page():
 
 
 def nlquery_page():
+    render_trust_bar()
     from core.nlquery import parse_nl_query, apply_filters
     if st.button("← BACK TO MODULES"):
         st.session_state.page = "home"
@@ -974,6 +980,7 @@ def load_weapon_model_cached():
     return load_weapon_model()
 
 def weapon_page():
+    render_trust_bar()
     if st.button("← BACK TO MODULES"):
         st.session_state.page = "home"
         st.rerun()
@@ -1019,6 +1026,7 @@ def weapon_page():
 
 
 def report_page():
+    render_trust_bar()
     from core.reporter import generate_report
     if st.button("<- BACK TO MODULES"):
         st.session_state.page = "home"
@@ -1089,9 +1097,68 @@ def report_page():
         )
 
 
+
+def render_trust_bar():
+    tier = st.session_state.get("tier", "free")
+    sid = st.session_state.get("session_id", "PE-XXXXXXXX")
+    calls = st.session_state.get("api_calls", 0)
+    limit = 100 if tier == "free" else 10000
+    used_pct = min(int((calls / limit) * 100), 100)
+    tier_color = "#ffb300" if tier == "pro" else "#00b4ff"
+    tier_label = "PRO" if tier == "pro" else "FREE"
+
+    st.markdown(f"""
+    <div style="
+        display: flex; justify-content: space-between; align-items: center;
+        background: rgba(0,10,20,0.8); border: 1px solid rgba(0,180,255,0.15);
+        border-radius: 8px; padding: 0.6rem 1.2rem; margin-bottom: 1.5rem;
+        font-family: IBM Plex Mono, monospace; font-size: 0.7rem;
+    ">
+        <div style="color: #7ab3d4;">
+            <span style="color: #00b4ff;">●</span> SESSION: <span style="color: #e8f4ff;">{sid}</span>
+        </div>
+        <div style="color: #7ab3d4;">
+            <span style="
+                background: rgba({255 if tier=='free' else 255},{179 if tier=='pro' else 180},{0 if tier=='pro' else 255},0.15);
+                border: 1px solid {tier_color};
+                color: {tier_color};
+                padding: 0.1rem 0.6rem; border-radius: 4px;
+                font-weight: 700; letter-spacing: 0.2em;
+            ">{tier_label}</span>
+            &nbsp;&nbsp; CALLS: <span style="color: #e8f4ff;">{calls}/{limit}</span>
+        </div>
+        <div style="color: #00ff88; font-size: 0.65rem;">
+            🔒 SESSION-ONLY · ZERO DATA STORED
+        </div>
+    </div>
+    <div style="
+        height: 2px; background: rgba(0,180,255,0.1);
+        border-radius: 2px; margin-bottom: 1.5rem; overflow: hidden;
+    ">
+        <div style="
+            width: {used_pct}%;
+            height: 100%;
+            background: linear-gradient(90deg, #00b4ff, #00fff0);
+            border-radius: 2px;
+            transition: width 0.5s;
+        "></div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    if tier == "free" and calls >= 80:
+        st.warning(f"⚡ {limit - calls} free calls remaining today. Upgrade to Pro for 10,000 calls/day.")
+
+
 def main():
     if "page" not in st.session_state:
         st.session_state.page = "landing"
+    if "session_id" not in st.session_state:
+        import uuid
+        st.session_state.session_id = "PE-" + str(uuid.uuid4())[:8].upper()
+    if "tier" not in st.session_state:
+        st.session_state.tier = "free"
+    if "api_calls" not in st.session_state:
+        st.session_state.api_calls = 0
 
     page = st.session_state.page
 
