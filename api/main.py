@@ -208,6 +208,59 @@ def list_outputs():
     })
 
 
+
+# ── AUTH ENDPOINTS ──────────────────────────────────────────
+from api.auth import generate_api_key, validate_api_key, create_access_token, get_api_key_stats
+from fastapi import Header
+
+@app.post("/auth/generate-key")
+async def api_generate_key(client_name: str, tier: str = "free"):
+    """Generate a new PhantomEye API key."""
+    if tier not in ["free", "pro"]:
+        return JSONResponse({"error": "tier must be free or pro"}, status_code=400)
+    key = generate_api_key(client_name, tier)
+    return JSONResponse({
+        "status": "success",
+        "api_key": key,
+        "client": client_name,
+        "tier": tier,
+        "rate_limit": 100 if tier == "free" else 10000,
+        "message": "Store this key securely — it will not be shown again"
+    })
+
+@app.post("/auth/token")
+async def api_get_token(api_key: str = Header(..., alias="X-API-Key")):
+    """Exchange API key for JWT access token."""
+    key_data = validate_api_key(api_key)
+    token = create_access_token({"sub": key_data["client"], "tier": key_data["tier"]})
+    return JSONResponse({
+        "status": "success",
+        "access_token": token,
+        "token_type": "bearer",
+        "expires_in": "24 hours",
+        "tier": key_data["tier"]
+    })
+
+@app.get("/auth/stats")
+async def api_key_stats(api_key: str = Header(..., alias="X-API-Key")):
+    """Get API key usage statistics."""
+    validate_api_key(api_key)
+    return JSONResponse(get_api_key_stats())
+
+@app.get("/auth/validate")
+async def api_validate_key(api_key: str = Header(..., alias="X-API-Key")):
+    """Validate an API key and return its metadata."""
+    data = validate_api_key(api_key)
+    return JSONResponse({
+        "status": "valid",
+        "client": data["client"],
+        "tier": data["tier"],
+        "calls_today": data["calls_today"],
+        "rate_limit": data["rate_limit"],
+        "remaining": data["rate_limit"] - data["calls_today"]
+    })
+
+
 if __name__ == "__main__":
     import os
     port = int(os.environ.get("PORT", 8000))
