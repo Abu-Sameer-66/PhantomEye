@@ -767,6 +767,7 @@ def analytics_page():
 
 def osint_page():
     render_trust_bar()
+    if not pro_gate("OSINT AUDIT"): return
     back_button()
     st.markdown('<div class="section-hdr">OSINT Privacy Audit</div>', unsafe_allow_html=True)
     st.markdown(
@@ -981,6 +982,7 @@ def load_weapon_model_cached():
 
 def weapon_page():
     render_trust_bar()
+    if not pro_gate("WEAPON DETECTION"): return
     if st.button("← BACK TO MODULES"):
         st.session_state.page = "home"
         st.rerun()
@@ -1027,6 +1029,7 @@ def weapon_page():
 
 def report_page():
     render_trust_bar()
+    if not pro_gate("INTELLIGENCE REPORT"): return
     from core.reporter import generate_report
     if st.button("<- BACK TO MODULES"):
         st.session_state.page = "home"
@@ -1096,6 +1099,50 @@ def report_page():
             mime="application/pdf"
         )
 
+
+
+
+def pro_gate(module_name: str) -> bool:
+    """Returns True if user can access. Shows upgrade prompt if locked."""
+    tier = st.session_state.get("tier", "free")
+    if tier == "pro":
+        return True
+
+    st.markdown(f"""
+    <div style="text-align:center; padding:4rem 2rem; background:rgba(0,10,20,0.9);
+        border:1px solid rgba(255,179,0,0.3); border-radius:16px; margin:2rem 0;">
+        <div style="font-size:3rem; margin-bottom:1rem;">🔒</div>
+        <div style="font-family:monospace; font-size:1.3rem; font-weight:700;
+            letter-spacing:0.2em; color:#ffb300; text-transform:uppercase;
+            margin-bottom:0.8rem;">{module_name}</div>
+        <div style="font-family:monospace; font-size:0.8rem; color:#7ab3d4;
+            margin-bottom:0.5rem; letter-spacing:0.1em;">
+            This module requires PhantomEye Pro</div>
+        <div style="font-size:0.72rem; color:#3a6080; margin-bottom:2rem; letter-spacing:0.08em;">
+            Unlock advanced intelligence capabilities with a Pro subscription</div>
+        <div style="background:rgba(0,20,40,0.8); border:1px solid rgba(0,180,255,0.15);
+            border-radius:12px; padding:1.5rem 2rem; margin-bottom:2rem; display:inline-block; text-align:left;">
+            <div style="color:#ffb300; font-size:1.5rem; font-weight:700; text-align:center; margin-bottom:1rem;">
+                $29 / month</div>
+            <div style="color:#00b4ff; font-size:0.75rem; margin-bottom:0.4rem;">✓  10,000 API calls/day</div>
+            <div style="color:#00b4ff; font-size:0.75rem; margin-bottom:0.4rem;">✓  All 8 intelligence modules</div>
+            <div style="color:#00b4ff; font-size:0.75rem; margin-bottom:0.4rem;">✓  PDF report export</div>
+            <div style="color:#00b4ff; font-size:0.75rem;">✓  Priority processing</div>
+        </div>
+        <div style="font-size:0.65rem; color:#3a6080; letter-spacing:0.15em; margin-top:1rem;">
+            SESSION: {st.session_state.get("session_id", "N/A")} · Your data is never stored</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.link_button(
+            "UPGRADE TO PRO →",
+            "mailto:sameersain361@gmail.com?subject=PhantomEye Pro Upgrade&body=Session: " + st.session_state.get("session_id", "N/A"),
+            use_container_width=True
+        )
+        st.caption("You will be contacted within 24 hours with your Pro API key.")
+    return False
 
 
 def render_trust_bar():
