@@ -1,10 +1,19 @@
+﻿---
+title: PhantomEye
+emoji: 👁
+colorFrom: blue
+colorTo: cyan
+sdk: docker
+pinned: false
+---
+
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0a0a0a,50:1a0040,100:0d1f0d&height=300&section=header&text=📷%20PhantomEye&fontSize=75&fontColor=00ff88&animation=fadeIn&fontAlignY=38&desc=AI-Powered%20Surveillance%20Intelligence%20System&descSize=18&descAlignY=58&descAlign=50&descColor=00aa55" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0a0a0a,50:1a0040,100:0d1f0d&height=300&section=header&text=ðŸ“·%20PhantomEye&fontSize=75&fontColor=00ff88&animation=fadeIn&fontAlignY=38&desc=AI-Powered%20Surveillance%20Intelligence%20System&descSize=18&descAlignY=58&descAlign=50&descColor=00aa55" width="100%"/>
 
 <br/>
 
-<img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=700&size=22&pause=1000&color=00FF88&center=true&vCenter=true&width=900&lines=Person+Detection+%7C+ByteTrack+Multi-Object+Tracking;Deep+ReID+OSNet+—+Rank-1+81.7%25+mAP+58.5%25;Emotion+Intelligence+—+Age+%7C+Gender+%7C+Emotion;Weapon+Detection+—+9+Classes+mAP50+53.2%25;Natural+Language+Queries+—+English+%2B+Roman+Urdu;OSINT+Privacy+Audit+—+Exposure+Score+0%E2%80%93100" />
+<img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=700&size=22&pause=1000&color=00FF88&center=true&vCenter=true&width=900&lines=Person+Detection+%7C+ByteTrack+Multi-Object+Tracking;Deep+ReID+OSNet+â€”+Rank-1+81.7%25+mAP+58.5%25;Emotion+Intelligence+â€”+Age+%7C+Gender+%7C+Emotion;Weapon+Detection+â€”+9+Classes+mAP50+53.2%25;Natural+Language+Queries+â€”+English+%2B+Roman+Urdu;OSINT+Privacy+Audit+â€”+Exposure+Score+0%E2%80%93100" />
 
 <br/><br/>
 
@@ -46,7 +55,7 @@ Most computer vision projects stop at detection. They draw a box around a person
 
 **PhantomEye goes further.**
 
-It is a full-stack AI surveillance intelligence platform that transforms passive camera feeds into a live reasoning engine — detecting, tracking, analyzing behavior, auditing identity, recognizing emotion, querying in natural language, and detecting weapons, all in one unified system.
+It is a full-stack AI surveillance intelligence platform that transforms passive camera feeds into a live reasoning engine â€” detecting, tracking, analyzing behavior, auditing identity, recognizing emotion, querying in natural language, and detecting weapons, all in one unified system.
 
 Built entirely from scratch. Trained on real datasets. Deployed live. Zero pre-loaded data.
 
@@ -58,32 +67,32 @@ Built entirely from scratch. Trained on real datasets. Deployed live. Zero pre-l
 <tr>
 <td width="50%">
 
-### 📷 Person Detection
+### ðŸ“· Person Detection
 YOLOv8-nano configured for class-0 only. Returns bounding boxes and confidence scores on standard CPU in milliseconds. No GPU required at inference time.
 
-### 🎯 Multi-Object Tracking
-Custom ByteTrack with IOU matching. Each person receives a persistent color-coded ID with trajectory trail — across frames, through occlusion, across re-entries.
+### ðŸŽ¯ Multi-Object Tracking
+Custom ByteTrack with IOU matching. Each person receives a persistent color-coded ID with trajectory trail â€” across frames, through occlusion, across re-entries.
 
-### 🔥 Behavioral Heatmap
+### ðŸ”¥ Behavioral Heatmap
 NumPy position accumulation builds a live heatmap of human movement. High-activity zones appear red. Dwell time tracked per person in seconds. Loitering alerts fire automatically.
 
-### 🧠 Deep Person Re-ID
-OSNet x0.25 trained from scratch on Market-1501 (12,936 images, 751 identities). **Rank-1: 81.7% — mAP: 58.5%.** Identifies the same person across camera networks using body appearance alone — no face required.
+### ðŸ§  Deep Person Re-ID
+OSNet x0.25 trained from scratch on Market-1501 (12,936 images, 751 identities). **Rank-1: 81.7% â€” mAP: 58.5%.** Identifies the same person across camera networks using body appearance alone â€” no face required.
 
 </td>
 <td width="50%">
 
-### 😶 Emotion Intelligence
-DeepFace pipeline — detects age, gender, and dominant emotion per face. Powered by TensorFlow with OpenCV face detector backend. Optimized for CPU deployment.
+### ðŸ˜¶ Emotion Intelligence
+DeepFace pipeline â€” detects age, gender, and dominant emotion per face. Powered by TensorFlow with OpenCV face detector backend. Optimized for CPU deployment.
 
-### 💬 Natural Language Query Engine
-Groq LLaMA 3 powered query parser. Ask questions in plain English or Roman Urdu — the system extracts structured filters automatically. First open-source surveillance system with multilingual NL query support.
+### ðŸ’¬ Natural Language Query Engine
+Groq LLaMA 3 powered query parser. Ask questions in plain English or Roman Urdu â€” the system extracts structured filters automatically. First open-source surveillance system with multilingual NL query support.
 
-### 🔫 Weapon Detection
-YOLOv8 custom trained on 9 weapon classes — Handgun, Knife, Shotgun, Sniper, Automatic Rifle, SMG, Sword, Bazooka, Grenade Launcher. **mAP50: 53.2% — Handgun: 89.5% — Shotgun: 96.3% — SMG: 98.6%.** Real-time threat alert on detection.
+### ðŸ”« Weapon Detection
+YOLOv8 custom trained on 9 weapon classes â€” Handgun, Knife, Shotgun, Sniper, Automatic Rifle, SMG, Sword, Bazooka, Grenade Launcher. **mAP50: 53.2% â€” Handgun: 89.5% â€” Shotgun: 96.3% â€” SMG: 98.6%.** Real-time threat alert on detection.
 
-### 🔍 OSINT Privacy Audit
-Upload a face — get a Privacy Exposure Score from 0 to 100. LBPH embedding search against a reference gallery. Risk classification: LOW / MEDIUM / HIGH.
+### ðŸ” OSINT Privacy Audit
+Upload a face â€” get a Privacy Exposure Score from 0 to 100. LBPH embedding search against a reference gallery. Risk classification: LOW / MEDIUM / HIGH.
 
 </td>
 </tr>
@@ -112,74 +121,74 @@ Upload a face — get a Privacy Exposure Score from 0 to 100. LBPH embedding sea
 
 | Capability | Typical CV Project | PhantomEye |
 |:---|:---:|:---:|
-| Person detection | ✅ | ✅ YOLOv8-nano |
-| Persistent ID tracking | ❌ | ✅ ByteTrack |
-| Behavioral heatmap | ❌ | ✅ NumPy accumulation |
-| Dwell time analytics | ❌ | ✅ Per-person seconds |
-| Loitering alert | ❌ | ✅ Threshold-based |
-| Deep Re-ID (no face) | ❌ | ✅ OSNet Rank-1 81.7% |
-| Emotion recognition | ❌ | ✅ DeepFace — Age + Gender + Emotion |
-| Weapon detection | ❌ | ✅ 9-class YOLOv8 custom |
-| NL query interface | ❌ | ✅ English + Roman Urdu |
-| OSINT privacy audit | ❌ | ✅ Score 0–100 |
-| Production REST API | ❌ | ✅ 8 endpoints, OAS 3.1 |
-| Live 24/7 deployment | ❌ | ✅ HuggingFace + Railway |
-| Zero pre-loaded data | ❌ | ✅ Privacy-first |
+| Person detection | âœ… | âœ… YOLOv8-nano |
+| Persistent ID tracking | âŒ | âœ… ByteTrack |
+| Behavioral heatmap | âŒ | âœ… NumPy accumulation |
+| Dwell time analytics | âŒ | âœ… Per-person seconds |
+| Loitering alert | âŒ | âœ… Threshold-based |
+| Deep Re-ID (no face) | âŒ | âœ… OSNet Rank-1 81.7% |
+| Emotion recognition | âŒ | âœ… DeepFace â€” Age + Gender + Emotion |
+| Weapon detection | âŒ | âœ… 9-class YOLOv8 custom |
+| NL query interface | âŒ | âœ… English + Roman Urdu |
+| OSINT privacy audit | âŒ | âœ… Score 0â€“100 |
+| Production REST API | âŒ | âœ… 8 endpoints, OAS 3.1 |
+| Live 24/7 deployment | âŒ | âœ… HuggingFace + Railway |
+| Zero pre-loaded data | âŒ | âœ… Privacy-first |
 
 ---
 
 ## System Architecture
-┌──────────────────────────────────────────────────────┐
-│                     INPUT LAYER                      │
-│    Image Upload  /  Video File  /  RTSP Feed         │
-└────────────────────────┬─────────────────────────────┘
-│
-┌────────────────────────▼─────────────────────────────┐
-│                  VISION PIPELINE                     │
-│                                                      │
-│  YOLOv8-nano ─────── Person Detection                │
-│       │               bbox + confidence              │
-│       │                                              │
-│  ByteTrack ──────── Persistent ID Assignment         │
-│       │              Color trails + occlusion        │
-│       │                                              │
-│  OSNet x0.25 ────── Deep Person Re-ID                │
-│                      Rank-1 81.7% on Market-1501     │
-└────────────────────────┬─────────────────────────────┘
-│
-┌────────────────────────▼─────────────────────────────┐
-│               INTELLIGENCE LAYER                     │
-│                                                      │
-│  Behavioral Analytics                                │
-│  ├── NumPy heatmap accumulation                      │
-│  ├── Per-person dwell time (seconds)                 │
-│  └── Automated loitering alerts                      │
-│                                                      │
-│  Emotion Intelligence                                │
-│  ├── DeepFace — Age + Gender + Emotion               │
-│  └── OpenCV detector backend (CPU optimized)         │
-│                                                      │
-│  Weapon Detection                                    │
-│  ├── YOLOv8 custom — 9 weapon classes                │
-│  └── Real-time threat alert on detection             │
-│                                                      │
-│  NL Query Engine                                     │
-│  ├── Groq LLaMA 3 — query parser                     │
-│  └── English + Roman Urdu → structured filters       │
-│                                                      │
-│  OSINT Audit Engine                                  │
-│  ├── LBPH face embedding extraction                  │
-│  ├── Gallery similarity search                       │
-│  └── Exposure score (0–100) + risk level             │
-└────────────────────────┬─────────────────────────────┘
-│
-┌────────────────────────▼─────────────────────────────┐
-│                   OUTPUT LAYER                       │
-│                                                      │
-│  FastAPI REST API    ── 8 endpoints, OAS 3.1         │
-│  Streamlit Dashboard ── Cyberpunk UI                 │
-│  JSON Reports        ── Exportable audit logs        │
-└──────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                     INPUT LAYER                      â”‚
+â”‚    Image Upload  /  Video File  /  RTSP Feed         â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+â”‚
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                  VISION PIPELINE                     â”‚
+â”‚                                                      â”‚
+â”‚  YOLOv8-nano â”€â”€â”€â”€â”€â”€â”€ Person Detection                â”‚
+â”‚       â”‚               bbox + confidence              â”‚
+â”‚       â”‚                                              â”‚
+â”‚  ByteTrack â”€â”€â”€â”€â”€â”€â”€â”€ Persistent ID Assignment         â”‚
+â”‚       â”‚              Color trails + occlusion        â”‚
+â”‚       â”‚                                              â”‚
+â”‚  OSNet x0.25 â”€â”€â”€â”€â”€â”€ Deep Person Re-ID                â”‚
+â”‚                      Rank-1 81.7% on Market-1501     â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+â”‚
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚               INTELLIGENCE LAYER                     â”‚
+â”‚                                                      â”‚
+â”‚  Behavioral Analytics                                â”‚
+â”‚  â”œâ”€â”€ NumPy heatmap accumulation                      â”‚
+â”‚  â”œâ”€â”€ Per-person dwell time (seconds)                 â”‚
+â”‚  â””â”€â”€ Automated loitering alerts                      â”‚
+â”‚                                                      â”‚
+â”‚  Emotion Intelligence                                â”‚
+â”‚  â”œâ”€â”€ DeepFace â€” Age + Gender + Emotion               â”‚
+â”‚  â””â”€â”€ OpenCV detector backend (CPU optimized)         â”‚
+â”‚                                                      â”‚
+â”‚  Weapon Detection                                    â”‚
+â”‚  â”œâ”€â”€ YOLOv8 custom â€” 9 weapon classes                â”‚
+â”‚  â””â”€â”€ Real-time threat alert on detection             â”‚
+â”‚                                                      â”‚
+â”‚  NL Query Engine                                     â”‚
+â”‚  â”œâ”€â”€ Groq LLaMA 3 â€” query parser                     â”‚
+â”‚  â””â”€â”€ English + Roman Urdu â†’ structured filters       â”‚
+â”‚                                                      â”‚
+â”‚  OSINT Audit Engine                                  â”‚
+â”‚  â”œâ”€â”€ LBPH face embedding extraction                  â”‚
+â”‚  â”œâ”€â”€ Gallery similarity search                       â”‚
+â”‚  â””â”€â”€ Exposure score (0â€“100) + risk level             â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+â”‚
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                   OUTPUT LAYER                       â”‚
+â”‚                                                      â”‚
+â”‚  FastAPI REST API    â”€â”€ 8 endpoints, OAS 3.1         â”‚
+â”‚  Streamlit Dashboard â”€â”€ Cyberpunk UI                 â”‚
+â”‚  JSON Reports        â”€â”€ Exportable audit logs        â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 
 ---
 
@@ -187,9 +196,9 @@ Upload a face — get a Privacy Exposure Score from 0 to 100. LBPH embedding sea
 
 | Service | Platform | Status |
 |:---|:---|:---:|
-| [Interactive Dashboard](https://abu-sameer-66-phantomeye.hf.space) | HuggingFace Spaces | 🟢 Live |
-| [REST API](https://phantomeye-production.up.railway.app) | Railway | 🟢 Live |
-| [API Documentation](https://phantomeye-production.up.railway.app/docs) | Railway | 🟢 Live |
+| [Interactive Dashboard](https://abu-sameer-66-phantomeye.hf.space) | HuggingFace Spaces | ðŸŸ¢ Live |
+| [REST API](https://phantomeye-production.up.railway.app) | Railway | ðŸŸ¢ Live |
+| [API Documentation](https://phantomeye-production.up.railway.app/docs) | Railway | ðŸŸ¢ Live |
 
 ---
 
@@ -261,25 +270,25 @@ python core/emotion.py
 
 ## Repository Structure
 PhantomEye/
-├── core/
-│   ├── detection.py        YOLOv8 person detector
-│   ├── tracker.py          ByteTrack multi-object tracker
-│   ├── analytics.py        Heatmap + dwell time + loitering alerts
-│   ├── osint.py            OSINT privacy audit engine
-│   ├── emotion.py          DeepFace emotion + age + gender
-│   ├── reid.py             OSNet deep Re-ID module
-│   ├── weapon.py           YOLOv8 weapon detection
-│   └── nlquery.py          Groq NL query parser
-├── models/
-│   ├── osnet_phantomeye_reid.pth   Trained Re-ID weights
-│   └── weapon_detector.pt          Trained weapon detector
-├── api/
-│   ├── main.py             FastAPI backend — 8 endpoints
-│   └── routes/             Modular route handlers
-├── app.py                  Streamlit dashboard — 7 modules
-├── config.py               Global configuration
-├── Dockerfile              Container deployment
-└── requirements.txt        Dependencies
+â”œâ”€â”€ core/
+â”‚   â”œâ”€â”€ detection.py        YOLOv8 person detector
+â”‚   â”œâ”€â”€ tracker.py          ByteTrack multi-object tracker
+â”‚   â”œâ”€â”€ analytics.py        Heatmap + dwell time + loitering alerts
+â”‚   â”œâ”€â”€ osint.py            OSINT privacy audit engine
+â”‚   â”œâ”€â”€ emotion.py          DeepFace emotion + age + gender
+â”‚   â”œâ”€â”€ reid.py             OSNet deep Re-ID module
+â”‚   â”œâ”€â”€ weapon.py           YOLOv8 weapon detection
+â”‚   â””â”€â”€ nlquery.py          Groq NL query parser
+â”œâ”€â”€ models/
+â”‚   â”œâ”€â”€ osnet_phantomeye_reid.pth   Trained Re-ID weights
+â”‚   â””â”€â”€ weapon_detector.pt          Trained weapon detector
+â”œâ”€â”€ api/
+â”‚   â”œâ”€â”€ main.py             FastAPI backend â€” 8 endpoints
+â”‚   â””â”€â”€ routes/             Modular route handlers
+â”œâ”€â”€ app.py                  Streamlit dashboard â€” 7 modules
+â”œâ”€â”€ config.py               Global configuration
+â”œâ”€â”€ Dockerfile              Container deployment
+â””â”€â”€ requirements.txt        Dependencies
 
 ---
 
@@ -298,32 +307,32 @@ PhantomEye/
 
 ## Privacy-First Design
 
-- **Zero pre-loaded data** — no faces, videos, or images in the repository
-- **In-session processing** — uploaded files processed in RAM only, never stored
-- **User-controlled gallery** — only data you explicitly upload is referenced
-- **Ethical OSINT framing** — audit module built for privacy defense, not offense
-- **Fully open source** — every processing step is transparent and auditable
+- **Zero pre-loaded data** â€” no faces, videos, or images in the repository
+- **In-session processing** â€” uploaded files processed in RAM only, never stored
+- **User-controlled gallery** â€” only data you explicitly upload is referenced
+- **Ethical OSINT framing** â€” audit module built for privacy defense, not offense
+- **Fully open source** â€” every processing step is transparent and auditable
 
 ---
 
 ## Roadmap
 
-- [x] YOLOv8 person detection — CPU optimized
+- [x] YOLOv8 person detection â€” CPU optimized
 - [x] ByteTrack multi-object tracking
 - [x] Behavioral heatmap + loitering alerts
 - [x] OSINT privacy audit engine
-- [x] FastAPI production backend — 8 endpoints
+- [x] FastAPI production backend â€” 8 endpoints
 - [x] Cyberpunk Streamlit dashboard
 - [x] HuggingFace + Railway live deployment
 - [x] DeepFace emotion intelligence module
-- [x] Groq NL query engine — English + Roman Urdu
-- [x] OSNet Deep Re-ID — Rank-1 81.7% on Market-1501
-- [x] YOLOv8 weapon detection — 9 classes mAP50 53.2%
+- [x] Groq NL query engine â€” English + Roman Urdu
+- [x] OSNet Deep Re-ID â€” Rank-1 81.7% on Market-1501
+- [x] YOLOv8 weapon detection â€” 9 classes mAP50 53.2%
 - [ ] PDF intelligence report generator
 - [ ] JWT authentication + API key management
 - [ ] RTSP live stream support
-- [ ] Anonymization mode — face blur + full analytics
-- [ ] Edge deployment — Raspberry Pi + Jetson Nano
+- [ ] Anonymization mode â€” face blur + full analytics
+- [ ] Edge deployment â€” Raspberry Pi + Jetson Nano
 
 ---
 
@@ -331,7 +340,7 @@ PhantomEye/
 
 <div align="center">
 
-**Abu Sameer** — AI/ML Engineer · Computer Vision Researcher · GSoC 2026 Contributor
+**Abu Sameer** â€” AI/ML Engineer Â· Computer Vision Researcher Â· GSoC 2026 Contributor
 
 <br/>
 
@@ -348,3 +357,4 @@ PhantomEye/
 <div align="center">
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1f0d,50:003322,100:0a0a0a&height=120&section=footer" width="100%"/>
 </div>
+
