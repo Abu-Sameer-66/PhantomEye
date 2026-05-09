@@ -2,7 +2,7 @@
 title: PhantomEye
 emoji: 👁
 colorFrom: blue
-colorTo: cyan
+colorTo: blue
 sdk: docker
 pinned: false
 ---
@@ -357,4 +357,5 @@ PhantomEye/
 <div align="center">
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1f0d,50:003322,100:0a0a0a&height=120&section=footer" width="100%"/>
 </div>
+
 
