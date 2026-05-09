@@ -1,4 +1,4 @@
-FROM python:3.10-slim
+﻿FROM python:3.10-slim
 
 RUN apt-get update && apt-get install -y \
     libgl1 \
@@ -19,4 +19,4 @@ RUN mkdir -p data/gallery data/videos outputs models
 
 EXPOSE 7860
 
-CMD ["python", "api/main.py"]
+CMD ["streamlit", "run", "app.py", "--server.port", "7860", "--server.address", "0.0.0.0", "--server.headless", "true"]
