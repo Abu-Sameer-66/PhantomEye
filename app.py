@@ -1205,8 +1205,6 @@
 
 # if __name__ == "__main__":
 #     main()
-
-
 import cv2
 import sys
 import time
@@ -1296,8 +1294,7 @@ html, body, [class*="css"] {
 
 .session-bar {
     display: flex; justify-content: space-between; align-items: center;
-    background: rgba(0,10,20,0.7);
-    border: 1px solid var(--border-subtle);
+    background: rgba(0,10,20,0.7); border: 1px solid var(--border-subtle);
     border-radius: 6px; padding: 0.45rem 1.2rem; margin-bottom: 1.8rem;
     font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem;
     backdrop-filter: blur(12px);
@@ -1319,12 +1316,10 @@ html, body, [class*="css"] {
     min-height: 92vh; padding: 3rem 1rem; position: relative;
 }
 .hero-wrap::before {
-    content: '';
-    position: absolute; width: 700px; height: 700px;
+    content: ''; position: absolute; width: 700px; height: 700px;
     background: radial-gradient(circle, rgba(0,180,255,0.07) 0%, transparent 70%);
     border-radius: 50%; top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
-    animation: pulse 5s ease-in-out infinite;
+    transform: translate(-50%,-50%); animation: pulse 5s ease-in-out infinite;
 }
 @keyframes pulse {
     0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.5; }
@@ -1405,8 +1400,8 @@ html, body, [class*="css"] {
 .mod-card:hover { border-color: var(--border-glow); transform: translateY(-7px); box-shadow: var(--shadow-blue), var(--shadow-card); }
 .mod-card:hover::before { opacity: 1; }
 .mod-card:hover::after  { opacity: 1; }
-.mod-card.tms-card { border-color: rgba(255,51,85,0.18); }
-.mod-card.tms-card:hover { border-color: rgba(255,51,85,0.55); box-shadow: 0 0 50px rgba(255,51,85,0.12), var(--shadow-card); }
+.mod-card.research-card { border-color: rgba(255,51,85,0.18); }
+.mod-card.research-card:hover { border-color: rgba(255,51,85,0.55); box-shadow: 0 0 50px rgba(255,51,85,0.12), var(--shadow-card); }
 
 .mod-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
 .mod-name {
@@ -1528,10 +1523,10 @@ html, body, [class*="css"] {
     border-radius: 8px !important; color: var(--text-primary) !important;
 }
 .stNumberInput > div > div {
-    background: var(--bg-card) !important; border: 1px solid var(--border-subtle) !important; border-radius: 8px !important;
+    background: var(--bg-card) !important; border: 1px solid var(--border-subtle) !important;
+    border-radius: 8px !important;
 }
 .stSlider > div > div > div { background: var(--accent-blue) !important; }
-
 div[data-testid="metric-container"] {
     background: var(--bg-card) !important; border: 1px solid var(--border-subtle) !important;
     border-radius: 10px !important; padding: 1rem !important; transition: border-color 0.3s;
@@ -1609,10 +1604,10 @@ def landing():
       <div class="hero-eye">👁</div>
       <div class="hero-title">PHANTOMEYE</div>
       <div class="hero-sub">AI-POWERED SURVEILLANCE INTELLIGENCE SYSTEM</div>
-      <div class="hero-status">[ SYSTEM ONLINE ] · OPEN ACCESS · BUILD v3.0</div>
+      <div class="hero-status">[ SYSTEM ONLINE ] · OPEN ACCESS · BUILD v3.1</div>
 
       <div class="stats-row">
-        <div class="stat-item"><span class="stat-value">9</span><span class="stat-label">Modules</span></div>
+        <div class="stat-item"><span class="stat-value">10</span><span class="stat-label">Modules</span></div>
         <div class="stat-item"><span class="stat-value">97%</span><span class="stat-label">Accuracy</span></div>
         <div class="stat-item"><span class="stat-value">9</span><span class="stat-label">Weapon Classes</span></div>
         <div class="stat-item"><span class="stat-value">CPU</span><span class="stat-label">No GPU Needed</span></div>
@@ -1663,12 +1658,19 @@ def landing():
           <div class="mod-desc">Custom YOLOv8 trained on 714 real weapon images across 9 classes. Achieves Handgun 89.5%, Shotgun 96.3%, SMG 98.6% average precision. Fires immediate threat alert on detection.</div>
           <div class="mod-meta">Classes: Handgun · Knife · Shotgun · Sniper · AR · SMG · Sword · Bazooka · GL · mAP50: 53.2%</div>
         </div>
-        <div class="mod-card tms-card">
+        <div class="mod-card research-card">
           <div class="mod-icon">📊</div>
           <div class="mod-name red">Threat Momentum Score</div>
           <div class="mod-tag red">Novel Algorithm · TMS v1.0</div>
-          <div class="mod-desc">PhantomEye's original research contribution. Accumulates threat signals over time using a compound interest model — loitering, stress emotion, rapid movement, restricted zone, gaze anomaly, group formation. Score decays when signals stop.</div>
-          <div class="mod-meta">Signals: 6 · Decay half-life: 45s · Compound amplifier: score/200 · Levels: CLEAR / LOW / MEDIUM / HIGH / CRITICAL</div>
+          <div class="mod-desc">Original research contribution. Accumulates threat signals over time using a compound interest model — loitering, stress emotion, rapid movement, restricted zone, gaze anomaly, group formation. Score decays when signals stop.</div>
+          <div class="mod-meta">Signals: 6 · Decay half-life: 45s · Amplifier: score/200 · Levels: CLEAR / LOW / MEDIUM / HIGH / CRITICAL</div>
+        </div>
+        <div class="mod-card research-card">
+          <div class="mod-icon">🧬</div>
+          <div class="mod-name red">Behavioral DNA</div>
+          <div class="mod-tag red">Novel Algorithm · BDF v1.0</div>
+          <div class="mod-desc">Camera-agnostic person re-identification using behavioral signature alone. Identifies the same person across cameras without face recognition. Works through masks, hats, and low resolution.</div>
+          <div class="mod-meta">Signals: gait · velocity · spatial preference · social distance · dwell zones · Match threshold: 82%</div>
         </div>
         <div class="mod-card">
           <div class="mod-icon">📄</div>
@@ -1682,7 +1684,7 @@ def landing():
           <div class="mod-name">System Intel</div>
           <div class="mod-tag">Live Status</div>
           <div class="mod-desc">Live system dashboard. All active modules listed with tech stack, benchmark results, API endpoint reference, model filenames, and deployment metadata for full transparency.</div>
-          <div class="mod-meta">Version: v3.0.0 · Deployment: HuggingFace Spaces · API: FastAPI OAS 3.1 · GitHub: open source</div>
+          <div class="mod-meta">Version: v3.1.0 · Deployment: HuggingFace Spaces · API: FastAPI OAS 3.1 · GitHub: open source</div>
         </div>
       </div>
     </div>
@@ -1708,6 +1710,7 @@ def home():
         ("NL QUERY",  "NL Query"),
         ("WEAPON",    "Weapon"),
         ("THREAT",    "Threat Score"),
+        ("BDF",       "Behavioral DNA"),
         ("REPORT",    "Report"),
         ("INTEL",     "System"),
     ]
@@ -1720,9 +1723,9 @@ def home():
 
     st.markdown("<hr>", unsafe_allow_html=True)
     st.markdown(
-        '<div class="terminal">[ PHANTOMEYE v3.0 ] · YOLOv8 loaded · ByteTrack active · '
-        'DeepFace online · Groq LLaMA connected · Weapon model ready · TMS engine active · '
-        'All 9 modules ONLINE</div>',
+        '<div class="terminal">[ PHANTOMEYE v3.1 ] · YOLOv8 loaded · ByteTrack active · '
+        'DeepFace online · Groq LLaMA connected · Weapon model ready · '
+        'TMS engine active · BDF engine active · All 10 modules ONLINE</div>',
         unsafe_allow_html=True
     )
 
@@ -1908,9 +1911,8 @@ def emotion_page():
     <div class="info-box">
         <strong>How it works:</strong> PhantomEye runs DeepFace analysis on every detected face in the uploaded image.
         For each face it returns the dominant emotion from 7 classes (angry, fear, sad, happy, surprise, neutral,
-        disgust), an estimated age, and a gender classification with confidence. A false-positive filter discards
-        any face region smaller than 15% of the frame area — this prevents noise from distant or partially visible
-        faces from corrupting results. Multiple faces in a single image are processed independently.
+        disgust), an estimated age, and a gender classification. A false-positive filter discards any face region
+        smaller than 15% of the frame area. Multiple faces in a single image are processed independently.
     </div>
     """, unsafe_allow_html=True)
     st.markdown('<div class="terminal">DeepFace + TensorFlow · OpenCV face detector · min face size: 15% of frame · 7 emotion classes · multi-subject</div>', unsafe_allow_html=True)
@@ -1962,8 +1964,8 @@ def nlquery_page():
         <strong>How it works:</strong> Type any surveillance query in natural language — English or Roman Urdu both
         work. Groq's LLaMA 3 (llama-3.1-8b-instant) parses the intent and extracts structured filters: emotion type,
         gender, age range, minimum dwell time, and loitering status. These filters are applied against a person record
-        set and matching subjects are returned in a table. This is the first open-source surveillance system with
-        multilingual NL query support including Roman Urdu.
+        set and matching subjects are returned in a table. First open-source surveillance system with multilingual
+        NL query support including Roman Urdu.
     </div>
     """, unsafe_allow_html=True)
     st.markdown('<div class="terminal">llama-3.1-8b-instant via Groq · JSON filter extraction · Roman Urdu supported · apply_filters() on records</div>', unsafe_allow_html=True)
@@ -2022,8 +2024,7 @@ def weapon_page():
         <strong>How it works:</strong> A custom YOLOv8 model trained from scratch on 714 real-world weapon images
         across 9 classes. Trained on Kaggle T4 GPU. Achieves Handgun 89.5%, Shotgun 96.3%, SMG 98.6% average
         precision at mAP50 of 53.2%. Upload any image — detected weapons are highlighted with red bounding boxes
-        and an immediate threat alert fires listing the weapon class and confidence score. A clean result confirms
-        the scene is clear.
+        and an immediate threat alert fires listing the weapon class and confidence score.
     </div>
     """, unsafe_allow_html=True)
     st.markdown('<div class="terminal">weapon_detector.pt · mAP50: 53.2% · Handgun: 89.5% · Shotgun: 96.3% · SMG: 98.6% · 714 real training images</div>', unsafe_allow_html=True)
@@ -2069,20 +2070,18 @@ def threat_page():
 
     st.markdown('<div class="section-hdr red">Threat Momentum Score</div>', unsafe_allow_html=True)
     st.markdown('<div class="section-sub">Novel temporal threat accumulation · compound behavioral signal model · PhantomEye original research</div>', unsafe_allow_html=True)
-
     st.markdown("""
     <div class="info-box">
         <strong>Research contribution:</strong> Unlike binary threat detection systems that output a single yes/no,
-        the Threat Momentum Score (TMS) accumulates behavioral signals over time using a compound interest model.
-        Each new signal contributes to the score weighted by importance. When the score is already elevated, new
-        signals contribute proportionally more — this is the amplifier effect. The score decays with a 45-second
-        half-life when no signals arrive, modeling real threat situations which escalate gradually, not instantly.
+        TMS accumulates behavioral signals over time using a compound interest model. Each new signal contributes
+        weighted to the score. When the score is already elevated, new signals contribute proportionally more —
+        the amplifier effect. Score decays with a 45-second half-life when no signals arrive.
         <br><br>
-        <strong>6 behavioral signals and weights:</strong> loitering (0.28) · stress emotion (0.22) · rapid
-        movement (0.18) · proximity violation (0.15) · gaze anomaly (0.10) · group formation (0.07)
+        <strong>6 signals and weights:</strong> loitering (0.28) · stress emotion (0.22) · rapid movement (0.18)
+        · proximity violation (0.15) · gaze anomaly (0.10) · group formation (0.07)
     </div>
     """, unsafe_allow_html=True)
-    st.markdown('<div class="terminal">TMS v1.0 · decay half-life: 45s · amplifier: 1 + score/200 · 5 threat levels: CLEAR / LOW / MEDIUM / HIGH / CRITICAL</div>', unsafe_allow_html=True)
+    st.markdown('<div class="terminal">TMS v1.0 · decay half-life: 45s · amplifier: 1 + score/200 · 5 levels: CLEAR / LOW / MEDIUM / HIGH / CRITICAL</div>', unsafe_allow_html=True)
 
     if "tms_engine" not in st.session_state:
         st.session_state.tms_engine = ThreatMomentumEngine()
@@ -2090,7 +2089,6 @@ def threat_page():
     engine = st.session_state.tms_engine
 
     st.markdown("### Subject Input")
-
     c1, c2, c3 = st.columns(3)
     with c1:
         person_id     = st.number_input("Person ID", min_value=1, value=1)
@@ -2108,13 +2106,10 @@ def threat_page():
     with col_a:
         if st.button("UPDATE THREAT SCORE", type="primary"):
             result = engine.update_person(
-                person_id          = person_id,
-                position           = (px, py),
-                emotion            = None if emotion == "none" else emotion,
-                dwell_seconds      = dwell_seconds,
-                is_loitering       = is_loitering,
-                in_restricted_zone = in_restricted,
-                group_anomaly      = group_anomaly,
+                person_id=person_id, position=(px, py),
+                emotion=None if emotion == "none" else emotion,
+                dwell_seconds=dwell_seconds, is_loitering=is_loitering,
+                in_restricted_zone=in_restricted, group_anomaly=group_anomaly,
             )
             st.session_state.last_tms = result
 
@@ -2127,10 +2122,7 @@ def threat_page():
 
     if "last_tms" in st.session_state:
         r = st.session_state.last_tms
-        level_colors = {
-            "CLEAR": "#10b981", "LOW": "#3b82f6",
-            "MEDIUM": "#f59e0b", "HIGH": "#ef4444", "CRITICAL": "#ff0033",
-        }
+        level_colors = {"CLEAR": "#10b981", "LOW": "#3b82f6", "MEDIUM": "#f59e0b", "HIGH": "#ef4444", "CRITICAL": "#ff0033"}
         color = level_colors.get(r.threat_level, "#ffffff")
 
         st.markdown(f"""
@@ -2141,16 +2133,13 @@ def threat_page():
                 color:#3a6080; letter-spacing:0.35em; margin-bottom:0.75rem; text-transform:uppercase;">
                 Threat Momentum Score · Person {r.person_id}
             </div>
-            <div style="font-size:5rem; font-weight:900; color:{color};
-                font-family:'Exo 2',sans-serif; line-height:1;">
+            <div style="font-size:5rem; font-weight:900; color:{color}; font-family:'Exo 2',sans-serif; line-height:1;">
                 {r.tms_score:.1f}
             </div>
-            <div style="font-size:1.1rem; font-weight:700; color:{color};
-                letter-spacing:0.4em; margin-top:0.5rem; font-family:'Rajdhani',sans-serif;">
+            <div style="font-size:1.1rem; font-weight:700; color:{color}; letter-spacing:0.4em; margin-top:0.5rem; font-family:'Rajdhani',sans-serif;">
                 {r.threat_level}
             </div>
-            <div style="font-size:0.68rem; color:#3a6080; margin-top:0.75rem;
-                font-family:'IBM Plex Mono',monospace; letter-spacing:0.1em;">
+            <div style="font-size:0.68rem; color:#3a6080; margin-top:0.75rem; font-family:'IBM Plex Mono',monospace; letter-spacing:0.1em;">
                 Momentum: {r.momentum:+.2f}/frame &nbsp;|&nbsp; Time in system: {r.time_in_system}s
             </div>
         </div>
@@ -2166,12 +2155,8 @@ def threat_page():
 
         if r.signal_breakdown:
             st.markdown('<div class="section-hdr">Signal Breakdown</div>', unsafe_allow_html=True)
-            st.markdown('<div class="section-sub">Contribution of each behavioral signal to current TMS score</div>', unsafe_allow_html=True)
             import pandas as pd
-            df = pd.DataFrame([
-                {"Signal": k.replace("_", " ").upper(), "Score Contribution": round(v, 3)}
-                for k, v in r.signal_breakdown.items()
-            ])
+            df = pd.DataFrame([{"Signal": k.replace("_", " ").upper(), "Score Contribution": round(v, 3)} for k, v in r.signal_breakdown.items()])
             st.dataframe(df, use_container_width=True)
 
     st.markdown("<hr>")
@@ -2184,15 +2169,114 @@ def threat_page():
     s4.metric("AVG TMS",         summary["avg_tms"])
 
     if summary["level_distribution"]:
-        st.markdown('<div class="terminal">Level distribution: ' +
-            ' · '.join(f"{k}: {v}" for k, v in summary["level_distribution"].items()) +
-            '</div>', unsafe_allow_html=True)
+        st.markdown('<div class="terminal">Level distribution: ' + ' · '.join(f"{k}: {v}" for k, v in summary["level_distribution"].items()) + '</div>', unsafe_allow_html=True)
 
     if st.button("RESET ALL PROFILES"):
         engine.reset_all()
         if "last_tms" in st.session_state:
             del st.session_state.last_tms
         st.success("All threat profiles cleared.")
+
+
+def bdf_page():
+    render_session_bar()
+    back_button()
+    from core.behavioral_dna import BehavioralDNAEngine
+
+    st.markdown('<div class="section-hdr red">Behavioral DNA Fingerprint</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-sub">Camera-agnostic re-identification · no face required · pure movement signature</div>', unsafe_allow_html=True)
+    st.markdown("""
+    <div class="info-box">
+        <strong>Research contribution:</strong> Identifies the same person across cameras using behavioral
+        signature alone — gait rhythm, velocity profile, spatial preference zones, social distance pattern,
+        and dwell locations. Works with masks, hats, and at distances where face recognition fails completely.
+        When a person re-enters the scene with a new tracking ID, BDF matches them to their previous identity
+        using cosine similarity on a 5-component unified behavioral feature vector. Match threshold: 82%.
+        <br><br>
+        <strong>5 behavioral components:</strong> gait signature (stride rhythm) · velocity profile (speed
+        distribution) · spatial preference (normalized grid heatmap) · social distance average ·
+        dwell zone signature (stopping locations)
+    </div>
+    """, unsafe_allow_html=True)
+    st.markdown('<div class="terminal">BDF v1.0 · 5 behavioral signals · cosine similarity · match threshold: 82% · min observations: 15 frames</div>', unsafe_allow_html=True)
+
+    if "bdf_engine" not in st.session_state:
+        st.session_state.bdf_engine = BehavioralDNAEngine(640, 480)
+
+    engine = st.session_state.bdf_engine
+
+    st.markdown("### Add Observations")
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        obs_id   = st.number_input("Person ID", min_value=1, value=1)
+        pos_x    = st.number_input("Position X", min_value=0, max_value=640, value=320)
+    with c2:
+        pos_y    = st.number_input("Position Y", min_value=0, max_value=480, value=240)
+        soc_dist = st.number_input("Nearest person distance (px)", min_value=0.0, value=100.0)
+    with c3:
+        n_obs = st.number_input("Observations to simulate", min_value=1, max_value=100, value=30)
+
+    if st.button("SIMULATE OBSERVATIONS"):
+        for i in range(int(n_obs)):
+            x = int(pos_x + i * 2 + np.random.randn() * 3)
+            y = int(pos_y + np.sin(i * 0.3) * 15 + np.random.randn() * 2)
+            engine.observe(obs_id, (max(0, x), max(0, y)), soc_dist)
+        st.success(f"Added {n_obs} observations for Person {obs_id}")
+
+    col_a, col_b = st.columns(2)
+    with col_a:
+        if st.button("REGISTER TO GALLERY", type="primary"):
+            bdf = engine.extract_and_register(obs_id)
+            if bdf:
+                st.success(f"Person {obs_id} registered — confidence: {bdf.confidence:.2f} | observations: {bdf.observation_count}")
+            else:
+                st.warning(f"Insufficient data. Need at least 15 observations for Person {obs_id}.")
+
+    with col_b:
+        if st.button("MATCH AGAINST GALLERY"):
+            result = engine.match_against_gallery(obs_id)
+            st.session_state.last_bdf = result
+
+    if "last_bdf" in st.session_state:
+        r = st.session_state.last_bdf
+        color = "#00b4ff" if r.is_match else "#10b981"
+
+        st.markdown(f"""
+        <div style="padding:2rem; margin:1rem 0;
+            background:rgba(0,5,15,0.95); border:2px solid {color};
+            border-radius:10px; box-shadow: 0 0 30px {color}22;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:0.62rem;
+                color:#3a6080; letter-spacing:0.3em; margin-bottom:0.5rem; text-transform:uppercase;">
+                Behavioral DNA Match Result · Person {r.query_id}
+            </div>
+            <div style="font-size:2.5rem; font-weight:900; color:{color}; font-family:'Exo 2',sans-serif;">
+                {"MATCH FOUND" if r.is_match else "NO MATCH"}
+            </div>
+            <div style="font-size:0.75rem; color:#7ab3d4; margin-top:0.75rem; font-family:'IBM Plex Mono',monospace; line-height:1.6;">
+                {r.explanation}
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        c1, c2, c3 = st.columns(3)
+        c1.metric("SIMILARITY",  f"{r.similarity:.1%}")
+        c2.metric("MATCHED ID",  str(r.matched_id) if r.matched_id else "None")
+        c3.metric("CONFIDENCE",  f"{r.confidence:.2f}")
+
+    st.markdown("<hr>")
+    st.markdown('<div class="section-hdr">Gallery & Session</div>', unsafe_allow_html=True)
+    summary = engine.summary()
+    s1, s2, s3, s4 = st.columns(4)
+    s1.metric("TRACKED",   summary["persons_tracked"])
+    s2.metric("BDF READY", summary["bdf_ready"])
+    s3.metric("GALLERY",   summary["gallery_size"])
+    s4.metric("MATCHES",   summary["matches_detected"])
+
+    if st.button("RESET ALL"):
+        engine.reset_all()
+        if "last_bdf" in st.session_state:
+            del st.session_state.last_bdf
+        st.success("BDF engine reset.")
 
 
 def report_page():
@@ -2204,11 +2288,10 @@ def report_page():
     st.markdown("""
     <div class="info-box">
         <strong>How it works:</strong> Fill in the session data fields below — total persons detected, loitering
-        alerts, per-subject behavioral records with emotion and dwell time, and any weapon detections from the
-        session. Click Generate and PhantomEye produces a classified PDF using fpdf2. The report uses a dark
-        background with green terminal-style text. Weapon threat sections are highlighted in red. A CLASSIFIED
-        header appears at the top of the first page. The file is immediately available for download — nothing
-        is stored server-side at any point.
+        alerts, per-subject behavioral records with emotion and dwell time, and any weapon detections.
+        Click Generate and PhantomEye produces a classified PDF using fpdf2. Dark background with green
+        terminal-style text. Weapon threat sections highlighted in red. CLASSIFIED header on first page.
+        Immediate download — nothing stored server-side.
     </div>
     """, unsafe_allow_html=True)
     st.markdown('<div class="terminal">fpdf2 · dark theme · CLASSIFIED header · weapon sections in red · immediate download · zero server storage</div>', unsafe_allow_html=True)
@@ -2284,9 +2367,9 @@ def intel_page():
 
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("SYSTEM",  "PhantomEye")
-    c2.metric("VERSION", "v3.0.0")
+    c2.metric("VERSION", "v3.1.0")
     c3.metric("STATUS",  "ONLINE")
-    c4.metric("MODULES", "9 ACTIVE")
+    c4.metric("MODULES", "10 ACTIVE")
 
     st.markdown("<br>", unsafe_allow_html=True)
 
@@ -2297,7 +2380,8 @@ def intel_page():
         ("EMOTION",         "DeepFace + TF", "7 emotion classes · age + gender · OpenCV detector · 15% min face size"),
         ("NL QUERY",        "Groq LLaMA 3",  "llama-3.1-8b-instant · English + Roman Urdu · JSON filter extraction"),
         ("WEAPON",          "YOLOv8 Custom", "9 classes · mAP50 53.2% · Handgun 89.5% · Shotgun 96.3% · SMG 98.6%"),
-        ("THREAT MOMENTUM", "TMS v1.0",      "Novel algorithm · 6 signals · compound amplifier · 45s decay half-life · 5 levels"),
+        ("THREAT MOMENTUM", "TMS v1.0",      "Novel · 6 signals · compound amplifier · 45s decay · 5 threat levels"),
+        ("BEHAVIORAL DNA",  "BDF v1.0",      "Novel · 5 behavioral components · cosine similarity · 82% match threshold"),
         ("REPORT",          "fpdf2",         "Classified PDF · dark theme · CLASSIFIED header · threat sections in red"),
         ("API",             "FastAPI",        "OAS 3.1 · CORS enabled · uvicorn · modular routes"),
     ]
@@ -2308,13 +2392,13 @@ def intel_page():
 
     st.markdown("<br>", unsafe_allow_html=True)
     st.json({
-        "author":               "Abu-Sameer-66",
-        "github":               "https://github.com/Abu-Sameer-66/PhantomEye",
-        "huggingface":          "https://abu-sameer-66-phantomeye.hf.space",
-        "stack":                ["Python 3.10", "YOLOv8", "DeepFace", "ByteTrack", "FastAPI", "Streamlit", "Groq", "fpdf2"],
-        "novel_contributions":  ["Threat Momentum Score (TMS v1.0)"],
-        "status":               "online",
-        "access":               "open",
+        "author":              "Abu-Sameer-66",
+        "github":              "https://github.com/Abu-Sameer-66/PhantomEye",
+        "huggingface":         "https://abu-sameer-66-phantomeye.hf.space",
+        "stack":               ["Python 3.10", "YOLOv8", "DeepFace", "ByteTrack", "FastAPI", "Streamlit", "Groq", "fpdf2"],
+        "novel_contributions": ["Threat Momentum Score (TMS v1.0)", "Behavioral DNA Fingerprint (BDF v1.0)"],
+        "status":              "online",
+        "access":              "open",
     })
 
 
@@ -2335,9 +2419,11 @@ def main():
     elif page == "NL QUERY":  nlquery_page()
     elif page == "WEAPON":    weapon_page()
     elif page == "THREAT":    threat_page()
+    elif page == "BDF":       bdf_page()
     elif page == "REPORT":    report_page()
     elif page == "INTEL":     intel_page()
 
 
 if __name__ == "__main__":
     main()
+    
