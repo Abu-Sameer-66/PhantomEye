@@ -1233,20 +1233,20 @@ st.markdown("""
 
 :root {
     --bg-primary: #020408;
-    --bg-secondary: #050d15;
-    --bg-card: rgba(6, 18, 32, 0.85);
+    --bg-card: rgba(6, 18, 32, 0.88);
     --accent-blue: #00b4ff;
     --accent-cyan: #00fff0;
     --accent-red: #ff3355;
     --accent-green: #00ff88;
-    --border-glow: rgba(0, 180, 255, 0.35);
-    --border-subtle: rgba(0, 180, 255, 0.12);
+    --accent-gold: #f0b429;
+    --border-glow: rgba(0, 180, 255, 0.4);
+    --border-subtle: rgba(0, 180, 255, 0.1);
     --text-primary: #e8f4ff;
     --text-secondary: #7ab3d4;
     --text-dim: #3a6080;
-    --grid-color: rgba(0, 180, 255, 0.035);
-    --shadow-blue: 0 0 50px rgba(0, 180, 255, 0.18);
-    --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.7);
+    --grid-color: rgba(0, 180, 255, 0.03);
+    --shadow-blue: 0 0 60px rgba(0, 180, 255, 0.2);
+    --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.8);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1257,307 +1257,295 @@ html, body, [class*="css"] {
     color: var(--text-primary) !important;
 }
 
+/* TOP ACCENT LINE */
 .stApp::after {
-    content: '';
-    position: fixed;
-    top: 0; left: 0; right: 0; height: 2px;
+    content: ''; position: fixed; top: 0; left: 0; right: 0; height: 2px;
     background: linear-gradient(90deg,
-        transparent 0%, var(--accent-blue) 20%,
-        var(--accent-cyan) 50%, var(--accent-blue) 80%, transparent 100%);
-    z-index: 9999;
-    animation: topbar 4s ease-in-out infinite alternate;
+        transparent 0%, var(--accent-blue) 15%,
+        var(--accent-cyan) 50%, var(--accent-blue) 85%, transparent 100%);
+    z-index: 9999; animation: topbar 4s ease-in-out infinite alternate;
 }
+@keyframes topbar { from { opacity: 0.5; } to { opacity: 1; filter: brightness(1.5); } }
 
-@keyframes topbar {
-    from { opacity: 0.6; }
-    to   { opacity: 1; filter: brightness(1.4); }
-}
-
+/* BACKGROUND */
 .stApp {
     background:
-        radial-gradient(ellipse at 15% 40%, rgba(0,60,130,0.18) 0%, transparent 55%),
-        radial-gradient(ellipse at 85% 15%, rgba(0,30,90,0.22) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 85%, rgba(0,40,110,0.12) 0%, transparent 60%),
-        linear-gradient(180deg, #020408 0%, #030a14 100%) !important;
+        radial-gradient(ellipse at 10% 30%, rgba(0,80,160,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 10%, rgba(0,40,100,0.2) 0%, transparent 45%),
+        radial-gradient(ellipse at 50% 90%, rgba(0,50,120,0.1) 0%, transparent 55%),
+        linear-gradient(180deg, #020408 0%, #030b16 100%) !important;
     min-height: 100vh;
 }
 
+/* GRID */
 .stApp::before {
-    content: '';
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    content: ''; position: fixed; inset: 0;
     background-image:
         linear-gradient(var(--grid-color) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    background-size: 60px 60px;
+    background-size: 56px 56px;
     pointer-events: none; z-index: 0;
 }
 
+/* SESSION BAR */
 .session-bar {
     display: flex; justify-content: space-between; align-items: center;
-    background: rgba(0,10,20,0.7); border: 1px solid var(--border-subtle);
-    border-radius: 6px; padding: 0.45rem 1.2rem; margin-bottom: 1.8rem;
-    font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem;
-    backdrop-filter: blur(12px);
+    background: rgba(0,8,18,0.75); border: 1px solid rgba(0,180,255,0.08);
+    border-radius: 6px; padding: 0.5rem 1.4rem; margin-bottom: 2rem;
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 1px 20px rgba(0,0,0,0.4);
 }
-.session-bar .sid { color: var(--text-secondary); }
-.session-bar .sid span { color: var(--accent-blue); }
-.session-bar .status { color: var(--accent-green); letter-spacing: 0.2em; }
+.session-bar .sid { color: var(--text-dim); letter-spacing: 0.05em; }
+.session-bar .sid span { color: var(--accent-blue); font-weight: 500; }
+.session-bar .status { color: var(--accent-green); letter-spacing: 0.25em; font-size: 0.62rem; }
 .session-bar .status::before { content: '● '; animation: blink 1.5s infinite; }
 .session-bar .badge {
-    font-family: 'Rajdhani', sans-serif; font-size: 0.6rem; font-weight: 700;
-    letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-cyan);
-    background: rgba(0,255,240,0.08); border: 1px solid rgba(0,255,240,0.3);
-    border-radius: 4px; padding: 0.15rem 0.6rem;
+    font-family: 'Rajdhani', sans-serif; font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent-cyan);
+    background: rgba(0,255,240,0.06); border: 1px solid rgba(0,255,240,0.25);
+    border-radius: 3px; padding: 0.15rem 0.7rem;
 }
 
+/* HERO */
 .hero-wrap {
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    min-height: 92vh; padding: 3rem 1rem; position: relative;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 92vh; padding: 3rem 1rem; position: relative; text-align: center;
 }
 .hero-wrap::before {
-    content: ''; position: absolute; width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(0,180,255,0.07) 0%, transparent 70%);
-    border-radius: 50%; top: 50%; left: 50%;
-    transform: translate(-50%,-50%); animation: pulse 5s ease-in-out infinite;
+    content: ''; position: absolute; width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(0,180,255,0.06) 0%, transparent 68%);
+    border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    animation: pulse-bg 6s ease-in-out infinite;
 }
-@keyframes pulse {
-    0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.5; }
-    50%      { transform: translate(-50%,-50%) scale(1.12); opacity: 1; }
+@keyframes pulse-bg {
+    0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.4; }
+    50% { transform: translate(-50%,-50%) scale(1.15); opacity: 0.9; }
 }
 .hero-eye {
     font-size: 5.5rem; margin-bottom: 1.5rem;
-    animation: float 5s ease-in-out infinite;
-    filter: drop-shadow(0 0 40px rgba(0,180,255,0.9));
+    animation: float 6s ease-in-out infinite;
+    filter: drop-shadow(0 0 50px rgba(0,180,255,1));
 }
 @keyframes float {
-    0%,100% { transform: translateY(0px) rotate(-2deg); }
-    50%      { transform: translateY(-22px) rotate(2deg); }
+    0%,100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-24px) rotate(2deg); }
 }
 .hero-title {
     font-family: 'Exo 2', sans-serif;
-    font-size: clamp(3.5rem, 8vw, 7.5rem); font-weight: 900;
-    letter-spacing: 0.15em;
-    background: linear-gradient(135deg, #ffffff 0%, var(--accent-blue) 40%, var(--accent-cyan) 100%);
+    font-size: clamp(3.5rem, 8.5vw, 8rem); font-weight: 900; letter-spacing: 0.1em;
+    background: linear-gradient(140deg, #ffffff 0%, #60c8ff 35%, var(--accent-cyan) 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    margin-bottom: 0.5rem; animation: reveal 1s ease-out forwards;
+    margin-bottom: 0.6rem; line-height: 0.9;
+    animation: reveal 0.8s ease-out both;
 }
-@keyframes reveal {
-    from { opacity: 0; transform: translateY(30px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
+@keyframes reveal { from { opacity: 0; transform: translateY(32px); } to { opacity: 1; transform: translateY(0); } }
 .hero-sub {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: clamp(0.85rem, 2vw, 1.05rem); font-weight: 300;
-    letter-spacing: 0.45em; color: var(--text-secondary);
-    margin-bottom: 0.5rem; text-transform: uppercase;
+    font-family: 'Rajdhani', sans-serif; font-size: clamp(0.78rem, 1.8vw, 1rem);
+    font-weight: 300; letter-spacing: 0.5em; color: var(--text-dim);
+    margin-bottom: 0.6rem; text-transform: uppercase;
 }
 .hero-status {
-    font-size: 0.7rem; color: var(--accent-green);
-    letter-spacing: 0.3em; margin-bottom: 3rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem; color: var(--accent-green);
+    letter-spacing: 0.28em; margin-bottom: 2.5rem; opacity: 0.9;
 }
 .hero-status::before { content: '● '; animation: blink 1.5s infinite; }
-@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.15; } }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.1; } }
 
-.stats-row {
-    display: flex; gap: 2rem; margin-bottom: 2.5rem;
-    justify-content: center; flex-wrap: wrap;
-}
+/* STATS */
+.stats-row { display: flex; gap: 1.5rem; margin-bottom: 2.5rem; justify-content: center; flex-wrap: wrap; }
 .stat-item {
-    text-align: center; background: var(--bg-card);
-    border: 1px solid var(--border-subtle); border-radius: 10px;
-    padding: 1rem 1.8rem; backdrop-filter: blur(16px); min-width: 110px;
+    text-align: center; background: rgba(6,18,32,0.7);
+    border: 1px solid rgba(0,180,255,0.12); border-radius: 10px;
+    padding: 1rem 2rem; backdrop-filter: blur(20px); min-width: 105px;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
-.stat-value {
-    font-family: 'Exo 2', sans-serif; font-size: 1.6rem; font-weight: 900;
-    color: var(--accent-blue); display: block;
-}
-.stat-label {
-    font-size: 0.62rem; letter-spacing: 0.25em; color: var(--text-dim);
-    text-transform: uppercase; margin-top: 0.2rem; display: block;
-}
+.stat-item:hover { border-color: rgba(0,180,255,0.3); box-shadow: 0 0 20px rgba(0,180,255,0.1); }
+.stat-value { font-family: 'Exo 2', sans-serif; font-size: 1.7rem; font-weight: 900; color: var(--accent-blue); display: block; }
+.stat-label { font-size: 0.58rem; letter-spacing: 0.28em; color: var(--text-dim); text-transform: uppercase; margin-top: 0.3rem; display: block; }
 
+/* MODULE GRID */
 .module-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.4rem; width: 100%; max-width: 1200px; margin: 0 auto 3rem;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    gap: 1.25rem; width: 100%; max-width: 1240px; margin: 0 auto 3rem;
 }
 .mod-card {
-    background: var(--bg-card); border: 1px solid var(--border-subtle);
-    border-radius: 14px; padding: 2rem 1.8rem; position: relative;
-    overflow: hidden; transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
-    backdrop-filter: blur(20px);
+    background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 14px;
+    padding: 1.8rem 1.6rem; position: relative; overflow: hidden;
+    transition: all 0.38s cubic-bezier(0.23,1,0.32,1); backdrop-filter: blur(24px);
 }
 .mod-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent-blue), var(--accent-cyan), transparent);
-    opacity: 0; transition: opacity 0.3s;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1.5px;
+    background: linear-gradient(90deg, transparent 0%, var(--accent-blue) 30%, var(--accent-cyan) 70%, transparent 100%);
+    opacity: 0; transition: opacity 0.35s;
 }
 .mod-card::after {
     content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse at top left, rgba(0,180,255,0.1) 0%, transparent 65%);
-    opacity: 0; transition: opacity 0.4s;
+    background: radial-gradient(ellipse at 0% 0%, rgba(0,180,255,0.08) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.38s;
 }
-.mod-card:hover { border-color: var(--border-glow); transform: translateY(-7px); box-shadow: var(--shadow-blue), var(--shadow-card); }
+.mod-card:hover { border-color: rgba(0,180,255,0.32); transform: translateY(-6px) scale(1.005); box-shadow: var(--shadow-blue), var(--shadow-card); }
 .mod-card:hover::before { opacity: 1; }
 .mod-card:hover::after  { opacity: 1; }
-.mod-card.research-card { border-color: rgba(255,51,85,0.18); }
-.mod-card.research-card:hover { border-color: rgba(255,51,85,0.55); box-shadow: 0 0 50px rgba(255,51,85,0.12), var(--shadow-card); }
+.mod-card.research-card { border-color: rgba(255,51,85,0.15); }
+.mod-card.research-card::before { background: linear-gradient(90deg, transparent, var(--accent-red), #ff8800, transparent); }
+.mod-card.research-card::after  { background: radial-gradient(ellipse at 0% 0%, rgba(255,51,85,0.07) 0%, transparent 60%); }
+.mod-card.research-card:hover { border-color: rgba(255,51,85,0.45); box-shadow: 0 0 50px rgba(255,51,85,0.1), var(--shadow-card); }
 
-.mod-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+.mod-icon { font-size: 1.9rem; margin-bottom: 0.9rem; display: block; line-height: 1; }
 .mod-name {
-    font-family: 'Rajdhani', sans-serif; font-size: 0.95rem; font-weight: 600;
-    letter-spacing: 0.2em; color: var(--accent-blue);
-    text-transform: uppercase; margin-bottom: 0.5rem;
+    font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; font-weight: 700;
+    letter-spacing: 0.22em; color: var(--accent-blue); text-transform: uppercase; margin-bottom: 0.45rem;
 }
 .mod-name.red { color: var(--accent-red); }
 .mod-tag {
-    display: inline-block; font-size: 0.58rem; letter-spacing: 0.18em;
-    color: var(--accent-cyan); background: rgba(0,255,240,0.07);
-    border: 1px solid rgba(0,255,240,0.2); border-radius: 3px;
-    padding: 0.1rem 0.5rem; margin-bottom: 0.7rem; text-transform: uppercase;
+    display: inline-block; font-size: 0.55rem; letter-spacing: 0.15em;
+    color: var(--accent-cyan); background: rgba(0,255,240,0.06);
+    border: 1px solid rgba(0,255,240,0.18); border-radius: 3px;
+    padding: 0.12rem 0.55rem; margin-bottom: 0.65rem; text-transform: uppercase;
 }
-.mod-tag.red { color: var(--accent-red); background: rgba(255,51,85,0.07); border-color: rgba(255,51,85,0.25); }
-.mod-desc { font-size: 0.76rem; color: var(--text-secondary); line-height: 1.75; letter-spacing: 0.02em; }
+.mod-tag.red { color: var(--accent-red); background: rgba(255,51,85,0.06); border-color: rgba(255,51,85,0.22); }
+.mod-desc { font-size: 0.74rem; color: var(--text-secondary); line-height: 1.72; }
 .mod-meta {
-    font-size: 0.63rem; color: var(--text-dim); margin-top: 0.9rem;
-    letter-spacing: 0.04em; border-top: 1px solid var(--border-subtle); padding-top: 0.7rem;
+    font-size: 0.6rem; color: var(--text-dim); margin-top: 0.85rem;
+    border-top: 1px solid rgba(0,180,255,0.07); padding-top: 0.65rem;
+    letter-spacing: 0.03em; line-height: 1.5;
 }
 
+/* SCAN LINE */
 .scan-line {
-    width: 100%; max-width: 900px; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent-blue), var(--accent-cyan), var(--accent-blue), transparent);
+    width: 100%; max-width: 860px; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,180,255,0.3), rgba(0,255,240,0.5), rgba(0,180,255,0.3), transparent);
     margin: 2rem auto; position: relative; overflow: hidden;
 }
 .scan-line::after {
-    content: ''; position: absolute; width: 80px; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0,255,240,0.9), transparent);
-    animation: scan 3s linear infinite;
+    content: ''; position: absolute; width: 90px; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0,255,240,1), transparent);
+    animation: scan 3.5s linear infinite;
 }
-@keyframes scan { from { left: -80px; } to { left: 100%; } }
+@keyframes scan { from { left: -90px; } to { left: 100%; } }
 
+/* APP HEADER */
 .app-header {
-    font-family: 'Exo 2', sans-serif; font-size: 1.7rem; font-weight: 700;
-    letter-spacing: 0.3em;
-    background: linear-gradient(135deg, #fff, var(--accent-blue));
+    font-family: 'Exo 2', sans-serif; font-size: 1.6rem; font-weight: 800;
+    letter-spacing: 0.35em;
+    background: linear-gradient(135deg, #ffffff 0%, #70d4ff 60%, var(--accent-cyan) 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    text-align: center; padding: 1.5rem 0 0.4rem;
+    text-align: center; padding: 1.5rem 0 0.35rem;
 }
 .app-sub {
-    font-family: 'Rajdhani', sans-serif; font-size: 0.72rem; color: var(--text-dim);
-    letter-spacing: 0.45em; text-align: center; margin-bottom: 2rem; text-transform: uppercase;
+    font-family: 'Rajdhani', sans-serif; font-size: 0.68rem; color: var(--text-dim);
+    letter-spacing: 0.5em; text-align: center; margin-bottom: 1.5rem; text-transform: uppercase;
 }
 
+/* NAV DIVIDER */
+.nav-divider {
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem;
+}
+.nav-divider-line { flex: 1; height: 1px; background: var(--border-subtle); }
+.nav-divider-label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; color: var(--text-dim);
+    letter-spacing: 0.25em; text-transform: uppercase; white-space: nowrap;
+}
+
+/* BUTTONS */
 .stButton > button {
     font-family: 'Rajdhani', sans-serif !important; font-weight: 600 !important;
-    letter-spacing: 0.12em !important; font-size: 0.8rem !important;
-    background: var(--bg-card) !important; color: var(--accent-blue) !important;
-    border: 1px solid var(--border-subtle) !important; border-radius: 8px !important;
-    padding: 0.7rem 1rem !important;
-    transition: all 0.3s cubic-bezier(0.23,1,0.32,1) !important;
+    letter-spacing: 0.1em !important; font-size: 0.78rem !important;
+    background: rgba(6,18,32,0.9) !important; color: var(--accent-blue) !important;
+    border: 1px solid rgba(0,180,255,0.12) !important; border-radius: 7px !important;
+    padding: 0.65rem 0.8rem !important; transition: all 0.25s ease !important;
     text-transform: uppercase !important; width: 100% !important;
+    white-space: nowrap !important;
 }
 .stButton > button:hover {
-    background: rgba(0,180,255,0.1) !important; border-color: var(--accent-blue) !important;
+    background: rgba(0,180,255,0.1) !important; border-color: rgba(0,180,255,0.4) !important;
     color: var(--accent-cyan) !important;
-    box-shadow: 0 0 25px rgba(0,180,255,0.25), inset 0 0 20px rgba(0,180,255,0.05) !important;
+    box-shadow: 0 0 20px rgba(0,180,255,0.2), inset 0 0 15px rgba(0,180,255,0.05) !important;
     transform: translateY(-2px) !important;
 }
 .stButton > button[kind="primary"] {
-    background: linear-gradient(135deg, rgba(0,100,200,0.4), rgba(0,180,255,0.2)) !important;
+    background: linear-gradient(135deg, rgba(0,90,180,0.5), rgba(0,180,255,0.25)) !important;
     border-color: var(--accent-blue) !important; color: #fff !important;
-    box-shadow: 0 0 25px rgba(0,180,255,0.25) !important;
+    box-shadow: 0 0 30px rgba(0,180,255,0.3) !important;
+}
+.stButton > button[kind="primary"]:hover {
+    box-shadow: 0 0 40px rgba(0,180,255,0.5) !important;
 }
 
+/* SECTION HEADERS */
 .section-hdr {
-    font-family: 'Exo 2', sans-serif; font-size: 1.25rem; font-weight: 700;
-    letter-spacing: 0.25em; color: var(--accent-blue); text-transform: uppercase;
-    padding: 0.5rem 0; border-bottom: 1px solid var(--border-subtle);
+    font-family: 'Exo 2', sans-serif; font-size: 1.2rem; font-weight: 700;
+    letter-spacing: 0.28em; color: var(--accent-blue); text-transform: uppercase;
+    padding: 0.5rem 0; border-bottom: 1px solid rgba(0,180,255,0.1);
     margin-bottom: 0.5rem; position: relative;
 }
 .section-hdr::after {
-    content: ''; position: absolute; bottom: -1px; left: 0; width: 90px; height: 2px;
+    content: ''; position: absolute; bottom: -1px; left: 0; width: 70px; height: 1.5px;
     background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
 }
 .section-hdr.red { color: var(--accent-red); }
 .section-hdr.red::after { background: linear-gradient(90deg, var(--accent-red), #ff8800); }
+.section-sub { font-size: 0.7rem; color: var(--text-secondary); letter-spacing: 0.18em; margin-bottom: 1.8rem; text-transform: uppercase; }
 
-.section-sub {
-    font-size: 0.73rem; color: var(--text-secondary);
-    letter-spacing: 0.15em; margin-bottom: 2rem; text-transform: uppercase;
-}
-
+/* TERMINAL */
 .terminal {
-    background: rgba(0,10,20,0.92); border: 1px solid var(--border-subtle);
-    border-left: 3px solid var(--accent-blue); border-radius: 6px;
-    padding: 0.8rem 1.2rem; font-size: 0.72rem; color: var(--accent-green);
-    letter-spacing: 0.15em; margin-top: 1.5rem; position: relative; overflow: hidden;
+    background: rgba(0,6,16,0.95); border: 1px solid rgba(0,180,255,0.1);
+    border-left: 2px solid var(--accent-blue); border-radius: 0 5px 5px 0;
+    padding: 0.75rem 1.2rem; font-size: 0.7rem; color: var(--accent-green);
+    letter-spacing: 0.12em; margin-top: 1.5rem; position: relative; overflow: hidden;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
 }
 .terminal::before {
     content: ''; position: absolute; inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,136,0.012) 2px, rgba(0,255,136,0.012) 4px);
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,136,0.008) 2px, rgba(0,255,136,0.008) 4px);
     pointer-events: none;
 }
 
+/* INFO BOX */
 .info-box {
-    background: rgba(0,10,20,0.85); border: 1px solid var(--border-subtle);
-    border-radius: 8px; padding: 1.2rem 1.5rem; margin-bottom: 1.5rem;
-    font-size: 0.75rem; color: var(--text-secondary); line-height: 1.85;
+    background: rgba(0,8,20,0.8); border: 1px solid rgba(0,180,255,0.09);
+    border-radius: 8px; padding: 1.1rem 1.4rem; margin-bottom: 1.5rem;
+    font-size: 0.74rem; color: var(--text-secondary); line-height: 1.85;
+    box-shadow: inset 0 1px 0 rgba(0,180,255,0.05);
 }
-.info-box strong { color: var(--accent-blue); }
+.info-box strong { color: var(--accent-blue); font-weight: 500; }
 
-.stFileUploader {
-    background: var(--bg-card) !important;
-    border: 1px dashed var(--border-glow) !important;
-    border-radius: 10px !important; padding: 1rem !important;
-}
-.stTextInput > div > div {
-    background: var(--bg-card) !important; border: 1px solid var(--border-subtle) !important;
-    border-radius: 8px !important; color: var(--text-primary) !important;
-    font-family: 'IBM Plex Mono', monospace !important;
-}
-.stTextInput > div > div:focus-within {
-    border-color: var(--accent-blue) !important; box-shadow: 0 0 15px rgba(0,180,255,0.15) !important;
-}
-.stSelectbox > div > div {
-    background: var(--bg-card) !important; border: 1px solid var(--border-subtle) !important;
-    border-radius: 8px !important; color: var(--text-primary) !important;
-}
-.stNumberInput > div > div {
-    background: var(--bg-card) !important; border: 1px solid var(--border-subtle) !important;
-    border-radius: 8px !important;
-}
+/* STREAMLIT WIDGET OVERRIDES */
+.stFileUploader { background: var(--bg-card) !important; border: 1px dashed rgba(0,180,255,0.25) !important; border-radius: 10px !important; padding: 1rem !important; }
+.stTextInput > div > div { background: rgba(4,12,24,0.9) !important; border: 1px solid rgba(0,180,255,0.12) !important; border-radius: 7px !important; color: var(--text-primary) !important; font-family: 'IBM Plex Mono', monospace !important; }
+.stTextInput > div > div:focus-within { border-color: rgba(0,180,255,0.4) !important; box-shadow: 0 0 12px rgba(0,180,255,0.12) !important; }
+.stSelectbox > div > div { background: rgba(4,12,24,0.9) !important; border: 1px solid rgba(0,180,255,0.12) !important; border-radius: 7px !important; color: var(--text-primary) !important; }
+.stNumberInput > div > div { background: rgba(4,12,24,0.9) !important; border: 1px solid rgba(0,180,255,0.12) !important; border-radius: 7px !important; }
 .stSlider > div > div > div { background: var(--accent-blue) !important; }
-div[data-testid="metric-container"] {
-    background: var(--bg-card) !important; border: 1px solid var(--border-subtle) !important;
-    border-radius: 10px !important; padding: 1rem !important; transition: border-color 0.3s;
-}
-div[data-testid="metric-container"]:hover { border-color: var(--border-glow) !important; }
-div[data-testid="metric-container"] label {
-    color: var(--text-secondary) !important; font-size: 0.68rem !important;
-    letter-spacing: 0.2em !important; font-family: 'Rajdhani', sans-serif !important; font-weight: 600 !important;
-}
-div[data-testid="metric-container"] div[data-testid="metric-value"] {
-    color: var(--accent-blue) !important; font-family: 'Exo 2', sans-serif !important; font-weight: 700 !important;
-}
-div[data-testid="stDataFrame"] {
-    background: var(--bg-card) !important; border: 1px solid var(--border-subtle) !important;
-    border-radius: 10px !important; overflow: hidden !important;
-}
-.stSuccess { background: rgba(0,255,136,0.07) !important; border: 1px solid rgba(0,255,136,0.28) !important; border-radius: 8px !important; color: var(--accent-green) !important; }
-.stError, .stWarning { background: rgba(255,51,85,0.07) !important; border: 1px solid rgba(255,51,85,0.28) !important; border-radius: 8px !important; }
-.stInfo { background: rgba(0,180,255,0.07) !important; border: 1px solid rgba(0,180,255,0.2) !important; border-radius: 8px !important; color: var(--accent-blue) !important; }
 
-hr { border-color: var(--border-subtle) !important; margin: 1.5rem 0 !important; }
-::-webkit-scrollbar { width: 4px; }
+div[data-testid="metric-container"] {
+    background: rgba(4,14,28,0.85) !important; border: 1px solid rgba(0,180,255,0.1) !important;
+    border-radius: 10px !important; padding: 1rem !important; transition: all 0.25s;
+}
+div[data-testid="metric-container"]:hover { border-color: rgba(0,180,255,0.28) !important; box-shadow: 0 0 16px rgba(0,180,255,0.08) !important; }
+div[data-testid="metric-container"] label { color: var(--text-dim) !important; font-size: 0.62rem !important; letter-spacing: 0.22em !important; font-family: 'Rajdhani', sans-serif !important; font-weight: 600 !important; }
+div[data-testid="metric-container"] div[data-testid="metric-value"] { color: var(--accent-blue) !important; font-family: 'Exo 2', sans-serif !important; font-weight: 800 !important; }
+
+div[data-testid="stDataFrame"] { background: rgba(4,14,28,0.85) !important; border: 1px solid rgba(0,180,255,0.1) !important; border-radius: 10px !important; overflow: hidden !important; }
+
+.stSuccess { background: rgba(0,255,136,0.06) !important; border: 1px solid rgba(0,255,136,0.25) !important; border-radius: 7px !important; color: var(--accent-green) !important; }
+.stError, .stWarning { background: rgba(255,51,85,0.06) !important; border: 1px solid rgba(255,51,85,0.25) !important; border-radius: 7px !important; }
+.stInfo { background: rgba(0,180,255,0.06) !important; border: 1px solid rgba(0,180,255,0.18) !important; border-radius: 7px !important; color: var(--accent-blue) !important; }
+
+hr { border-color: rgba(0,180,255,0.08) !important; margin: 1.5rem 0 !important; }
+::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: var(--bg-primary); }
-::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: rgba(0,180,255,0.4); border-radius: 2px; }
 .stSpinner > div { border-color: var(--accent-blue) transparent transparent transparent !important; }
 section[data-testid="stSidebar"] { display: none !important; }
 #MainMenu { visibility: hidden; }
-footer    { visibility: hidden; }
-header    { visibility: hidden; }
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-.stMarkdown, .stButton, .stFileUploader { animation: fadeInUp 0.4s ease-out forwards; }
+footer { visibility: hidden; }
+header { visibility: hidden; }
+
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.stMarkdown, .stButton, .stFileUploader { animation: fadeInUp 0.38s ease-out both; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -1585,7 +1573,7 @@ def render_session_bar():
     sid = st.session_state.get("session_id", "PE-XXXXXXXX")
     st.markdown(f"""
     <div class="session-bar">
-        <div class="sid"><span>●</span> &nbsp;SESSION: <span>{sid}</span></div>
+        <div class="sid"><span>●</span>&nbsp;&nbsp;SESSION: <span>{sid}</span></div>
         <div class="status">ALL SYSTEMS ONLINE</div>
         <div class="badge">OPEN ACCESS</div>
     </div>
@@ -1603,14 +1591,14 @@ def landing():
     <div class="hero-wrap">
       <div class="hero-eye">👁</div>
       <div class="hero-title">PHANTOMEYE</div>
-      <div class="hero-sub">AI-POWERED SURVEILLANCE INTELLIGENCE SYSTEM</div>
-      <div class="hero-status">[ SYSTEM ONLINE ] · OPEN ACCESS · BUILD v3.1</div>
+      <div class="hero-sub">AI-Powered Surveillance Intelligence System</div>
+      <div class="hero-status">[ SYSTEM ONLINE ] · OPEN ACCESS · BUILD v3.2</div>
 
       <div class="stats-row">
-        <div class="stat-item"><span class="stat-value">10</span><span class="stat-label">Modules</span></div>
-        <div class="stat-item"><span class="stat-value">97%</span><span class="stat-label">Accuracy</span></div>
+        <div class="stat-item"><span class="stat-value">11</span><span class="stat-label">Modules</span></div>
+        <div class="stat-item"><span class="stat-value">3</span><span class="stat-label">Novel Algorithms</span></div>
         <div class="stat-item"><span class="stat-value">9</span><span class="stat-label">Weapon Classes</span></div>
-        <div class="stat-item"><span class="stat-value">CPU</span><span class="stat-label">No GPU Needed</span></div>
+        <div class="stat-item"><span class="stat-value">CPU</span><span class="stat-label">No GPU Required</span></div>
       </div>
 
       <div class="scan-line"></div>
@@ -1621,70 +1609,77 @@ def landing():
           <div class="mod-name">Person Detection</div>
           <div class="mod-tag">YOLOv8-nano</div>
           <div class="mod-desc">Real-time person detection on any uploaded image. Returns bounding boxes and per-person confidence scores. Runs entirely on CPU — no GPU required.</div>
-          <div class="mod-meta">Model: yolov8n.pt · Class 0 only · Confidence threshold: 0.4 · CPU optimized</div>
+          <div class="mod-meta">Model: yolov8n.pt · Class 0 only · Confidence: 0.4 · CPU optimized</div>
         </div>
         <div class="mod-card">
           <div class="mod-icon">🔥</div>
           <div class="mod-name">Behavioral Analytics</div>
           <div class="mod-tag">ByteTrack · OpenCV</div>
-          <div class="mod-desc">Upload any video and get persistent person IDs across frames, a live behavioral heatmap showing movement density, per-person dwell times, and automated loitering alerts.</div>
-          <div class="mod-meta">Tracker: ByteTrack IOU · Heatmap: NumPy accumulation · Alert threshold: 60s · Max input: 15s</div>
+          <div class="mod-desc">Persistent person IDs across frames, live behavioral heatmap showing movement density, per-person dwell times, and automated loitering alerts from any video.</div>
+          <div class="mod-meta">Tracker: ByteTrack IOU · Heatmap: NumPy · Alert threshold: 60s · Max: 15s</div>
         </div>
         <div class="mod-card">
           <div class="mod-icon">🕵️</div>
           <div class="mod-name">OSINT Audit</div>
           <div class="mod-tag">LBPH Face Recognition</div>
-          <div class="mod-desc">Upload a face and receive a Privacy Exposure Score from 0 to 100. LBPH embeddings are matched against a reference gallery. Risk classified as LOW, MEDIUM, or HIGH.</div>
-          <div class="mod-meta">Engine: OpenCV LBPH · Gallery: cosine similarity · Score: 0–100 · No data stored</div>
+          <div class="mod-desc">Upload a face and receive a Privacy Exposure Score from 0 to 100. LBPH embeddings matched against a reference gallery. Risk classified as LOW, MEDIUM, or HIGH.</div>
+          <div class="mod-meta">Engine: OpenCV LBPH · Similarity: cosine · Score: 0–100 · No data stored</div>
         </div>
         <div class="mod-card">
           <div class="mod-icon">🧠</div>
           <div class="mod-name">Emotion Intelligence</div>
           <div class="mod-tag">DeepFace · TensorFlow</div>
           <div class="mod-desc">Multi-face emotion analysis. Returns dominant emotion, estimated age, and gender per face. False-positive filter rejects faces smaller than 15% of frame area.</div>
-          <div class="mod-meta">Backend: DeepFace · Detector: OpenCV · Min face size: 15% of frame · Multi-subject</div>
+          <div class="mod-meta">Backend: DeepFace · Detector: OpenCV · Min face: 15% · 7 emotion classes</div>
         </div>
         <div class="mod-card">
           <div class="mod-icon">💬</div>
           <div class="mod-name">NL Query Engine</div>
           <div class="mod-tag">Groq LLaMA 3</div>
-          <div class="mod-desc">Type a surveillance query in plain English or Roman Urdu. LLaMA 3 extracts structured filters — emotion, gender, age, dwell time, loitering — then matches against person records.</div>
-          <div class="mod-meta">Model: llama-3.1-8b-instant · Languages: English + Roman Urdu · Output: JSON filters</div>
+          <div class="mod-desc">Type a surveillance query in plain English or Roman Urdu. LLaMA 3 extracts structured filters — emotion, gender, age, dwell time, loitering — then matches against records.</div>
+          <div class="mod-meta">Model: llama-3.1-8b-instant · English + Roman Urdu · Output: JSON filters</div>
         </div>
         <div class="mod-card">
           <div class="mod-icon">⚠️</div>
           <div class="mod-name">Weapon Detection</div>
           <div class="mod-tag">YOLOv8 Custom · 9 Classes</div>
-          <div class="mod-desc">Custom YOLOv8 trained on 714 real weapon images across 9 classes. Achieves Handgun 89.5%, Shotgun 96.3%, SMG 98.6% average precision. Fires immediate threat alert on detection.</div>
-          <div class="mod-meta">Classes: Handgun · Knife · Shotgun · Sniper · AR · SMG · Sword · Bazooka · GL · mAP50: 53.2%</div>
+          <div class="mod-desc">Custom YOLOv8 trained on 714 real weapon images. Handgun 89.5%, Shotgun 96.3%, SMG 98.6% average precision. Immediate threat alert fires on any detection.</div>
+          <div class="mod-meta">Classes: Handgun · Knife · Shotgun · Sniper · AR · SMG · Sword · Bazooka · GL</div>
         </div>
         <div class="mod-card research-card">
           <div class="mod-icon">📊</div>
           <div class="mod-name red">Threat Momentum Score</div>
           <div class="mod-tag red">Novel Algorithm · TMS v1.0</div>
-          <div class="mod-desc">Original research contribution. Accumulates threat signals over time using a compound interest model — loitering, stress emotion, rapid movement, restricted zone, gaze anomaly, group formation. Score decays when signals stop.</div>
-          <div class="mod-meta">Signals: 6 · Decay half-life: 45s · Amplifier: score/200 · Levels: CLEAR / LOW / MEDIUM / HIGH / CRITICAL</div>
+          <div class="mod-desc">Original research. Accumulates threat signals over time using a compound interest model — loitering, stress emotion, rapid movement, restricted zone, gaze anomaly, group formation. Score decays between signals.</div>
+          <div class="mod-meta">6 signals · Decay: 45s half-life · Amplifier: score/200 · 5 threat levels</div>
         </div>
         <div class="mod-card research-card">
           <div class="mod-icon">🧬</div>
           <div class="mod-name red">Behavioral DNA</div>
           <div class="mod-tag red">Novel Algorithm · BDF v1.0</div>
-          <div class="mod-desc">Camera-agnostic person re-identification using behavioral signature alone. Identifies the same person across cameras without face recognition. Works through masks, hats, and low resolution.</div>
-          <div class="mod-meta">Signals: gait · velocity · spatial preference · social distance · dwell zones · Match threshold: 82%</div>
+          <div class="mod-desc">Camera-agnostic person re-identification using behavioral signature alone. Identifies the same person across cameras without face recognition — works through masks, hats, distance.</div>
+          <div class="mod-meta">5 components: gait · velocity · spatial · social distance · dwell zones · Threshold: 82%</div>
+        </div>
+        <div class="mod-card research-card">
+          <div class="mod-icon">🕸️</div>
+          <div class="mod-name red">Social Graph</div>
+          <div class="mod-tag red">Novel Algorithm · SGI v1.0</div>
+          <div class="mod-desc">Detects who is associated with whom from movement correlation alone — no prior information needed. Three people entering separately but coordinating get flagged before any overt action occurs.</div>
+          <div class="mod-meta">Proximity · velocity sync · dwell overlap · BFS connected-component group detection</div>
         </div>
         <div class="mod-card">
           <div class="mod-icon">📄</div>
           <div class="mod-name">Intel Report</div>
           <div class="mod-tag">fpdf2 · PDF Export</div>
-          <div class="mod-desc">Generate a classified PDF intelligence report from any session. Includes session overview, weapon threat log in red, per-subject behavioral records, and NL query history. Dark cyberpunk theme.</div>
-          <div class="mod-meta">Library: fpdf2 · Theme: dark bg + green text · Threat: red sections · Download: immediate</div>
+          <div class="mod-desc">Generate a classified PDF intelligence report from any session. Session overview, weapon threat log in red, per-subject behavioral records, and NL query history.</div>
+          <div class="mod-meta">fpdf2 · Dark bg + green text · CLASSIFIED header · Threat sections in red</div>
         </div>
         <div class="mod-card">
           <div class="mod-icon">⚡</div>
           <div class="mod-name">System Intel</div>
           <div class="mod-tag">Live Status</div>
-          <div class="mod-desc">Live system dashboard. All active modules listed with tech stack, benchmark results, API endpoint reference, model filenames, and deployment metadata for full transparency.</div>
-          <div class="mod-meta">Version: v3.1.0 · Deployment: HuggingFace Spaces · API: FastAPI OAS 3.1 · GitHub: open source</div>
+          <div class="mod-desc">Live system dashboard with all active modules, tech stack, benchmark results, API endpoint reference, and full deployment metadata for complete transparency.</div>
+          <div class="mod-meta">v3.2.0 · HuggingFace Spaces · FastAPI OAS 3.1 · GitHub open source</div>
         </div>
       </div>
     </div>
@@ -1702,30 +1697,58 @@ def home():
     st.markdown('<div class="app-header">👁 PHANTOMEYE</div>', unsafe_allow_html=True)
     st.markdown('<div class="app-sub">SELECT INTELLIGENCE MODULE · ALL SYSTEMS ACTIVE</div>', unsafe_allow_html=True)
 
-    modules = [
+    # Row 1 — Core modules
+    st.markdown("""
+    <div class="nav-divider">
+        <div class="nav-divider-line"></div>
+        <div class="nav-divider-label">Core Intelligence</div>
+        <div class="nav-divider-line"></div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    row1 = [
         ("DETECTION", "Detection"),
         ("ANALYTICS", "Analytics"),
         ("OSINT",     "OSINT"),
         ("EMOTION",   "Emotion"),
         ("NL QUERY",  "NL Query"),
         ("WEAPON",    "Weapon"),
-        ("THREAT",    "Threat Score"),
-        ("BDF",       "Behavioral DNA"),
-        ("REPORT",    "Report"),
-        ("INTEL",     "System"),
     ]
-    cols = st.columns(len(modules))
-    for i, (key, label) in enumerate(modules):
-        with cols[i]:
+    cols1 = st.columns(6)
+    for i, (key, label) in enumerate(row1):
+        with cols1[i]:
             if st.button(label, key=f"mod_{key}"):
+                st.session_state.page = key
+                st.rerun()
+
+    # Row 2 — Research + utility
+    st.markdown("""
+    <div class="nav-divider" style="margin-top:0.75rem;">
+        <div class="nav-divider-line"></div>
+        <div class="nav-divider-label">Novel Research · Utility</div>
+        <div class="nav-divider-line"></div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    row2 = [
+        ("THREAT", "Threat Score"),
+        ("BDF",    "Behavioral DNA"),
+        ("SGI",    "Social Graph"),
+        ("REPORT", "Report"),
+        ("INTEL",  "System"),
+    ]
+    cols2 = st.columns(5)
+    for i, (key, label) in enumerate(row2):
+        with cols2[i]:
+            if st.button(label, key=f"mod2_{key}"):
                 st.session_state.page = key
                 st.rerun()
 
     st.markdown("<hr>", unsafe_allow_html=True)
     st.markdown(
-        '<div class="terminal">[ PHANTOMEYE v3.1 ] · YOLOv8 loaded · ByteTrack active · '
+        '<div class="terminal">[ PHANTOMEYE v3.2 ] · YOLOv8 loaded · ByteTrack active · '
         'DeepFace online · Groq LLaMA connected · Weapon model ready · '
-        'TMS engine active · BDF engine active · All 10 modules ONLINE</div>',
+        'TMS v1.0 active · BDF v1.0 active · SGI v1.0 active · All 11 modules ONLINE</div>',
         unsafe_allow_html=True
     )
 
@@ -1734,42 +1757,29 @@ def detection_page():
     render_session_bar()
     back_button()
     st.markdown('<div class="section-hdr">Person Detection</div>', unsafe_allow_html=True)
-    st.markdown('<div class="section-sub">YOLOv8-nano · CPU inference · class 0 persons only · confidence 0.4</div>', unsafe_allow_html=True)
-    st.markdown("""
-    <div class="info-box">
-        <strong>How it works:</strong> Upload any image and PhantomEye runs YOLOv8-nano inference on CPU.
-        Configured for class 0 (person) detection only with a confidence threshold of 0.4.
-        Each detected person receives a bounding box and confidence score.
-        Expand the detection log below the output image to inspect raw bbox coordinates per subject.
-        No GPU required — inference runs on standard CPU hardware.
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown('<div class="section-sub">YOLOv8-nano · CPU inference · class 0 persons only · confidence threshold 0.4</div>', unsafe_allow_html=True)
+    st.markdown("""<div class="info-box"><strong>How it works:</strong> Upload any image and PhantomEye runs YOLOv8-nano inference entirely on CPU. Configured for class 0 (person) detection only at a confidence threshold of 0.4. Each detected person receives a bounding box and confidence score. Expand the detection log below the output image to inspect raw bbox coordinates and confidence per subject. No GPU required at any point.</div>""", unsafe_allow_html=True)
     st.markdown('<div class="terminal">yolov8n.pt · device: cpu · class 0 only · confidence threshold: 0.4</div>', unsafe_allow_html=True)
 
     uploaded = st.file_uploader("", type=["jpg", "jpeg", "png"], key="det_up")
-
     if uploaded:
         data  = np.frombuffer(uploaded.read(), np.uint8)
         image = cv2.imdecode(data, cv2.IMREAD_COLOR)
         if image is None:
             st.error("Cannot decode image.")
             return
-
         with st.spinner("Running inference..."):
             detector   = load_detector()
             t0         = time.time()
             detections = detector.detect(image)
             elapsed    = round(time.time() - t0, 3)
             annotated  = detector.draw(image, detections)
-
         c1, c2, c3, c4 = st.columns(4)
         c1.metric("PERSONS DETECTED", len(detections))
         c2.metric("INFERENCE TIME",   f"{elapsed}s")
         c3.metric("MODEL",            "YOLOv8n")
         c4.metric("DEVICE",           "CPU")
-
         st.image(cv2.cvtColor(annotated, cv2.COLOR_BGR2RGB), caption="Detection output", use_container_width=True)
-
         if detections:
             st.markdown('<div class="section-hdr">Detection Log</div>', unsafe_allow_html=True)
             st.markdown('<div class="section-sub">Expand each entry to inspect bounding box coordinates and confidence score</div>', unsafe_allow_html=True)
@@ -1783,34 +1793,22 @@ def analytics_page():
     back_button()
     st.markdown('<div class="section-hdr">Behavioral Analytics</div>', unsafe_allow_html=True)
     st.markdown('<div class="section-sub">ByteTrack · behavioral heatmap · dwell time · loitering alerts</div>', unsafe_allow_html=True)
-    st.markdown("""
-    <div class="info-box">
-        <strong>How it works:</strong> Upload a video and PhantomEye processes up to 15 seconds of footage.
-        ByteTrack assigns a persistent ID to each person and maintains it across frames, even through brief
-        occlusion. A NumPy heatmap accumulates every pixel position each person visits — high-activity zones
-        appear red in the output. Dwell time is tracked per ID in seconds. If any person remains in one zone
-        beyond the loitering threshold, an alert fires listing their assigned ID.
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("""<div class="info-box"><strong>How it works:</strong> Upload a video and PhantomEye processes up to 15 seconds of footage. ByteTrack assigns a persistent ID to each person and maintains it across frames, including through brief occlusion. A NumPy heatmap accumulates every pixel position each person visits — high-activity zones appear red. Dwell time is tracked per ID in seconds. If any person remains in one area beyond the loitering threshold, an alert fires listing their tracked ID.</div>""", unsafe_allow_html=True)
     st.markdown('<div class="terminal">ByteTrack IOU matching · heatmap: NumPy accumulation · loitering threshold: 60s · max analysis window: 15s</div>', unsafe_allow_html=True)
 
     uploaded = st.file_uploader("", type=["mp4", "avi", "mov"], key="ana_up")
-
     if uploaded:
         tmp = Path("outputs") / f"tmp_{int(time.time())}.mp4"
         tmp.parent.mkdir(exist_ok=True)
         with open(tmp, "wb") as f:
             f.write(uploaded.read())
-
         cap   = cv2.VideoCapture(str(tmp))
         fps   = int(cap.get(cv2.CAP_PROP_FPS)) or 25
         w     = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
         h     = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
         total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
         cap.release()
-
         st.markdown(f'<div class="terminal">{w}x{h} @ {fps}fps · {total} total frames · analysis cap: {min(total, fps*15)} frames</div>', unsafe_allow_html=True)
-
         if st.button("RUN BEHAVIORAL ANALYSIS"):
             detector = load_detector()
             tracker  = ByteTracker()
@@ -1819,7 +1817,6 @@ def analytics_page():
             limit    = min(total, fps * 15)
             prog     = st.progress(0)
             stat     = st.empty()
-
             for i in range(limit):
                 ret, frame = cap.read()
                 if not ret: break
@@ -1829,24 +1826,19 @@ def analytics_page():
                 prog.progress(int((i / limit) * 100))
                 if i % 25 == 0:
                     stat.markdown(f'<div class="terminal">Processing frame {i}/{limit} · active persons: {len(active)}</div>', unsafe_allow_html=True)
-
             cap.release()
             tmp.unlink(missing_ok=True)
             prog.progress(100)
             stat.empty()
-
             s = analyzer.summary()
             st.success("Analysis complete")
-
             c1, c2, c3, c4 = st.columns(4)
             c1.metric("TOTAL PERSONS", s.get("total_persons", 0))
             c2.metric("AVG DWELL",     f"{s.get('avg_dwell_sec', 0)}s")
             c3.metric("MAX DWELL",     f"{s.get('max_dwell_sec', 0)}s")
             c4.metric("LOITER ALERTS", s.get("total_alerts", 0))
-
             if s.get("total_alerts", 0) > 0:
                 st.warning(f"Loitering detected — Subject IDs: {s.get('loiterers', [])}")
-
             heat = analyzer.get_heatmap_overlay(np.zeros((h, w, 3), dtype=np.uint8))
             st.image(cv2.cvtColor(heat, cv2.COLOR_BGR2RGB), caption="Behavioral heatmap — red zones indicate highest activity density", use_container_width=True)
 
@@ -1856,15 +1848,7 @@ def osint_page():
     back_button()
     st.markdown('<div class="section-hdr">OSINT Privacy Audit</div>', unsafe_allow_html=True)
     st.markdown('<div class="section-sub">LBPH face embedding · gallery match · exposure score 0–100 · risk classification</div>', unsafe_allow_html=True)
-    st.markdown("""
-    <div class="info-box">
-        <strong>How it works:</strong> Upload a face photo and PhantomEye extracts an LBPH (Local Binary Pattern
-        Histogram) embedding from the detected face region. This embedding is compared against every person in the
-        reference gallery using cosine similarity. The Privacy Exposure Score (0–100) reflects recognition confidence —
-        a higher score means stronger match. Risk level is classified as LOW (score &lt; 40), MEDIUM (40–70), or
-        HIGH (&gt; 70). All processing is in-session only — nothing is stored server-side.
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("""<div class="info-box"><strong>How it works:</strong> Upload a face photo and PhantomEye extracts an LBPH (Local Binary Pattern Histogram) embedding from the detected face region. This is compared against every person in the reference gallery using cosine similarity. The Privacy Exposure Score (0–100) reflects recognition confidence — higher score means stronger match. Risk level: LOW (score &lt; 40), MEDIUM (40–70), HIGH (&gt; 70). All processing in-session only — nothing stored server-side at any point.</div>""", unsafe_allow_html=True)
     st.markdown('<div class="terminal">Engine: OpenCV LBPH · Similarity: cosine distance · Score: 0–100 · Risk: LOW / MEDIUM / HIGH · No data retention</div>', unsafe_allow_html=True)
 
     c1, c2 = st.columns([1, 1])
@@ -1874,29 +1858,23 @@ def osint_page():
         osint = load_osint()
         st.metric("GALLERY SIZE", f"{len(osint.gallery)} persons")
         st.metric("ENGINE",       "LBPH Face Recognition")
-
     if query_file and st.button("EXECUTE AUDIT"):
         data  = np.frombuffer(query_file.read(), np.uint8)
         image = cv2.imdecode(data, cv2.IMREAD_COLOR)
         if image is None:
             st.error("Cannot decode image.")
             return
-
         with st.spinner("Running audit..."):
             result = osint.audit(image, query_id=Path(query_file.name).stem)
-
         c1, c2, c3 = st.columns(3)
         c1.metric("RISK LEVEL",     result["risk_level"])
         c2.metric("EXPOSURE SCORE", f"{result['exposure_score']}/100")
         c3.metric("MATCHES FOUND",  len(result["matches"]))
-
         st.markdown(f'<div class="terminal">{result["message"]}</div>', unsafe_allow_html=True)
-
         if result["matches"]:
             st.markdown('<div class="section-hdr">Match Log</div>', unsafe_allow_html=True)
             for m in result["matches"]:
                 st.markdown(f'<div class="terminal">MATCH: {m["matched_id"]} · CONF: {m["confidence"]}% · SOURCE: {m["source"]}</div>', unsafe_allow_html=True)
-
         vis = osint.visualize(image, result)
         st.image(cv2.cvtColor(vis, cv2.COLOR_BGR2RGB), caption="OSINT visualization output", use_container_width=True)
 
@@ -1907,33 +1885,22 @@ def emotion_page():
     back_button()
     st.markdown('<div class="section-hdr">Emotion Intelligence</div>', unsafe_allow_html=True)
     st.markdown('<div class="section-sub">DeepFace · TensorFlow · dominant emotion · age · gender per face</div>', unsafe_allow_html=True)
-    st.markdown("""
-    <div class="info-box">
-        <strong>How it works:</strong> PhantomEye runs DeepFace analysis on every detected face in the uploaded image.
-        For each face it returns the dominant emotion from 7 classes (angry, fear, sad, happy, surprise, neutral,
-        disgust), an estimated age, and a gender classification. A false-positive filter discards any face region
-        smaller than 15% of the frame area. Multiple faces in a single image are processed independently.
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown("""<div class="info-box"><strong>How it works:</strong> PhantomEye runs DeepFace analysis on every detected face in the uploaded image. Returns dominant emotion from 7 classes (angry, fear, sad, happy, surprise, neutral, disgust), an estimated age, and gender classification. A false-positive filter discards any face region smaller than 15% of the frame area — prevents noise from distant or partially visible faces. Multiple faces in a single image are processed independently.</div>""", unsafe_allow_html=True)
     st.markdown('<div class="terminal">DeepFace + TensorFlow · OpenCV face detector · min face size: 15% of frame · 7 emotion classes · multi-subject</div>', unsafe_allow_html=True)
 
     uploaded = st.file_uploader("Upload image", type=["jpg", "jpeg", "png"])
-
     if uploaded:
         from PIL import Image
         img       = Image.open(uploaded).convert("RGB")
         frame     = np.array(img)
         frame_bgr = frame[:, :, ::-1].copy()
-
         with st.spinner("Analyzing faces..."):
             annotated, results = process_frame_emotion(frame_bgr)
-
         col1, col2 = st.columns(2)
         with col1:
             st.image(frame, caption="Original", use_container_width=True)
         with col2:
             st.image(annotated[:, :, ::-1], caption="Emotion analysis output", use_container_width=True)
-
         if results:
             st.markdown("<hr>")
             st.markdown('<div class="section-hdr">Detected Subjects</div>', unsafe_allow_html=True)
@@ -1959,39 +1926,25 @@ def nlquery_page():
     back_button()
     st.markdown('<div class="section-hdr">NL Query Engine</div>', unsafe_allow_html=True)
     st.markdown('<div class="section-sub">Groq LLaMA 3 · English + Roman Urdu · structured filter extraction</div>', unsafe_allow_html=True)
-    st.markdown("""
-    <div class="info-box">
-        <strong>How it works:</strong> Type any surveillance query in natural language — English or Roman Urdu both
-        work. Groq's LLaMA 3 (llama-3.1-8b-instant) parses the intent and extracts structured filters: emotion type,
-        gender, age range, minimum dwell time, and loitering status. These filters are applied against a person record
-        set and matching subjects are returned in a table. First open-source surveillance system with multilingual
-        NL query support including Roman Urdu.
-    </div>
-    """, unsafe_allow_html=True)
-    st.markdown('<div class="terminal">llama-3.1-8b-instant via Groq · JSON filter extraction · Roman Urdu supported · apply_filters() on records</div>', unsafe_allow_html=True)
+    st.markdown("""<div class="info-box"><strong>How it works:</strong> Type any surveillance query in natural language — English or Roman Urdu both work. Groq's LLaMA 3 (llama-3.1-8b-instant) parses the intent and extracts structured filters: emotion type, gender, age range, minimum dwell time, and loitering status. Filters are applied against person records and matching subjects are returned in a filterable table. This is the first open-source surveillance system with multilingual NL query support including Roman Urdu.</div>""", unsafe_allow_html=True)
+    st.markdown('<div class="terminal">llama-3.1-8b-instant via Groq · JSON structured filter extraction · Roman Urdu supported · apply_filters() on person records</div>', unsafe_allow_html=True)
 
     query = st.text_input("Enter your query", placeholder="show me angry men who were loitering  |  log jo loiter kar rahy thy")
-
     if query:
         with st.spinner("Parsing query..."):
             result = parse_nl_query(query)
-
         if result['success']:
             filters = result['filters']
             st.success(f"Understood: {filters['summary']}")
-
             col1, col2, col3 = st.columns(3)
             col1.metric("EMOTION",   filters['emotion']  or "ANY")
             col2.metric("GENDER",    filters['gender']   or "ANY")
             col3.metric("MAX AGE",   filters['max_age']  or "ANY")
-
             col4, col5 = st.columns(2)
             col4.metric("LOITERING", "YES" if filters['loitering'] else "ANY")
             col5.metric("MIN DWELL", f"{filters['min_dwell_seconds']}s" if filters['min_dwell_seconds'] else "ANY")
-
             st.markdown("<hr>")
             st.markdown('<div class="section-hdr">Filter Results — Sample Dataset</div>', unsafe_allow_html=True)
-
             sample_records = [
                 {"id": 1, "emotion": "angry",   "gender": "Man",   "age": 28, "dwell_seconds": 45,  "loitering": False},
                 {"id": 2, "emotion": "neutral",  "gender": "Woman", "age": 22, "dwell_seconds": 180, "loitering": True},
@@ -2000,7 +1953,6 @@ def nlquery_page():
                 {"id": 5, "emotion": "sad",      "gender": "Woman", "age": 19, "dwell_seconds": 90,  "loitering": False},
                 {"id": 6, "emotion": "fear",     "gender": "Man",   "age": 26, "dwell_seconds": 310, "loitering": True},
             ]
-
             matched = apply_filters(sample_records, filters)
             if matched:
                 st.success(f"{len(matched)} subject(s) matched from {len(sample_records)} records")
@@ -2019,36 +1971,24 @@ def weapon_page():
     back_button()
     st.markdown('<div class="section-hdr">Weapon Detection</div>', unsafe_allow_html=True)
     st.markdown('<div class="section-sub">YOLOv8 custom trained · 9 weapon classes · real-time threat alert</div>', unsafe_allow_html=True)
-    st.markdown("""
-    <div class="info-box">
-        <strong>How it works:</strong> A custom YOLOv8 model trained from scratch on 714 real-world weapon images
-        across 9 classes. Trained on Kaggle T4 GPU. Achieves Handgun 89.5%, Shotgun 96.3%, SMG 98.6% average
-        precision at mAP50 of 53.2%. Upload any image — detected weapons are highlighted with red bounding boxes
-        and an immediate threat alert fires listing the weapon class and confidence score.
-    </div>
-    """, unsafe_allow_html=True)
-    st.markdown('<div class="terminal">weapon_detector.pt · mAP50: 53.2% · Handgun: 89.5% · Shotgun: 96.3% · SMG: 98.6% · 714 real training images</div>', unsafe_allow_html=True)
+    st.markdown("""<div class="info-box"><strong>How it works:</strong> A custom YOLOv8 model trained from scratch on 714 real-world weapon images across 9 classes — trained on Kaggle T4 GPU. Achieves Handgun 89.5%, Shotgun 96.3%, SMG 98.6% average precision at mAP50 53.2%. Upload any image — detected weapons are highlighted with red bounding boxes and an immediate threat alert fires with the weapon class and confidence score. A clean result confirms the scene is clear.</div>""", unsafe_allow_html=True)
+    st.markdown('<div class="terminal">weapon_detector.pt · mAP50: 53.2% · Handgun: 89.5% · Shotgun: 96.3% · SMG: 98.6% · 714 training images · 9 classes</div>', unsafe_allow_html=True)
 
     uploaded = st.file_uploader("Upload image", type=["jpg", "jpeg", "png"])
-
     if uploaded:
         from PIL import Image
         from core.weapon import detect_weapons
-
         img       = Image.open(uploaded).convert("RGB")
         frame     = np.array(img)
         frame_bgr = frame[:, :, ::-1].copy()
         model     = load_weapon_model_cached()
-
         with st.spinner("Scanning for threats..."):
             annotated, detections = detect_weapons(frame_bgr, model)
-
         col1, col2 = st.columns(2)
         with col1:
             st.image(frame, caption="Original", use_container_width=True)
         with col2:
             st.image(annotated[:, :, ::-1], caption="Threat analysis output", use_container_width=True)
-
         st.markdown("<hr>")
         if detections:
             st.error(f"THREAT DETECTED — {len(detections)} weapon(s) identified")
@@ -2069,23 +2009,12 @@ def threat_page():
     from core.threat_momentum import ThreatMomentumEngine
 
     st.markdown('<div class="section-hdr red">Threat Momentum Score</div>', unsafe_allow_html=True)
-    st.markdown('<div class="section-sub">Novel temporal threat accumulation · compound behavioral signal model · PhantomEye original research</div>', unsafe_allow_html=True)
-    st.markdown("""
-    <div class="info-box">
-        <strong>Research contribution:</strong> Unlike binary threat detection systems that output a single yes/no,
-        TMS accumulates behavioral signals over time using a compound interest model. Each new signal contributes
-        weighted to the score. When the score is already elevated, new signals contribute proportionally more —
-        the amplifier effect. Score decays with a 45-second half-life when no signals arrive.
-        <br><br>
-        <strong>6 signals and weights:</strong> loitering (0.28) · stress emotion (0.22) · rapid movement (0.18)
-        · proximity violation (0.15) · gaze anomaly (0.10) · group formation (0.07)
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown('<div class="section-sub">Novel temporal threat accumulation · compound behavioral signal model · TMS v1.0</div>', unsafe_allow_html=True)
+    st.markdown("""<div class="info-box"><strong>Research contribution:</strong> Unlike binary threat detection systems that output a single yes/no result, TMS accumulates behavioral signals over time using a compound interest model. Each new signal contributes to the score weighted by importance. When the score is already elevated, new signals contribute proportionally more — the amplifier effect. The score decays with a 45-second half-life when no signals arrive, modeling how real threat situations escalate gradually, not instantaneously.<br><br><strong>6 signals and weights:</strong> loitering (0.28) · stress emotion (0.22) · rapid movement (0.18) · proximity violation (0.15) · gaze anomaly (0.10) · group formation (0.07)</div>""", unsafe_allow_html=True)
     st.markdown('<div class="terminal">TMS v1.0 · decay half-life: 45s · amplifier: 1 + score/200 · 5 levels: CLEAR / LOW / MEDIUM / HIGH / CRITICAL</div>', unsafe_allow_html=True)
 
     if "tms_engine" not in st.session_state:
         st.session_state.tms_engine = ThreatMomentumEngine()
-
     engine = st.session_state.tms_engine
 
     st.markdown("### Subject Input")
@@ -2112,7 +2041,6 @@ def threat_page():
                 in_restricted_zone=in_restricted, group_anomaly=group_anomaly,
             )
             st.session_state.last_tms = result
-
     with col_b:
         if st.button("RESET THIS PERSON"):
             engine.reset_person(person_id)
@@ -2124,35 +2052,26 @@ def threat_page():
         r = st.session_state.last_tms
         level_colors = {"CLEAR": "#10b981", "LOW": "#3b82f6", "MEDIUM": "#f59e0b", "HIGH": "#ef4444", "CRITICAL": "#ff0033"}
         color = level_colors.get(r.threat_level, "#ffffff")
-
         st.markdown(f"""
         <div style="text-align:center; padding:2.5rem; margin:1.5rem 0;
-            background:rgba(0,5,15,0.95); border:2px solid {color};
-            border-radius:12px; box-shadow: 0 0 40px {color}22;">
-            <div style="font-family:'IBM Plex Mono',monospace; font-size:0.62rem;
-                color:#3a6080; letter-spacing:0.35em; margin-bottom:0.75rem; text-transform:uppercase;">
+            background:rgba(0,4,12,0.97); border:2px solid {color};
+            border-radius:12px; box-shadow: 0 0 60px {color}18;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:0.58rem; color:#2a4060; letter-spacing:0.4em; margin-bottom:0.8rem; text-transform:uppercase;">
                 Threat Momentum Score · Person {r.person_id}
             </div>
-            <div style="font-size:5rem; font-weight:900; color:{color}; font-family:'Exo 2',sans-serif; line-height:1;">
-                {r.tms_score:.1f}
-            </div>
-            <div style="font-size:1.1rem; font-weight:700; color:{color}; letter-spacing:0.4em; margin-top:0.5rem; font-family:'Rajdhani',sans-serif;">
-                {r.threat_level}
-            </div>
-            <div style="font-size:0.68rem; color:#3a6080; margin-top:0.75rem; font-family:'IBM Plex Mono',monospace; letter-spacing:0.1em;">
-                Momentum: {r.momentum:+.2f}/frame &nbsp;|&nbsp; Time in system: {r.time_in_system}s
+            <div style="font-size:5.5rem; font-weight:900; color:{color}; font-family:'Exo 2',sans-serif; line-height:0.9; letter-spacing:-0.02em;">{r.tms_score:.1f}</div>
+            <div style="font-size:1rem; font-weight:700; color:{color}; letter-spacing:0.5em; margin-top:0.7rem; font-family:'Rajdhani',sans-serif;">{r.threat_level}</div>
+            <div style="font-size:0.62rem; color:#2a4060; margin-top:0.8rem; font-family:'IBM Plex Mono',monospace; letter-spacing:0.08em;">
+                Momentum: {r.momentum:+.2f}/frame &nbsp;&nbsp;|&nbsp;&nbsp; Time in system: {r.time_in_system}s
             </div>
         </div>
         """, unsafe_allow_html=True)
-
         if r.alert:
             st.error(r.alert_message)
-
         c1, c2, c3 = st.columns(3)
         c1.metric("ACTIVE SIGNALS", len(r.active_signals))
         c2.metric("MOMENTUM",       f"{r.momentum:+.3f}")
         c3.metric("TIME IN SYSTEM", f"{r.time_in_system}s")
-
         if r.signal_breakdown:
             st.markdown('<div class="section-hdr">Signal Breakdown</div>', unsafe_allow_html=True)
             import pandas as pd
@@ -2167,10 +2086,8 @@ def threat_page():
     s2.metric("TOTAL ALERTS",    summary["total_alerts"])
     s3.metric("HIGHEST TMS",     summary["highest_tms"])
     s4.metric("AVG TMS",         summary["avg_tms"])
-
     if summary["level_distribution"]:
-        st.markdown('<div class="terminal">Level distribution: ' + ' · '.join(f"{k}: {v}" for k, v in summary["level_distribution"].items()) + '</div>', unsafe_allow_html=True)
-
+        st.markdown('<div class="terminal">Distribution: ' + ' · '.join(f"{k}: {v}" for k, v in summary["level_distribution"].items()) + '</div>', unsafe_allow_html=True)
     if st.button("RESET ALL PROFILES"):
         engine.reset_all()
         if "last_tms" in st.session_state:
@@ -2184,25 +2101,12 @@ def bdf_page():
     from core.behavioral_dna import BehavioralDNAEngine
 
     st.markdown('<div class="section-hdr red">Behavioral DNA Fingerprint</div>', unsafe_allow_html=True)
-    st.markdown('<div class="section-sub">Camera-agnostic re-identification · no face required · pure movement signature</div>', unsafe_allow_html=True)
-    st.markdown("""
-    <div class="info-box">
-        <strong>Research contribution:</strong> Identifies the same person across cameras using behavioral
-        signature alone — gait rhythm, velocity profile, spatial preference zones, social distance pattern,
-        and dwell locations. Works with masks, hats, and at distances where face recognition fails completely.
-        When a person re-enters the scene with a new tracking ID, BDF matches them to their previous identity
-        using cosine similarity on a 5-component unified behavioral feature vector. Match threshold: 82%.
-        <br><br>
-        <strong>5 behavioral components:</strong> gait signature (stride rhythm) · velocity profile (speed
-        distribution) · spatial preference (normalized grid heatmap) · social distance average ·
-        dwell zone signature (stopping locations)
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown('<div class="section-sub">Camera-agnostic re-identification · no face required · pure movement signature · BDF v1.0</div>', unsafe_allow_html=True)
+    st.markdown("""<div class="info-box"><strong>Research contribution:</strong> Identifies the same person across cameras using behavioral signature alone — gait rhythm, velocity profile, spatial preference zones, social distance pattern, and dwell locations. Works with masks, hats, and at distances where face recognition completely fails. When a person re-enters the scene with a new tracking ID, BDF matches them to their previous identity using cosine similarity on a 5-component behavioral feature vector. Match threshold: 82%.<br><br><strong>5 behavioral components:</strong> gait signature (stride rhythm histogram) · velocity profile (speed distribution) · spatial preference (normalized grid heatmap) · social distance average · dwell zone signature (stopping locations)</div>""", unsafe_allow_html=True)
     st.markdown('<div class="terminal">BDF v1.0 · 5 behavioral signals · cosine similarity · match threshold: 82% · min observations: 15 frames</div>', unsafe_allow_html=True)
 
     if "bdf_engine" not in st.session_state:
         st.session_state.bdf_engine = BehavioralDNAEngine(640, 480)
-
     engine = st.session_state.bdf_engine
 
     st.markdown("### Add Observations")
@@ -2231,7 +2135,6 @@ def bdf_page():
                 st.success(f"Person {obs_id} registered — confidence: {bdf.confidence:.2f} | observations: {bdf.observation_count}")
             else:
                 st.warning(f"Insufficient data. Need at least 15 observations for Person {obs_id}.")
-
     with col_b:
         if st.button("MATCH AGAINST GALLERY"):
             result = engine.match_against_gallery(obs_id)
@@ -2240,24 +2143,16 @@ def bdf_page():
     if "last_bdf" in st.session_state:
         r = st.session_state.last_bdf
         color = "#00b4ff" if r.is_match else "#10b981"
-
         st.markdown(f"""
-        <div style="padding:2rem; margin:1rem 0;
-            background:rgba(0,5,15,0.95); border:2px solid {color};
-            border-radius:10px; box-shadow: 0 0 30px {color}22;">
-            <div style="font-family:'IBM Plex Mono',monospace; font-size:0.62rem;
-                color:#3a6080; letter-spacing:0.3em; margin-bottom:0.5rem; text-transform:uppercase;">
-                Behavioral DNA Match Result · Person {r.query_id}
+        <div style="padding:2rem; margin:1rem 0; background:rgba(0,4,12,0.97);
+            border:2px solid {color}; border-radius:10px; box-shadow: 0 0 40px {color}18;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:0.58rem; color:#2a4060; letter-spacing:0.35em; margin-bottom:0.6rem; text-transform:uppercase;">
+                Behavioral DNA Match · Person {r.query_id}
             </div>
-            <div style="font-size:2.5rem; font-weight:900; color:{color}; font-family:'Exo 2',sans-serif;">
-                {"MATCH FOUND" if r.is_match else "NO MATCH"}
-            </div>
-            <div style="font-size:0.75rem; color:#7ab3d4; margin-top:0.75rem; font-family:'IBM Plex Mono',monospace; line-height:1.6;">
-                {r.explanation}
-            </div>
+            <div style="font-size:2.2rem; font-weight:900; color:{color}; font-family:'Exo 2',sans-serif; letter-spacing:0.05em;">{"MATCH FOUND" if r.is_match else "NO MATCH"}</div>
+            <div style="font-size:0.72rem; color:#5a8090; margin-top:0.8rem; font-family:'IBM Plex Mono',monospace; line-height:1.65;">{r.explanation}</div>
         </div>
         """, unsafe_allow_html=True)
-
         c1, c2, c3 = st.columns(3)
         c1.metric("SIMILARITY",  f"{r.similarity:.1%}")
         c2.metric("MATCHED ID",  str(r.matched_id) if r.matched_id else "None")
@@ -2271,12 +2166,103 @@ def bdf_page():
     s2.metric("BDF READY", summary["bdf_ready"])
     s3.metric("GALLERY",   summary["gallery_size"])
     s4.metric("MATCHES",   summary["matches_detected"])
-
     if st.button("RESET ALL"):
         engine.reset_all()
         if "last_bdf" in st.session_state:
             del st.session_state.last_bdf
         st.success("BDF engine reset.")
+
+
+def sgi_page():
+    render_session_bar()
+    back_button()
+    from core.social_graph import SocialGraphEngine
+
+    st.markdown('<div class="section-hdr red">Social Graph Intelligence</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-sub">Real-time group detection · no prior information · pure behavioral correlation · SGI v1.0</div>', unsafe_allow_html=True)
+    st.markdown("""<div class="info-box"><strong>Research contribution:</strong> Detects "who is with whom" from surveillance footage without any prior information — no face recognition, no name lists, no pre-registration. Three bank robbers entering a building separately — SGI detects their association before any overt action occurs, purely from movement correlation. Uses three behavioral signals: spatial proximity, velocity synchronization (do they accelerate and decelerate together?), and shared dwell zones. Connected-component BFS then extracts groups from the link graph.<br><br><strong>Link strength formula:</strong> proximity score (0.40) + Pearson velocity correlation (0.35) + dwell zone overlap (0.25)</div>""", unsafe_allow_html=True)
+    st.markdown('<div class="terminal">SGI v1.0 · proximity threshold: 150px · Pearson velocity correlation · group detection: BFS connected-component analysis</div>', unsafe_allow_html=True)
+
+    if "sgi_engine" not in st.session_state:
+        st.session_state.sgi_engine = SocialGraphEngine(proximity_px=150)
+    engine = st.session_state.sgi_engine
+
+    st.markdown("### Simulate Person Movement")
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        obs_id = st.number_input("Person ID", min_value=1, value=1)
+        pos_x  = st.number_input("Start Position X", min_value=0, max_value=1920, value=320)
+    with c2:
+        pos_y  = st.number_input("Start Position Y", min_value=0, max_value=1080, value=240)
+        n_obs  = st.number_input("Frames to simulate", min_value=1, max_value=200, value=50)
+    with c3:
+        move_x = st.number_input("Movement X per frame", min_value=-10, max_value=10, value=2)
+        move_y = st.number_input("Movement Y per frame", min_value=-10, max_value=10, value=0)
+
+    if st.button("SIMULATE MOVEMENT"):
+        for i in range(int(n_obs)):
+            x = int(pos_x + i * move_x + np.random.randn() * 2)
+            y = int(pos_y + i * move_y + np.random.randn() * 2)
+            engine.observe(obs_id, (max(0, x), max(0, y)))
+        engine._update_links()
+        st.success(f"Simulated {n_obs} frames for Person {obs_id}")
+
+    if st.button("DETECT GROUPS", type="primary"):
+        st.session_state.sgi_result = {
+            "groups":  engine.detect_groups(),
+            "links":   engine.get_all_links(),
+            "summary": engine.summary(),
+        }
+
+    if "sgi_result" in st.session_state:
+        res     = st.session_state.sgi_result
+        groups  = res["groups"]
+        links   = res["links"]
+        summary = res["summary"]
+
+        s1, s2, s3, s4 = st.columns(4)
+        s1.metric("PERSONS TRACKED",  summary["persons_tracked"])
+        s2.metric("ACTIVE LINKS",     summary["active_links"])
+        s3.metric("GROUPS DETECTED",  summary["groups_detected"])
+        s4.metric("TOTAL ALERTS",     summary["total_alerts"])
+
+        if groups:
+            st.markdown('<div class="section-hdr">Detected Groups</div>', unsafe_allow_html=True)
+            for g in groups:
+                color = "#ef4444" if g.alert else "#00b4ff"
+                st.markdown(f"""
+                <div style="padding:1rem 1.5rem; margin:0.5rem 0; background:rgba(0,4,12,0.92); border:1px solid {color}; border-radius:8px;">
+                    <div style="font-family:'Rajdhani',sans-serif; font-size:0.82rem; font-weight:700; color:{color}; letter-spacing:0.18em; margin-bottom:0.4rem;">
+                        GROUP {g.group_id} · {g.formation.upper()} · Cohesion: {g.cohesion:.3f}
+                    </div>
+                    <div style="font-family:'IBM Plex Mono',monospace; font-size:0.66rem; color:#5a8090; line-height:1.5;">
+                        Members: {g.members}{"  ·  ALERT: " + g.alert_reason if g.alert else ""}
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+        else:
+            st.info("No groups detected yet. Simulate matching movement patterns for multiple persons, then detect groups.")
+
+        if links:
+            st.markdown('<div class="section-hdr">Social Link Graph</div>', unsafe_allow_html=True)
+            st.markdown('<div class="section-sub">All pairwise behavioral associations detected between tracked persons</div>', unsafe_allow_html=True)
+            import pandas as pd
+            df = pd.DataFrame([{
+                "Persons":         f"{l.person_a} -- {l.person_b}",
+                "Strength":        l.strength,
+                "Type":            l.link_type,
+                "Frames Observed": l.frame_count,
+                "Proximity (px)":  l.evidence.get("proximity_px", 0),
+                "Velocity Corr":   l.evidence.get("velocity_corr", 0),
+            } for l in links])
+            st.dataframe(df, use_container_width=True)
+
+    st.markdown("<hr>")
+    if st.button("RESET ENGINE"):
+        engine.reset_all()
+        if "sgi_result" in st.session_state:
+            del st.session_state.sgi_result
+        st.success("Social graph engine reset.")
 
 
 def report_page():
@@ -2285,16 +2271,8 @@ def report_page():
     back_button()
     st.markdown('<div class="section-hdr">Intelligence Report</div>', unsafe_allow_html=True)
     st.markdown('<div class="section-sub">Classified PDF · session data · threat log · subject records · one-click download</div>', unsafe_allow_html=True)
-    st.markdown("""
-    <div class="info-box">
-        <strong>How it works:</strong> Fill in the session data fields below — total persons detected, loitering
-        alerts, per-subject behavioral records with emotion and dwell time, and any weapon detections.
-        Click Generate and PhantomEye produces a classified PDF using fpdf2. Dark background with green
-        terminal-style text. Weapon threat sections highlighted in red. CLASSIFIED header on first page.
-        Immediate download — nothing stored server-side.
-    </div>
-    """, unsafe_allow_html=True)
-    st.markdown('<div class="terminal">fpdf2 · dark theme · CLASSIFIED header · weapon sections in red · immediate download · zero server storage</div>', unsafe_allow_html=True)
+    st.markdown("""<div class="info-box"><strong>How it works:</strong> Fill in session data — total persons detected, loitering alerts, per-subject behavioral records with emotion and dwell time, and any weapon detections from the session. Click Generate and PhantomEye produces a classified PDF using fpdf2. Dark background with green terminal-style text. Weapon threat sections highlighted in red. CLASSIFIED header on the first page. The file is immediately available for download — nothing is stored server-side at any point.</div>""", unsafe_allow_html=True)
+    st.markdown('<div class="terminal">fpdf2 · dark theme · CLASSIFIED header · weapon threat sections in red · immediate download · zero server-side storage</div>', unsafe_allow_html=True)
 
     st.markdown("### Session Data")
     col1, col2 = st.columns(2)
@@ -2344,12 +2322,10 @@ def report_page():
             "nl_query":          nl_query,
             "nl_result":         nl_result,
         }
-        with st.spinner("Generating report..."):
+        with st.spinner("Generating classified report..."):
             path = generate_report(data)
-
         with open(path, "rb") as f:
             pdf_bytes = f.read()
-
         st.success("Report generated.")
         st.download_button(
             label="Download PDF Report",
@@ -2363,29 +2339,28 @@ def intel_page():
     render_session_bar()
     back_button()
     st.markdown('<div class="section-hdr">System Intelligence</div>', unsafe_allow_html=True)
-    st.markdown('<div class="section-sub">Module registry · model benchmarks · deployment info · API reference</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-sub">Module registry · model benchmarks · deployment info · novel contributions</div>', unsafe_allow_html=True)
 
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("SYSTEM",  "PhantomEye")
-    c2.metric("VERSION", "v3.1.0")
+    c2.metric("VERSION", "v3.2.0")
     c3.metric("STATUS",  "ONLINE")
-    c4.metric("MODULES", "10 ACTIVE")
+    c4.metric("MODULES", "11 ACTIVE")
 
     st.markdown("<br>", unsafe_allow_html=True)
-
     modules_info = [
         ("DETECTION",       "YOLOv8-nano",   "yolov8n.pt · class 0 · confidence 0.4+ · CPU only"),
-        ("ANALYTICS",       "ByteTrack",     "IOU matching · NumPy heatmap · dwell time · loitering threshold: 60s"),
-        ("OSINT",           "LBPH Face",     "LBPH embedding · cosine gallery search · score 0–100 · LOW/MEDIUM/HIGH"),
-        ("EMOTION",         "DeepFace + TF", "7 emotion classes · age + gender · OpenCV detector · 15% min face size"),
-        ("NL QUERY",        "Groq LLaMA 3",  "llama-3.1-8b-instant · English + Roman Urdu · JSON filter extraction"),
+        ("ANALYTICS",       "ByteTrack",     "IOU matching · NumPy heatmap · dwell time tracking · loitering threshold: 60s"),
+        ("OSINT",           "LBPH Face",     "LBPH embedding · cosine gallery search · score 0–100 · LOW/MEDIUM/HIGH risk"),
+        ("EMOTION",         "DeepFace + TF", "7 emotion classes · age + gender · OpenCV detector · 15% min face size filter"),
+        ("NL QUERY",        "Groq LLaMA 3",  "llama-3.1-8b-instant · English + Roman Urdu · JSON structured filter extraction"),
         ("WEAPON",          "YOLOv8 Custom", "9 classes · mAP50 53.2% · Handgun 89.5% · Shotgun 96.3% · SMG 98.6%"),
-        ("THREAT MOMENTUM", "TMS v1.0",      "Novel · 6 signals · compound amplifier · 45s decay · 5 threat levels"),
+        ("THREAT MOMENTUM", "TMS v1.0",      "Novel · 6 behavioral signals · compound amplifier · 45s decay · 5 threat levels"),
         ("BEHAVIORAL DNA",  "BDF v1.0",      "Novel · 5 behavioral components · cosine similarity · 82% match threshold"),
+        ("SOCIAL GRAPH",    "SGI v1.0",      "Novel · proximity + velocity sync + dwell overlap · BFS group detection"),
         ("REPORT",          "fpdf2",         "Classified PDF · dark theme · CLASSIFIED header · threat sections in red"),
-        ("API",             "FastAPI",        "OAS 3.1 · CORS enabled · uvicorn · modular routes"),
+        ("API",             "FastAPI",        "OAS 3.1 · CORS enabled · uvicorn · modular route handlers"),
     ]
-
     for name, tech, desc in modules_info:
         with st.expander(f"{name}  ·  {tech}  ·  ACTIVE"):
             st.markdown(f'<div class="terminal">{desc}</div>', unsafe_allow_html=True)
@@ -2396,7 +2371,12 @@ def intel_page():
         "github":              "https://github.com/Abu-Sameer-66/PhantomEye",
         "huggingface":         "https://abu-sameer-66-phantomeye.hf.space",
         "stack":               ["Python 3.10", "YOLOv8", "DeepFace", "ByteTrack", "FastAPI", "Streamlit", "Groq", "fpdf2"],
-        "novel_contributions": ["Threat Momentum Score (TMS v1.0)", "Behavioral DNA Fingerprint (BDF v1.0)"],
+        "novel_contributions": [
+            "Threat Momentum Score (TMS v1.0) — temporal compound threat accumulation",
+            "Behavioral DNA Fingerprint (BDF v1.0) — camera-agnostic behavioral re-ID",
+            "Social Graph Intelligence (SGI v1.0) — implicit group detection from movement"
+        ],
+        "paper_status":        "in progress",
         "status":              "online",
         "access":              "open",
     })
@@ -2420,10 +2400,10 @@ def main():
     elif page == "WEAPON":    weapon_page()
     elif page == "THREAT":    threat_page()
     elif page == "BDF":       bdf_page()
+    elif page == "SGI":       sgi_page()
     elif page == "REPORT":    report_page()
     elif page == "INTEL":     intel_page()
 
 
 if __name__ == "__main__":
     main()
-    
