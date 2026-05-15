@@ -18,5 +18,6 @@ COPY . .
 RUN mkdir -p data/gallery data/videos outputs models
 
 EXPOSE 7860
+EXPOSE 8000
 
-CMD ["streamlit", "run", "app.py", "--server.port", "7860", "--server.address", "0.0.0.0", "--server.headless", "true"]
+CMD ["/bin/bash", "start.sh"]
