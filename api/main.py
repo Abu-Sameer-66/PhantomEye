@@ -15,6 +15,8 @@ from core.tracker import ByteTracker
 from core.osint import OSINTAudit
 from config import OUTPUTS_DIR, GALLERY_DIR, API_HOST, API_PORT
 
+from api.routes.predictive_exit import router as predictive_exit_router
+
 app = FastAPI(
     title="PhantomEye API",
     description="AI-powered surveillance intelligence — Person Re-ID, Behavioral Analytics, OSINT Defense",
@@ -27,6 +29,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.include_router(predictive_exit_router)
 
 detector = PersonDetector()
 osint    = OSINTAudit()
@@ -41,7 +45,7 @@ def root():
         "system"  : "PhantomEye",
         "version" : "1.0.0",
         "status"  : "online",
-        "modules" : ["detection", "tracking", "analytics", "osint"],
+        "modules" : ["detection", "tracking", "analytics", "osint", "predictive_exit"],
         "author"  : "Abu-Sameer-66",
     }
 
@@ -206,7 +210,6 @@ def list_outputs():
         "total" : len(files),
         "files" : files,
     })
-
 
 
 # ── AUTH ENDPOINTS ──────────────────────────────────────────

@@ -1592,11 +1592,11 @@ def landing():
       <div class="hero-eye">👁</div>
       <div class="hero-title">PHANTOMEYE</div>
       <div class="hero-sub">AI-Powered Surveillance Intelligence System</div>
-      <div class="hero-status">[ SYSTEM ONLINE ] · OPEN ACCESS · BUILD v3.2</div>
+      <div class="hero-status">[ SYSTEM ONLINE ] · OPEN ACCESS · BUILD v3.3</div>
 
       <div class="stats-row">
-        <div class="stat-item"><span class="stat-value">11</span><span class="stat-label">Modules</span></div>
-        <div class="stat-item"><span class="stat-value">3</span><span class="stat-label">Novel Algorithms</span></div>
+        <div class="stat-item"><span class="stat-value">12</span><span class="stat-label">Modules</span></div>
+        <div class="stat-item"><span class="stat-value">4</span><span class="stat-label">Novel Algorithms</span></div>
         <div class="stat-item"><span class="stat-value">9</span><span class="stat-label">Weapon Classes</span></div>
         <div class="stat-item"><span class="stat-value">CPU</span><span class="stat-label">No GPU Required</span></div>
       </div>
@@ -1650,7 +1650,7 @@ def landing():
           <div class="mod-icon">📊</div>
           <div class="mod-name red">Threat Momentum Score</div>
           <div class="mod-tag red">Novel Algorithm · TMS v1.0</div>
-          <div class="mod-desc">Original research. Accumulates threat signals over time using a compound interest model — loitering, stress emotion, rapid movement, restricted zone, gaze anomaly, group formation. Score decays between signals.</div>
+          <div class="mod-desc">Original research. Accumulates threat signals over time using a compound interest model — loitering, stress emotion, rapid movement, restricted zone, gaze anomaly, group formation.</div>
           <div class="mod-meta">6 signals · Decay: 45s half-life · Amplifier: score/200 · 5 threat levels</div>
         </div>
         <div class="mod-card research-card">
@@ -1664,8 +1664,15 @@ def landing():
           <div class="mod-icon">🕸️</div>
           <div class="mod-name red">Social Graph</div>
           <div class="mod-tag red">Novel Algorithm · SGI v1.0</div>
-          <div class="mod-desc">Detects who is associated with whom from movement correlation alone — no prior information needed. Three people entering separately but coordinating get flagged before any overt action occurs.</div>
+          <div class="mod-desc">Detects who is associated with whom from movement correlation alone — no prior information needed. Three people entering separately but coordinating get flagged before any overt action.</div>
           <div class="mod-meta">Proximity · velocity sync · dwell overlap · BFS connected-component group detection</div>
+        </div>
+        <div class="mod-card research-card">
+          <div class="mod-icon">🚀</div>
+          <div class="mod-name red">Predictive Exit Vector</div>
+          <div class="mod-tag red">Novel Algorithm · PEV v1.0</div>
+          <div class="mod-desc">Predicts which frame boundary a person will cross and how many seconds remain — 3 to 5 seconds before actual exit. Velocity smoothing plus linear trajectory extrapolation. Designed for camera handoff in multi-camera surveillance grids.</div>
+          <div class="mod-meta">Trajectory extrapolation · velocity smoothing · boundary proximity · confidence scoring · no open-source equivalent</div>
         </div>
         <div class="mod-card">
           <div class="mod-icon">📄</div>
@@ -1679,7 +1686,7 @@ def landing():
           <div class="mod-name">System Intel</div>
           <div class="mod-tag">Live Status</div>
           <div class="mod-desc">Live system dashboard with all active modules, tech stack, benchmark results, API endpoint reference, and full deployment metadata for complete transparency.</div>
-          <div class="mod-meta">v3.2.0 · HuggingFace Spaces · FastAPI OAS 3.1 · GitHub open source</div>
+          <div class="mod-meta">v3.3.0 · HuggingFace Spaces · FastAPI OAS 3.1 · GitHub open source</div>
         </div>
       </div>
     </div>
@@ -1734,10 +1741,11 @@ def home():
         ("THREAT", "Threat Score"),
         ("BDF",    "Behavioral DNA"),
         ("SGI",    "Social Graph"),
+        ("PEV",    "Predictive Exit"),
         ("REPORT", "Report"),
         ("INTEL",  "System"),
     ]
-    cols2 = st.columns(5)
+    cols2 = st.columns(6)
     for i, (key, label) in enumerate(row2):
         with cols2[i]:
             if st.button(label, key=f"mod2_{key}"):
@@ -1746,9 +1754,9 @@ def home():
 
     st.markdown("<hr>", unsafe_allow_html=True)
     st.markdown(
-        '<div class="terminal">[ PHANTOMEYE v3.2 ] · YOLOv8 loaded · ByteTrack active · '
+        '<div class="terminal">[ PHANTOMEYE v3.3 ] · YOLOv8 loaded · ByteTrack active · '
         'DeepFace online · Groq LLaMA connected · Weapon model ready · '
-        'TMS v1.0 active · BDF v1.0 active · SGI v1.0 active · All 11 modules ONLINE</div>',
+        'TMS v1.0 active · BDF v1.0 active · SGI v1.0 active · PEV v1.0 active · All 12 modules ONLINE</div>',
         unsafe_allow_html=True
     )
 
@@ -2265,6 +2273,163 @@ def sgi_page():
         st.success("Social graph engine reset.")
 
 
+def pev_page():
+    render_session_bar()
+    back_button()
+    from core.predictive_exit import PredictiveExitEngine
+
+    st.markdown('<div class="section-hdr red">Predictive Exit Vector</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-sub">Frame boundary exit prediction · 3–5 seconds ahead · camera handoff intelligence · PEV v1.0</div>', unsafe_allow_html=True)
+    st.markdown("""
+    <div class='info-box'>
+        <strong>Research contribution:</strong> PEV v1.0 tracks each person's position history and
+        computes a smoothed velocity vector using a sliding window over recent frames.
+        Linear trajectory extrapolation then determines which frame boundary — LEFT, RIGHT, TOP, or BOTTOM —
+        the person will cross and how many seconds remain before exit.
+        Prediction fires <strong>3 to 5 seconds before actual exit</strong>, enabling downstream camera handoff
+        in multi-camera surveillance grids. Confidence is composed from three factors: velocity stability
+        (is the direction consistent?), boundary proximity (how close are they?), and history depth
+        (how many frames observed?). No equivalent open-source implementation exists for
+        real-time multi-person exit prediction in surveillance systems.
+        <br><br>
+        <strong>Algorithm:</strong> position history → sliding-window velocity smoothing →
+        linear trajectory extrapolation → boundary intersection detection →
+        confidence scoring → ExitPrediction output
+    </div>
+    """, unsafe_allow_html=True)
+    st.markdown('<div class="terminal">PEV v1.0 · velocity smoothing window: 5 frames · prediction horizon: 4s · confidence: stability × proximity × depth · IUB AI Research Lab</div>', unsafe_allow_html=True)
+
+    st.markdown("### Simulate Exit Prediction")
+    st.markdown('<div class="section-sub">Manually feed person positions to test the prediction engine in real time</div>', unsafe_allow_html=True)
+
+    if "pev_engine" not in st.session_state:
+        st.session_state.pev_engine = PredictiveExitEngine(frame_width=640, frame_height=480, fps=25)
+    engine = st.session_state.pev_engine
+
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        sim_person_id = st.number_input("Person ID", min_value=1, value=1, key="pev_pid")
+        bbox_x1       = st.number_input("BBox X1", min_value=0, max_value=620, value=400, key="pev_x1")
+    with c2:
+        bbox_y1       = st.number_input("BBox Y1", min_value=0, max_value=460, value=200, key="pev_y1")
+        bbox_w        = st.number_input("BBox Width", min_value=20, max_value=200, value=50, key="pev_w")
+    with c3:
+        bbox_h        = st.number_input("BBox Height", min_value=20, max_value=300, value=100, key="pev_h")
+        n_auto_frames = st.number_input("Auto-simulate frames", min_value=1, max_value=50, value=20, key="pev_nf")
+
+    col_a, col_b, col_c = st.columns(3)
+
+    with col_a:
+        if st.button("FEED SINGLE FRAME"):
+            dets = [{"person_id": sim_person_id, "bbox": [bbox_x1, bbox_y1, bbox_x1 + bbox_w, bbox_y1 + bbox_h]}]
+            preds = engine.update(dets)
+            st.session_state.pev_result = preds
+
+    with col_b:
+        if st.button("AUTO-SIMULATE →RIGHT", type="primary"):
+            preds_last = []
+            for i in range(int(n_auto_frames)):
+                x1 = bbox_x1 + i * 12
+                dets = [{"person_id": sim_person_id, "bbox": [x1, bbox_y1, x1 + bbox_w, bbox_y1 + bbox_h]}]
+                preds_last = engine.update(dets)
+            st.session_state.pev_result = preds_last
+            st.success(f"Simulated {n_auto_frames} frames — person moving RIGHT")
+
+    with col_c:
+        if st.button("RESET ENGINE"):
+            engine.reset()
+            if "pev_result" in st.session_state:
+                del st.session_state.pev_result
+            st.success("PEV engine reset.")
+
+    if "pev_result" in st.session_state:
+        preds = st.session_state.pev_result
+        st.markdown("<hr>")
+        st.markdown('<div class="section-hdr">Live Predictions</div>', unsafe_allow_html=True)
+
+        if not preds or all(p.exit_side == "NONE" for p in preds):
+            st.info("No exit predicted yet — feed more frames or simulate movement toward a boundary.")
+        else:
+            for pred in preds:
+                if pred.exit_side == "NONE":
+                    continue
+
+                side_colors = {
+                    "LEFT":   "#00b4ff",
+                    "RIGHT":  "#00ff88",
+                    "TOP":    "#f0b429",
+                    "BOTTOM": "#ff3355",
+                }
+                color  = side_colors.get(pred.exit_side, "#ffffff")
+                alert_html = (
+                    '<div style="color:#ff3355;font-weight:700;font-size:0.75rem;'
+                    'letter-spacing:0.2em;margin-top:0.5rem;">⚠ EXIT IMMINENT</div>'
+                    if pred.alert else ""
+                )
+
+                st.markdown(f"""
+                <div style="padding:1.8rem 2rem; margin:0.75rem 0;
+                    background:rgba(0,4,12,0.97); border:2px solid {color};
+                    border-radius:10px; box-shadow: 0 0 40px {color}18;
+                    font-family:'IBM Plex Mono',monospace;">
+                    <div style="font-size:0.55rem; color:#2a4060; letter-spacing:0.4em;
+                        margin-bottom:0.7rem; text-transform:uppercase;">
+                        Predictive Exit Vector · Person {pred.person_id}
+                    </div>
+                    <div style="display:flex; align-items:center; gap:2rem; flex-wrap:wrap;">
+                        <div>
+                            <div style="font-size:2.5rem; font-weight:900; color:{color};
+                                font-family:'Exo 2',sans-serif; line-height:1;">
+                                {pred.exit_side}
+                            </div>
+                            <div style="font-size:0.6rem; color:#3a6080; margin-top:0.2rem;
+                                letter-spacing:0.15em;">EXIT SIDE</div>
+                        </div>
+                        <div>
+                            <div style="font-size:2.5rem; font-weight:900; color:#fff;
+                                font-family:'Exo 2',sans-serif; line-height:1;">
+                                {pred.seconds_to_exit:.2f}s
+                            </div>
+                            <div style="font-size:0.6rem; color:#3a6080; margin-top:0.2rem;
+                                letter-spacing:0.15em;">TIME TO EXIT</div>
+                        </div>
+                        <div>
+                            <div style="font-size:2.5rem; font-weight:900; color:#00fff0;
+                                font-family:'Exo 2',sans-serif; line-height:1;">
+                                {pred.confidence:.3f}
+                            </div>
+                            <div style="font-size:0.6rem; color:#3a6080; margin-top:0.2rem;
+                                letter-spacing:0.15em;">CONFIDENCE</div>
+                        </div>
+                        <div>
+                            <div style="font-size:1.1rem; font-weight:700; color:#7ab3d4;
+                                font-family:'Rajdhani',sans-serif; line-height:1.3;">
+                                ({pred.predicted_exit_point[0]}, {pred.predicted_exit_point[1]})
+                            </div>
+                            <div style="font-size:0.6rem; color:#3a6080; margin-top:0.2rem;
+                                letter-spacing:0.15em;">EXIT POINT (px)</div>
+                        </div>
+                    </div>
+                    <div style="margin-top:0.85rem; font-size:0.62rem; color:#2a4060;">
+                        Velocity: vx={pred.current_velocity[0]:+.2f} · vy={pred.current_velocity[1]:+.2f} px/frame
+                    </div>
+                    {alert_html}
+                </div>
+                """, unsafe_allow_html=True)
+
+        st.markdown("<hr>")
+        st.markdown('<div class="section-hdr">Engine Status</div>', unsafe_allow_html=True)
+        s1, s2 = st.columns(2)
+        s1.metric("ACTIVE TRACKS", len(engine.tracks))
+        s2.metric("FRAMES PROCESSED", engine.frame_counter)
+
+        if engine.tracks:
+            st.markdown('<div class="section-sub">Tracked persons — history depth per ID</div>', unsafe_allow_html=True)
+            import pandas as pd
+            rows = [{"Person ID": pid, "History Frames": len(t.positions)} for pid, t in engine.tracks.items()]
+            st.dataframe(pd.DataFrame(rows), use_container_width=True)
+
+
 def report_page():
     render_session_bar()
     from core.reporter import generate_report
@@ -2343,23 +2508,24 @@ def intel_page():
 
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("SYSTEM",  "PhantomEye")
-    c2.metric("VERSION", "v3.2.0")
+    c2.metric("VERSION", "v3.3.0")
     c3.metric("STATUS",  "ONLINE")
-    c4.metric("MODULES", "11 ACTIVE")
+    c4.metric("MODULES", "12 ACTIVE")
 
     st.markdown("<br>", unsafe_allow_html=True)
     modules_info = [
-        ("DETECTION",       "YOLOv8-nano",   "yolov8n.pt · class 0 · confidence 0.4+ · CPU only"),
-        ("ANALYTICS",       "ByteTrack",     "IOU matching · NumPy heatmap · dwell time tracking · loitering threshold: 60s"),
-        ("OSINT",           "LBPH Face",     "LBPH embedding · cosine gallery search · score 0–100 · LOW/MEDIUM/HIGH risk"),
-        ("EMOTION",         "DeepFace + TF", "7 emotion classes · age + gender · OpenCV detector · 15% min face size filter"),
-        ("NL QUERY",        "Groq LLaMA 3",  "llama-3.1-8b-instant · English + Roman Urdu · JSON structured filter extraction"),
-        ("WEAPON",          "YOLOv8 Custom", "9 classes · mAP50 53.2% · Handgun 89.5% · Shotgun 96.3% · SMG 98.6%"),
-        ("THREAT MOMENTUM", "TMS v1.0",      "Novel · 6 behavioral signals · compound amplifier · 45s decay · 5 threat levels"),
-        ("BEHAVIORAL DNA",  "BDF v1.0",      "Novel · 5 behavioral components · cosine similarity · 82% match threshold"),
-        ("SOCIAL GRAPH",    "SGI v1.0",      "Novel · proximity + velocity sync + dwell overlap · BFS group detection"),
-        ("REPORT",          "fpdf2",         "Classified PDF · dark theme · CLASSIFIED header · threat sections in red"),
-        ("API",             "FastAPI",        "OAS 3.1 · CORS enabled · uvicorn · modular route handlers"),
+        ("DETECTION",         "YOLOv8-nano",   "yolov8n.pt · class 0 · confidence 0.4+ · CPU only"),
+        ("ANALYTICS",         "ByteTrack",     "IOU matching · NumPy heatmap · dwell time tracking · loitering threshold: 60s"),
+        ("OSINT",             "LBPH Face",     "LBPH embedding · cosine gallery search · score 0–100 · LOW/MEDIUM/HIGH risk"),
+        ("EMOTION",           "DeepFace + TF", "7 emotion classes · age + gender · OpenCV detector · 15% min face size filter"),
+        ("NL QUERY",          "Groq LLaMA 3",  "llama-3.1-8b-instant · English + Roman Urdu · JSON structured filter extraction"),
+        ("WEAPON",            "YOLOv8 Custom", "9 classes · mAP50 53.2% · Handgun 89.5% · Shotgun 96.3% · SMG 98.6%"),
+        ("THREAT MOMENTUM",   "TMS v1.0",      "Novel · 6 behavioral signals · compound amplifier · 45s decay · 5 threat levels"),
+        ("BEHAVIORAL DNA",    "BDF v1.0",      "Novel · 5 behavioral components · cosine similarity · 82% match threshold"),
+        ("SOCIAL GRAPH",      "SGI v1.0",      "Novel · proximity + velocity sync + dwell overlap · BFS group detection"),
+        ("PREDICTIVE EXIT",   "PEV v1.0",      "Novel · velocity smoothing · linear trajectory extrapolation · boundary prediction 3–5s ahead · camera handoff"),
+        ("REPORT",            "fpdf2",         "Classified PDF · dark theme · CLASSIFIED header · threat sections in red"),
+        ("API",               "FastAPI",        "OAS 3.1 · CORS enabled · uvicorn · modular route handlers"),
     ]
     for name, tech, desc in modules_info:
         with st.expander(f"{name}  ·  {tech}  ·  ACTIVE"):
@@ -2374,7 +2540,8 @@ def intel_page():
         "novel_contributions": [
             "Threat Momentum Score (TMS v1.0) — temporal compound threat accumulation",
             "Behavioral DNA Fingerprint (BDF v1.0) — camera-agnostic behavioral re-ID",
-            "Social Graph Intelligence (SGI v1.0) — implicit group detection from movement"
+            "Social Graph Intelligence (SGI v1.0) — implicit group detection from movement",
+            "Predictive Exit Vector (PEV v1.0) — 3-5s ahead frame boundary exit prediction",
         ],
         "paper_status":        "in progress",
         "status":              "online",
@@ -2401,6 +2568,7 @@ def main():
     elif page == "THREAT":    threat_page()
     elif page == "BDF":       bdf_page()
     elif page == "SGI":       sgi_page()
+    elif page == "PEV":       pev_page()
     elif page == "REPORT":    report_page()
     elif page == "INTEL":     intel_page()
 
