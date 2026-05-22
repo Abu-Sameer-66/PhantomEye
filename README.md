@@ -1,3 +1,11 @@
+---
+title: PhantomEye
+emoji: 👁
+colorFrom: blue
+colorTo: cyan
+sdk: docker
+pinned: false
+---
 <div align="center">
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:020408,50:0a1628,100:020408&height=280&section=header&text=👁%20PhantomEye&fontSize=72&fontColor=00b4ff&animation=fadeIn&fontAlignY=38&desc=AI-Powered%20Surveillance%20Intelligence%20System&descSize=17&descAlignY=58&descAlign=50&descColor=7ab3d4" width="100%"/>
