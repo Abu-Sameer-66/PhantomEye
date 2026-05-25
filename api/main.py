@@ -16,6 +16,7 @@ from core.osint import OSINTAudit
 from config import OUTPUTS_DIR, GALLERY_DIR, API_HOST, API_PORT
 
 from api.routes.predictive_exit import router as predictive_exit_router
+from api.routes.zone_intelligence import router as zone_intelligence_router
 
 app = FastAPI(
     title="PhantomEye API",
@@ -31,6 +32,7 @@ app.add_middleware(
 )
 
 app.include_router(predictive_exit_router)
+app.include_router(zone_intelligence_router)
 
 detector = PersonDetector()
 osint    = OSINTAudit()
@@ -45,7 +47,7 @@ def root():
         "system"  : "PhantomEye",
         "version" : "1.0.0",
         "status"  : "online",
-        "modules" : ["detection", "tracking", "analytics", "osint", "predictive_exit"],
+        "modules" : ["detection", "tracking", "analytics", "osint", "predictive_exit", "zone_intelligence"],
         "author"  : "Abu-Sameer-66",
     }
 

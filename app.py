@@ -1919,9 +1919,10 @@ def home():
         ("PEV",    "Predictive Exit"),
         ("REPORT", "Report"),
         ("INTEL",  "System"),
+        ("ZONE",   "Zone Intel"),
         ("GUIDE",  "Guide"),
     ]
-    cols2 = st.columns(7)
+    cols2 = st.columns(8)
     for i, (key, label) in enumerate(row2):
         with cols2[i]:
             if st.button(label, key=f"mod2_{key}"):
@@ -2924,6 +2925,225 @@ def welcome_flow():
                 st.rerun()
 
 
+def zone_page():
+    render_session_bar()
+    back_button()
+    from core.zone_intelligence import ZoneIntelligenceEngine, ZoneType, AlertLevel
+
+    st.markdown('<div class="section-hdr red">Zone Intelligence Engine</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-sub">Novel · ZIE v1.0 · Restricted zones · Capacity limits · Breach alerts · TMS integration</div>', unsafe_allow_html=True)
+    st.markdown("""
+    <div class='info-box'>
+        <strong>Research contribution:</strong> ZIE v1.0 defines named surveillance zones
+        directly on the video frame. Four zone types:
+        <span style="color:#ff3355;font-weight:600;">RESTRICTED</span> (no entry — CRITICAL alert),
+        <span style="color:#f0b429;font-weight:600;">MONITORED</span> (entry logged),
+        <span style="color:#00fff0;font-weight:600;">CAPACITY LIMITED</span> (max occupancy enforced),
+        <span style="color:#00ff88;font-weight:600;">SAFE</span> (normal zone).
+        Every breach automatically feeds the <strong>proximity_violation</strong> signal into
+        TMS v1.0 — escalating the threat score of the offending person in real time.
+        Suspicious zone traversal sequences are also detected automatically.
+    </div>
+    """, unsafe_allow_html=True)
+    st.markdown('<div class="terminal">ZIE v1.0 · 4 zone types · CRITICAL breach alerts · capacity enforcement · TMS integration · suspicious sequence detection</div>', unsafe_allow_html=True)
+
+    if "zie_engine" not in st.session_state:
+        st.session_state.zie_engine = ZoneIntelligenceEngine()
+    engine = st.session_state.zie_engine
+
+    # ── Zone Definition ──────────────────────────────────
+    st.markdown("### Define Zones")
+    st.markdown('<div class="section-sub">Add zones by specifying name, type, and pixel coordinates on a 640×480 frame</div>', unsafe_allow_html=True)
+
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        zone_name = st.text_input("Zone Name", value="Server Room", key="zie_name")
+        zone_type = st.selectbox("Zone Type", ["RESTRICTED", "MONITORED", "CAPACITY_LIMITED", "SAFE"], key="zie_type")
+    with c2:
+        zx1 = st.number_input("X1 (left)", min_value=0, max_value=639, value=400, key="zie_x1")
+        zy1 = st.number_input("Y1 (top)", min_value=0, max_value=479, value=100, key="zie_y1")
+    with c3:
+        zx2 = st.number_input("X2 (right)", min_value=1, max_value=640, value=600, key="zie_x2")
+        zy2 = st.number_input("Y2 (bottom)", min_value=1, max_value=480, value=350, key="zie_y2")
+        max_cap = st.number_input("Max Capacity", min_value=1, max_value=50, value=5, key="zie_cap")
+
+    col_add, col_clear = st.columns(2)
+    with col_add:
+        if st.button("ADD ZONE", type="primary", key="zie_add"):
+            zt = ZoneType(zone_type)
+            engine.add_zone(zone_name, zt, zx1, zy1, zx2, zy2, max_capacity=max_cap)
+            st.success(f"Zone '{zone_name}' added. Total zones: {len(engine.zones)}")
+    with col_clear:
+        if st.button("CLEAR ALL ZONES", key="zie_clear"):
+            engine.clear_zones()
+            st.success("All zones cleared.")
+
+    # ── Preset Scenarios ─────────────────────────────────
+    st.markdown("### Quick Presets")
+    p1, p2, p3 = st.columns(3)
+    with p1:
+        if st.button("🏦 Bank Scenario", key="preset_bank"):
+            engine.clear_zones()
+            engine.add_zone("Vault",        ZoneType.RESTRICTED,       420, 50,  620, 280)
+            engine.add_zone("Counter",      ZoneType.MONITORED,        50,  50,  400, 250)
+            engine.add_zone("Lobby",        ZoneType.CAPACITY_LIMITED, 50,  280, 640, 480, max_capacity=10)
+            engine.add_zone("Exit",         ZoneType.SAFE,             600, 280, 640, 480)
+            st.success("Bank scenario loaded — 4 zones defined.")
+    with p2:
+        if st.button("🏥 Hospital Scenario", key="preset_hospital"):
+            engine.clear_zones()
+            engine.add_zone("ICU",          ZoneType.RESTRICTED,       400, 50,  640, 300)
+            engine.add_zone("Ward",         ZoneType.MONITORED,        50,  50,  380, 300)
+            engine.add_zone("Waiting Area", ZoneType.CAPACITY_LIMITED, 50,  300, 640, 480, max_capacity=8)
+            engine.add_zone("Reception",    ZoneType.SAFE,             50,  300, 200, 480)
+            st.success("Hospital scenario loaded — 4 zones defined.")
+    with p3:
+        if st.button("🏢 Office Scenario", key="preset_office"):
+            engine.clear_zones()
+            engine.add_zone("Server Room",  ZoneType.RESTRICTED,       450, 50,  640, 250)
+            engine.add_zone("CEO Office",   ZoneType.MONITORED,        200, 50,  430, 250)
+            engine.add_zone("Open Floor",   ZoneType.CAPACITY_LIMITED, 50,  250, 640, 480, max_capacity=15)
+            engine.add_zone("Corridor",     ZoneType.SAFE,             50,  50,  180, 480)
+            st.success("Office scenario loaded — 4 zones defined.")
+
+    # ── Active Zones Display ─────────────────────────────
+    if engine.zones:
+        st.markdown("### Active Zones")
+        type_colors = {
+            "RESTRICTED":       "#ff3355",
+            "MONITORED":        "#f0b429",
+            "CAPACITY_LIMITED": "#00fff0",
+            "SAFE":             "#00ff88",
+        }
+        for zid, zone in engine.zones.items():
+            color = type_colors.get(zone.zone_type.value, "#00b4ff")
+            occ   = sum(1 for s in engine.person_states.values() if zid in s.current_zones)
+            st.markdown(f"""
+            <div style="background:rgba(0,8,20,0.8);border:1px solid {color}40;border-left:3px solid {color};
+                 border-radius:6px;padding:0.6rem 1rem;margin-bottom:0.5rem;
+                 font-family:'IBM Plex Mono',monospace;font-size:0.72rem;
+                 display:flex;align-items:center;gap:1.5rem;">
+                <span style="color:{color};font-weight:700;min-width:20px;">[{zid}]</span>
+                <span style="color:#e8f4ff;font-weight:600;min-width:140px;">{zone.name}</span>
+                <span style="color:{color};font-size:0.62rem;min-width:140px;">{zone.zone_type.value}</span>
+                <span style="color:#3a6080;font-size:0.62rem;">BBox: ({zone.x1},{zone.y1}) → ({zone.x2},{zone.y2})</span>
+                <span style="color:#00ff88;font-size:0.62rem;margin-left:auto;">Occupancy: {occ}</span>
+            </div>
+            """, unsafe_allow_html=True)
+
+    # ── Person Simulation ────────────────────────────────
+    st.markdown("### Simulate Person Movement")
+    st.markdown('<div class="section-sub">Feed person positions frame by frame to test zone detection</div>', unsafe_allow_html=True)
+
+    s1, s2, s3 = st.columns(3)
+    with s1:
+        sim_pid = st.number_input("Person ID", min_value=1, value=1, key="zie_pid")
+        sim_x1  = st.number_input("BBox X1", min_value=0, max_value=639, value=410, key="zie_sx1")
+    with s2:
+        sim_y1  = st.number_input("BBox Y1", min_value=0, max_value=479, value=110, key="zie_sy1")
+        sim_x2  = st.number_input("BBox X2", min_value=1, max_value=640, value=460, key="zie_sx2")
+    with s3:
+        sim_y2  = st.number_input("BBox Y2", min_value=1, max_value=480, value=210, key="zie_sy2")
+
+    if st.button("FEED FRAME", type="primary", key="zie_feed"):
+        if not engine.zones:
+            st.warning("Define at least one zone first — or use a preset above.")
+        else:
+            dets   = [{"person_id": sim_pid, "bbox": [sim_x1, sim_y1, sim_x2, sim_y2]}]
+            result = engine.update(dets)
+            st.session_state.zie_last_result = result
+
+    if "zie_last_result" in st.session_state:
+        result = st.session_state.zie_last_result
+        events = result.get("events", [])
+
+        if events:
+            st.markdown("### Events This Frame")
+            level_colors = {
+                "CRITICAL": "#ff3355",
+                "HIGH":     "#f0b429",
+                "MEDIUM":   "#00b4ff",
+                "LOW":      "#00ff88",
+                "NONE":     "#3a6080",
+            }
+            for evt in events:
+                color = level_colors.get(evt["alert_level"], "#3a6080")
+                icon  = "🔴" if evt["alert_level"] == "CRITICAL" else \
+                        "🟠" if evt["alert_level"] == "HIGH"     else \
+                        "🟡" if evt["alert_level"] == "MEDIUM"   else \
+                        "🟢" if evt["alert_level"] == "LOW"      else "⚪"
+                st.markdown(f"""
+                <div style="background:rgba(0,4,12,0.95);border:1px solid {color}40;
+                     border-left:3px solid {color};border-radius:6px;
+                     padding:0.75rem 1rem;margin-bottom:0.5rem;
+                     font-family:'IBM Plex Mono',monospace;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:1.1rem;">{icon}</span>
+                        <span style="color:{color};font-size:0.65rem;font-weight:700;
+                             min-width:80px;">{evt['alert_level']}</span>
+                        <span style="color:#7ab3d4;font-size:0.72rem;">{evt['message']}</span>
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+
+            if result.get("tms_signals"):
+                st.markdown(f'<div class="terminal" style="color:#ff3355;margin-top:0.5rem;">⚡ TMS SIGNAL FIRED: proximity_violation → person(s) {list(result["tms_signals"].keys())} threat score boosted</div>', unsafe_allow_html=True)
+        else:
+            st.info("No events this frame — person is not inside any defined zone.")
+
+    # ── Zone Summaries ───────────────────────────────────
+    st.markdown("<hr>", unsafe_allow_html=True)
+    st.markdown("### Zone Summaries")
+    summaries = engine.get_all_summaries()
+    if summaries:
+        import pandas as pd
+        rows = []
+        for zid, s in summaries.items():
+            rows.append({
+                "Zone": s["zone_name"],
+                "Type": s["zone_type"],
+                "Entries": s["total_entries"],
+                "Exits": s["total_exits"],
+                "Occupancy": s["current_occupancy"],
+                "Avg Dwell (s)": s["avg_dwell_sec"],
+                "Breaches": s["total_breaches"],
+                "Alert": s["alert_level"],
+            })
+        st.dataframe(pd.DataFrame(rows), use_container_width=True)
+    else:
+        st.info("No zone data yet. Add zones and feed frames.")
+
+    # ── Event Log ────────────────────────────────────────
+    st.markdown("### Recent Event Log")
+    recent = engine.get_recent_events(15)
+    if recent:
+        import pandas as pd
+        df = pd.DataFrame([{
+            "Event":  e["event_type"].upper(),
+            "Zone":   e["zone_name"],
+            "Person": e["person_id"],
+            "Alert":  e["alert_level"],
+            "Message": e["message"],
+        } for e in recent])
+        st.dataframe(df, use_container_width=True)
+
+    # ── Session Summary ──────────────────────────────────
+    st.markdown("<hr>", unsafe_allow_html=True)
+    summary = engine.session_summary()
+    s1, s2, s3, s4 = st.columns(4)
+    s1.metric("ZONES DEFINED",    summary["total_zones"])
+    s2.metric("PERSONS TRACKED",  summary["total_persons_seen"])
+    s3.metric("TOTAL ENTRIES",    summary["total_entries"])
+    s4.metric("TOTAL BREACHES",   summary["total_breaches"])
+
+    if st.button("RESET ENGINE", key="zie_reset"):
+        engine.reset()
+        for key in ["zie_last_result"]:
+            if key in st.session_state:
+                del st.session_state[key]
+        st.success("ZIE engine reset.")
+
+
 def guide_page():
     """13th Module — Complete User Guide & Documentation."""
     render_session_bar()
@@ -3235,6 +3455,7 @@ def main():
     elif page == "PEV":       pev_page()
     elif page == "REPORT":    report_page()
     elif page == "INTEL":     intel_page()
+    elif page == "ZONE":      zone_page()
     elif page == "GUIDE":     guide_page()
 
 
