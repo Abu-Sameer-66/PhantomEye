@@ -580,7 +580,7 @@
 #         c2.metric("INFERENCE TIME",   f"{elapsed}s")
 #         c3.metric("MODEL",            "YOLOv8n")
 #         c4.metric("DEVICE",           "CPU")
-#         st.image(cv2.cvtColor(annotated, cv2.COLOR_BGR2RGB), caption="Detection output", use_column_width=True)
+#         st.image(cv2.cvtColor(annotated, cv2.COLOR_BGR2RGB), caption="Detection output", use_container_width=True)
 #         if detections:
 #             st.markdown('<div class="section-hdr">Detection Log</div>', unsafe_allow_html=True)
 #             st.markdown('<div class="section-sub">Expand each entry to inspect bounding box coordinates and confidence score</div>', unsafe_allow_html=True)
@@ -641,7 +641,7 @@
 #             if s.get("total_alerts", 0) > 0:
 #                 st.warning(f"Loitering detected — Subject IDs: {s.get('loiterers', [])}")
 #             heat = analyzer.get_heatmap_overlay(np.zeros((h, w, 3), dtype=np.uint8))
-#             st.image(cv2.cvtColor(heat, cv2.COLOR_BGR2RGB), caption="Behavioral heatmap — red zones indicate highest activity density", use_column_width=True)
+#             st.image(cv2.cvtColor(heat, cv2.COLOR_BGR2RGB), caption="Behavioral heatmap — red zones indicate highest activity density", use_container_width=True)
 
 
 # def osint_page():
@@ -677,7 +677,7 @@
 #             for m in result["matches"]:
 #                 st.markdown(f'<div class="terminal">MATCH: {m["matched_id"]} · CONF: {m["confidence"]}% · SOURCE: {m["source"]}</div>', unsafe_allow_html=True)
 #         vis = osint.visualize(image, result)
-#         st.image(cv2.cvtColor(vis, cv2.COLOR_BGR2RGB), caption="OSINT visualization output", use_column_width=True)
+#         st.image(cv2.cvtColor(vis, cv2.COLOR_BGR2RGB), caption="OSINT visualization output", use_container_width=True)
 
 
 # def emotion_page():
@@ -699,9 +699,9 @@
 #             annotated, results = process_frame_emotion(frame_bgr)
 #         col1, col2 = st.columns(2)
 #         with col1:
-#             st.image(frame, caption="Original", use_column_width=True)
+#             st.image(frame, caption="Original", use_container_width=True)
 #         with col2:
-#             st.image(annotated[:, :, ::-1], caption="Emotion analysis output", use_column_width=True)
+#             st.image(annotated[:, :, ::-1], caption="Emotion analysis output", use_container_width=True)
 #         if results:
 #             st.markdown("<hr>")
 #             st.markdown('<div class="section-hdr">Detected Subjects</div>', unsafe_allow_html=True)
@@ -758,7 +758,7 @@
 #             if matched:
 #                 st.success(f"{len(matched)} subject(s) matched from {len(sample_records)} records")
 #                 import pandas as pd
-#                 st.dataframe(pd.DataFrame(matched), use_column_width=True)
+#                 st.dataframe(pd.DataFrame(matched), use_container_width=True)
 #             else:
 #                 st.warning("No subjects matched this query.")
 #         else:
@@ -787,9 +787,9 @@
 #             annotated, detections = detect_weapons(frame_bgr, model)
 #         col1, col2 = st.columns(2)
 #         with col1:
-#             st.image(frame, caption="Original", use_column_width=True)
+#             st.image(frame, caption="Original", use_container_width=True)
 #         with col2:
-#             st.image(annotated[:, :, ::-1], caption="Threat analysis output", use_column_width=True)
+#             st.image(annotated[:, :, ::-1], caption="Threat analysis output", use_container_width=True)
 #         st.markdown("<hr>")
 #         if detections:
 #             st.error(f"THREAT DETECTED — {len(detections)} weapon(s) identified")
@@ -877,7 +877,7 @@
 #             st.markdown('<div class="section-hdr">Signal Breakdown</div>', unsafe_allow_html=True)
 #             import pandas as pd
 #             df = pd.DataFrame([{"Signal": k.replace("_", " ").upper(), "Score Contribution": round(v, 3)} for k, v in r.signal_breakdown.items()])
-#             st.dataframe(df, use_column_width=True)
+#             st.dataframe(df, use_container_width=True)
 
 #     st.markdown("<hr>")
 #     st.markdown('<div class="section-hdr">Session Summary</div>', unsafe_allow_html=True)
@@ -1056,7 +1056,7 @@
 #                 "Proximity (px)":  l.evidence.get("proximity_px", 0),
 #                 "Velocity Corr":   l.evidence.get("velocity_corr", 0),
 #             } for l in links])
-#             st.dataframe(df, use_column_width=True)
+#             st.dataframe(df, use_container_width=True)
 
 #     st.markdown("<hr>")
 #     if st.button("RESET ENGINE"):
@@ -1220,7 +1220,7 @@
 #             st.markdown('<div class="section-sub">Tracked persons — history depth per ID</div>', unsafe_allow_html=True)
 #             import pandas as pd
 #             rows = [{"Person ID": pid, "History Frames": len(t.positions)} for pid, t in engine.tracks.items()]
-#             st.dataframe(pd.DataFrame(rows), use_column_width=True)
+#             st.dataframe(pd.DataFrame(rows), use_container_width=True)
 
 
 # def report_page():
@@ -1965,7 +1965,7 @@
 #         c2.metric("INFERENCE TIME",   f"{elapsed}s")
 #         c3.metric("MODEL",            "YOLOv8n")
 #         c4.metric("DEVICE",           "CPU")
-#         st.image(cv2.cvtColor(annotated, cv2.COLOR_BGR2RGB), caption="Detection output", use_column_width=True)
+#         st.image(cv2.cvtColor(annotated, cv2.COLOR_BGR2RGB), caption="Detection output", use_container_width=True)
 #         if detections:
 #             st.markdown('<div class="section-hdr">Detection Log</div>', unsafe_allow_html=True)
 #             st.markdown('<div class="section-sub">Expand each entry to inspect bounding box coordinates and confidence score</div>', unsafe_allow_html=True)
@@ -2026,7 +2026,7 @@
 #             if s.get("total_alerts", 0) > 0:
 #                 st.warning(f"Loitering detected — Subject IDs: {s.get('loiterers', [])}")
 #             heat = analyzer.get_heatmap_overlay(np.zeros((h, w, 3), dtype=np.uint8))
-#             st.image(cv2.cvtColor(heat, cv2.COLOR_BGR2RGB), caption="Behavioral heatmap — red zones indicate highest activity density", use_column_width=True)
+#             st.image(cv2.cvtColor(heat, cv2.COLOR_BGR2RGB), caption="Behavioral heatmap — red zones indicate highest activity density", use_container_width=True)
 
 
 # def osint_page():
@@ -2062,7 +2062,7 @@
 #             for m in result["matches"]:
 #                 st.markdown(f'<div class="terminal">MATCH: {m["matched_id"]} · CONF: {m["confidence"]}% · SOURCE: {m["source"]}</div>', unsafe_allow_html=True)
 #         vis = osint.visualize(image, result)
-#         st.image(cv2.cvtColor(vis, cv2.COLOR_BGR2RGB), caption="OSINT visualization output", use_column_width=True)
+#         st.image(cv2.cvtColor(vis, cv2.COLOR_BGR2RGB), caption="OSINT visualization output", use_container_width=True)
 
 
 # def emotion_page():
@@ -2084,9 +2084,9 @@
 #             annotated, results = process_frame_emotion(frame_bgr)
 #         col1, col2 = st.columns(2)
 #         with col1:
-#             st.image(frame, caption="Original", use_column_width=True)
+#             st.image(frame, caption="Original", use_container_width=True)
 #         with col2:
-#             st.image(annotated[:, :, ::-1], caption="Emotion analysis output", use_column_width=True)
+#             st.image(annotated[:, :, ::-1], caption="Emotion analysis output", use_container_width=True)
 #         if results:
 #             st.markdown("<hr>")
 #             st.markdown('<div class="section-hdr">Detected Subjects</div>', unsafe_allow_html=True)
@@ -2143,7 +2143,7 @@
 #             if matched:
 #                 st.success(f"{len(matched)} subject(s) matched from {len(sample_records)} records")
 #                 import pandas as pd
-#                 st.dataframe(pd.DataFrame(matched), use_column_width=True)
+#                 st.dataframe(pd.DataFrame(matched), use_container_width=True)
 #             else:
 #                 st.warning("No subjects matched this query.")
 #         else:
@@ -2172,9 +2172,9 @@
 #             annotated, detections = detect_weapons(frame_bgr, model)
 #         col1, col2 = st.columns(2)
 #         with col1:
-#             st.image(frame, caption="Original", use_column_width=True)
+#             st.image(frame, caption="Original", use_container_width=True)
 #         with col2:
-#             st.image(annotated[:, :, ::-1], caption="Threat analysis output", use_column_width=True)
+#             st.image(annotated[:, :, ::-1], caption="Threat analysis output", use_container_width=True)
 #         st.markdown("<hr>")
 #         if detections:
 #             st.error(f"THREAT DETECTED — {len(detections)} weapon(s) identified")
@@ -2262,7 +2262,7 @@
 #             st.markdown('<div class="section-hdr">Signal Breakdown</div>', unsafe_allow_html=True)
 #             import pandas as pd
 #             df = pd.DataFrame([{"Signal": k.replace("_", " ").upper(), "Score Contribution": round(v, 3)} for k, v in r.signal_breakdown.items()])
-#             st.dataframe(df, use_column_width=True)
+#             st.dataframe(df, use_container_width=True)
 
 #     st.markdown("<hr>")
 #     st.markdown('<div class="section-hdr">Session Summary</div>', unsafe_allow_html=True)
@@ -2441,7 +2441,7 @@
 #                 "Proximity (px)":  l.evidence.get("proximity_px", 0),
 #                 "Velocity Corr":   l.evidence.get("velocity_corr", 0),
 #             } for l in links])
-#             st.dataframe(df, use_column_width=True)
+#             st.dataframe(df, use_container_width=True)
 
 #     st.markdown("<hr>")
 #     if st.button("RESET ENGINE"):
@@ -2605,7 +2605,7 @@
 #             st.markdown('<div class="section-sub">Tracked persons — history depth per ID</div>', unsafe_allow_html=True)
 #             import pandas as pd
 #             rows = [{"Person ID": pid, "History Frames": len(t.positions)} for pid, t in engine.tracks.items()]
-#             st.dataframe(pd.DataFrame(rows), use_column_width=True)
+#             st.dataframe(pd.DataFrame(rows), use_container_width=True)
 
 
 # def report_page():
@@ -3109,7 +3109,7 @@
 #                 "Breaches": s["total_breaches"],
 #                 "Alert": s["alert_level"],
 #             })
-#         st.dataframe(pd.DataFrame(rows), use_column_width=True)
+#         st.dataframe(pd.DataFrame(rows), use_container_width=True)
 #     else:
 #         st.info("No zone data yet. Add zones and feed frames.")
 
@@ -3125,7 +3125,7 @@
 #             "Alert":  e["alert_level"],
 #             "Message": e["message"],
 #         } for e in recent])
-#         st.dataframe(df, use_column_width=True)
+#         st.dataframe(df, use_container_width=True)
 
 #     # ── Session Summary ──────────────────────────────────
 #     st.markdown("<hr>", unsafe_allow_html=True)
@@ -4073,7 +4073,7 @@ def detection_page():
         c2.metric("INFERENCE TIME",   f"{elapsed}s")
         c3.metric("MODEL",            "YOLOv8n")
         c4.metric("DEVICE",           "CPU")
-        st.image(cv2.cvtColor(annotated, cv2.COLOR_BGR2RGB), caption="Detection output", use_column_width=True)
+        st.image(cv2.cvtColor(annotated, cv2.COLOR_BGR2RGB), caption="Detection output", use_container_width=True)
         if detections:
             st.markdown('<div class="section-hdr">Detection Log</div>', unsafe_allow_html=True)
             st.markdown('<div class="section-sub">Expand each entry to inspect bounding box coordinates and confidence score</div>', unsafe_allow_html=True)
@@ -4134,7 +4134,7 @@ def analytics_page():
             if s.get("total_alerts", 0) > 0:
                 st.warning(f"Loitering detected — Subject IDs: {s.get('loiterers', [])}")
             heat = analyzer.get_heatmap_overlay(np.zeros((h, w, 3), dtype=np.uint8))
-            st.image(cv2.cvtColor(heat, cv2.COLOR_BGR2RGB), caption="Behavioral heatmap — red zones indicate highest activity density", use_column_width=True)
+            st.image(cv2.cvtColor(heat, cv2.COLOR_BGR2RGB), caption="Behavioral heatmap — red zones indicate highest activity density", use_container_width=True)
 
 
 def osint_page():
@@ -4170,7 +4170,7 @@ def osint_page():
             for m in result["matches"]:
                 st.markdown(f'<div class="terminal">MATCH: {m["matched_id"]} · CONF: {m["confidence"]}% · SOURCE: {m["source"]}</div>', unsafe_allow_html=True)
         vis = osint.visualize(image, result)
-        st.image(cv2.cvtColor(vis, cv2.COLOR_BGR2RGB), caption="OSINT visualization output", use_column_width=True)
+        st.image(cv2.cvtColor(vis, cv2.COLOR_BGR2RGB), caption="OSINT visualization output", use_container_width=True)
 
 
 def emotion_page():
@@ -4192,9 +4192,9 @@ def emotion_page():
             annotated, results = process_frame_emotion(frame_bgr)
         col1, col2 = st.columns(2)
         with col1:
-            st.image(frame, caption="Original", use_column_width=True)
+            st.image(frame, caption="Original", use_container_width=True)
         with col2:
-            st.image(annotated[:, :, ::-1], caption="Emotion analysis output", use_column_width=True)
+            st.image(annotated[:, :, ::-1], caption="Emotion analysis output", use_container_width=True)
         if results:
             st.markdown("<hr>")
             st.markdown('<div class="section-hdr">Detected Subjects</div>', unsafe_allow_html=True)
@@ -4251,7 +4251,7 @@ def nlquery_page():
             if matched:
                 st.success(f"{len(matched)} subject(s) matched from {len(sample_records)} records")
                 import pandas as pd
-                st.dataframe(pd.DataFrame(matched), use_column_width=True)
+                st.dataframe(pd.DataFrame(matched), use_container_width=True)
             else:
                 st.warning("No subjects matched this query.")
         else:
@@ -4280,9 +4280,9 @@ def weapon_page():
             annotated, detections = detect_weapons(frame_bgr, model)
         col1, col2 = st.columns(2)
         with col1:
-            st.image(frame, caption="Original", use_column_width=True)
+            st.image(frame, caption="Original", use_container_width=True)
         with col2:
-            st.image(annotated[:, :, ::-1], caption="Threat analysis output", use_column_width=True)
+            st.image(annotated[:, :, ::-1], caption="Threat analysis output", use_container_width=True)
         st.markdown("<hr>")
         if detections:
             st.error(f"THREAT DETECTED — {len(detections)} weapon(s) identified")
@@ -4370,7 +4370,7 @@ def threat_page():
             st.markdown('<div class="section-hdr">Signal Breakdown</div>', unsafe_allow_html=True)
             import pandas as pd
             df = pd.DataFrame([{"Signal": k.replace("_", " ").upper(), "Score Contribution": round(v, 3)} for k, v in r.signal_breakdown.items()])
-            st.dataframe(df, use_column_width=True)
+            st.dataframe(df, use_container_width=True)
 
     st.markdown("<hr>")
     st.markdown('<div class="section-hdr">Session Summary</div>', unsafe_allow_html=True)
@@ -4549,7 +4549,7 @@ def sgi_page():
                 "Proximity (px)":  l.evidence.get("proximity_px", 0),
                 "Velocity Corr":   l.evidence.get("velocity_corr", 0),
             } for l in links])
-            st.dataframe(df, use_column_width=True)
+            st.dataframe(df, use_container_width=True)
 
     st.markdown("<hr>")
     if st.button("RESET ENGINE"):
@@ -4713,7 +4713,7 @@ def pev_page():
             st.markdown('<div class="section-sub">Tracked persons — history depth per ID</div>', unsafe_allow_html=True)
             import pandas as pd
             rows = [{"Person ID": pid, "History Frames": len(t.positions)} for pid, t in engine.tracks.items()]
-            st.dataframe(pd.DataFrame(rows), use_column_width=True)
+            st.dataframe(pd.DataFrame(rows), use_container_width=True)
 
 
 def report_page():
@@ -5227,7 +5227,7 @@ def zone_page():
                 "Breaches": s["total_breaches"],
                 "Alert": s["alert_level"],
             })
-        st.dataframe(pd.DataFrame(rows), use_column_width=True)
+        st.dataframe(pd.DataFrame(rows), use_container_width=True)
     else:
         st.info("No zone data yet. Add zones and feed frames.")
 
@@ -5243,7 +5243,7 @@ def zone_page():
             "Alert":  e["alert_level"],
             "Message": e["message"],
         } for e in recent])
-        st.dataframe(df, use_column_width=True)
+        st.dataframe(df, use_container_width=True)
 
     # ── Session Summary ──────────────────────────────────
     st.markdown("<hr>", unsafe_allow_html=True)
@@ -5317,9 +5317,9 @@ def anon_page():
 
         col1, col2 = st.columns(2)
         with col1:
-            st.image(frame, caption="Original", use_column_width=True)
+            st.image(frame, caption="Original", use_container_width=True)
         with col2:
-            st.image(anon_frame[:, :, ::-1], caption=f"Anonymized — {mode}", use_column_width=True)
+            st.image(anon_frame[:, :, ::-1], caption=f"Anonymized — {mode}", use_container_width=True)
 
         st.markdown("<hr>", unsafe_allow_html=True)
         c1, c2, c3, c4 = st.columns(4)

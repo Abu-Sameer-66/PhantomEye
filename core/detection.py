@@ -45,37 +45,70 @@ class PersonDetector:
 
     def draw(self, frame: np.ndarray, detections: list) -> np.ndarray:
         out = frame.copy()
+        h, w = out.shape[:2]
 
-        for i, det in enumerate(detections):
+        BLUE    = (255, 180, 0)   # brand accent blue  #00b4ff
+        GREEN   = (136, 255, 0)   # brand accent green #00ff88
+        CARD_BG = (32, 18, 6)     # brand card navy    #061220
+
+        def blend_chip(x1, y1, x2, y2, alpha=0.88):
+            roi = out[y1:y2, x1:x2]
+            fill = np.empty_like(roi)
+            fill[:, :] = CARD_BG
+            cv2.addWeighted(fill, alpha, roi, 1 - alpha, 0, dst=roi)
+
+        def overlaps(a, b):
+            ax1, ay1, ax2, ay2 = a
+            bx1, by1, bx2, by2 = b
+            return not (ax2 < bx1 or bx2 < ax1 or ay2 < by1 or by2 < ay1)
+
+        placed_labels = []
+
+        for det in detections:
             x1, y1, x2, y2 = det["bbox"]
             conf = det["confidence"]
+            box_w, box_h = x2 - x1, y2 - y1
 
-            cv2.rectangle(out, (x1, y1), (x2, y2), (0, 255, 100), 2)
+            arm = max(8, min(18, int(min(box_w, box_h) * 0.25)))
+            for cx, cy, dx, dy in [
+                (x1, y1, 1, 1), (x2, y1, -1, 1),
+                (x1, y2, 1, -1), (x2, y2, -1, -1),
+            ]:
+                cv2.line(out, (cx, cy), (cx + dx * arm, cy), BLUE, 2, cv2.LINE_AA)
+                cv2.line(out, (cx, cy), (cx, cy + dy * arm), BLUE, 2, cv2.LINE_AA)
 
-            label = f"Person  {conf:.2f}"
-            label_w, label_h = cv2.getTextSize(
-                label, cv2.FONT_HERSHEY_SIMPLEX, 0.55, 1
-            )[0]
-            cv2.rectangle(
-                out,
-                (x1, y1 - label_h - 8),
-                (x1 + label_w + 4, y1),
-                (0, 255, 100), -1
-            )
+            label = f"{conf:.2f}"
+            (tw, th), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_DUPLEX, 0.5, 1)
+            pad_x, pad_y = 8, 6
+            chip_w, chip_h = tw + pad_x * 2, th + pad_y * 2
+
+            chip_x1 = min(x1 + 3, max(0, w - chip_w))
+            chip_y1 = y1 + 3
+            for _ in range(4):
+                candidate = (chip_x1, chip_y1, chip_x1 + chip_w, chip_y1 + chip_h)
+                if not any(overlaps(candidate, p) for p in placed_labels):
+                    break
+                chip_y1 += chip_h + 3
+            chip_y1 = min(chip_y1, max(0, h - chip_h))
+            chip_x2, chip_y2 = chip_x1 + chip_w, chip_y1 + chip_h
+            placed_labels.append((chip_x1, chip_y1, chip_x2, chip_y2))
+
+            blend_chip(chip_x1, chip_y1, chip_x2, chip_y2)
+            cv2.rectangle(out, (chip_x1, chip_y1), (chip_x2, chip_y2), BLUE, 1, cv2.LINE_AA)
             cv2.putText(
                 out, label,
-                (x1 + 2, y1 - 5),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.55,
-                (0, 0, 0), 1, cv2.LINE_AA
+                (chip_x1 + pad_x, chip_y2 - pad_y),
+                cv2.FONT_HERSHEY_DUPLEX, 0.5, GREEN, 1, cv2.LINE_AA
             )
 
-        header = f"PhantomEye  |  Frame: {self.frame_count}  |  Persons: {len(detections)}"
-        cv2.rectangle(out, (0, 0), (len(header) * 9 + 10, 28), (0, 0, 0), -1)
+        header = f"PHANTOMEYE  |  FRAME {self.frame_count}  |  PERSONS {len(detections)}"
+        (hdr_tw, hdr_th), _ = cv2.getTextSize(header, cv2.FONT_HERSHEY_DUPLEX, 0.5, 1)
+        blend_chip(0, 0, hdr_tw + 20, hdr_th + 16)
+        cv2.line(out, (0, hdr_th + 16), (hdr_tw + 20, hdr_th + 16), BLUE, 1, cv2.LINE_AA)
         cv2.putText(
             out, header,
-            (6, 18),
-            cv2.FONT_HERSHEY_SIMPLEX, 0.55,
-            (0, 255, 100), 1, cv2.LINE_AA
+            (10, hdr_th + 8),
+            cv2.FONT_HERSHEY_DUPLEX, 0.5, GREEN, 1, cv2.LINE_AA
         )
 
         return out
