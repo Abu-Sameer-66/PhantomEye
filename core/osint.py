@@ -108,6 +108,7 @@ class OSINTAudit:
                 "exposure_score": 0,
                 "matches"       : [],
                 "risk_level"    : "UNKNOWN",
+                "total_checked" : 0,
                 "message"       : "No face detected in query image.",
             }
 
