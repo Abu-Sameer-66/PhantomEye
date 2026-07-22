@@ -210,8 +210,19 @@ class OSINTAudit:
                     (10, 72), cv2.FONT_HERSHEY_SIMPLEX, 0.55,
                     (200, 200, 200), 1, cv2.LINE_AA)
 
-        cv2.putText(out, result["message"],
-                    (10, h - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.45,
+        message = result["message"]
+        font    = cv2.FONT_HERSHEY_SIMPLEX
+        scale   = 0.45
+        (msg_w, msg_h), _ = cv2.getTextSize(message, font, scale, 1)
+        max_w = w - 20
+        while msg_w > max_w and scale > 0.2:
+            scale -= 0.03
+            (msg_w, msg_h), _ = cv2.getTextSize(message, font, scale, 1)
+
+        bar_y1 = h - msg_h - 16
+        cv2.rectangle(out, (0, bar_y1), (w, h), (0, 0, 0), -1)
+        cv2.putText(out, message,
+                    (10, h - 10), font, scale,
                     (200, 200, 200), 1, cv2.LINE_AA)
 
         return out
